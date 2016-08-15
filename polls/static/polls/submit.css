@@ -1,0 +1,16 @@
+body {
+    background-color: #EBEBEB;
+}
+
+#response {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    background-color: #A52A2A;
+    font-family: sans-serif;
+}
+
+#response h3{
+    color: white;
+}

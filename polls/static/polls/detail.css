@@ -1,0 +1,33 @@
+body {
+    background-color: #EBEBEB;
+}
+
+#voting-template {
+    background-color: gray;
+    position: absolute;
+    top: 20%;
+    width: 99%;
+    text-align: center;
+    box-shadow: -2px 3px 20px #888888;
+    font-family: sans-serif;
+}
+
+#voting-template h1:before {
+    content: 'Poll: ';
+    color: #86C67C;
+}
+
+.choice-rectangle {
+    background-color: #86C67C;
+    opacity: 0.7;
+}
+
+.choice-rectangle input {
+    position: absolute;
+    left: 0%;
+}
+
+.choice-rectangle label {
+    font-size: 1.5em;
+    font-weight: bold;
+}

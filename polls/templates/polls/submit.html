@@ -1,0 +1,33 @@
+{% load static %}
+
+<head>
+    {% if error_message %}
+    <title>Submit failed</title>
+    {% else %}
+    <title>Poll submitted: Redirecting</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/submit.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        setTimeout(function() {
+            window.location.replace(
+
+            {% if question_id %}
+            "{% url 'polls:detail' question_id %}"
+            {% else %}
+            "{% url 'polls:index' %}"
+            {% endif %}
+            
+        )}, 2000);
+    </script>
+</head>
+<body>
+    <div id="response">
+        {% if error_message %}
+        <h1>SUBMIT FAILED: {{ error_message }}</h1>
+        {% else %}
+        <h1>SUBMITTED POLL (poll id: {{ question_id}})</h1>
+        {% endif %}
+        <h3>REDIRECTING... </h3>
+    </div>
+</body>

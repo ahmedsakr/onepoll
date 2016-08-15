@@ -1,0 +1,58 @@
+body {
+    background-color: #EBEBEB;
+}
+
+#menu_item {
+    display: inline-block;
+    text-align: center;
+    width: 49%;
+    margin: 0 auto;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    color: black;
+    background-color: gray;
+    font-weight: bold;
+    font-size: 4em;
+    font-family: sans-serif;
+}
+h3 {
+    margin-top: 5%;
+    text-align: center;
+}
+
+h3 a {
+    padding: 10px;
+    color: black;
+    background-color: #86C67C;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+ul {
+    background-color: gray;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 5%;
+}
+li a {
+    color: #86C67C;
+    text-align: center;
+    font-family: serif;
+    font-weight:bold;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+li a:before {
+    content: "Q: ";
+    color: black;
+}
