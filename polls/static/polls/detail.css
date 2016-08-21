@@ -1,5 +1,17 @@
+@font-face {
+    font-family: keepcalm;
+    src: url('../fonts/keepcalm.otf');
+}
+
 body {
     background-color: #EBEBEB;
+}
+
+a {
+    font-family: sans-serif;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: blue;
 }
 
 #voting-template {
@@ -9,7 +21,10 @@ body {
     width: 99%;
     text-align: center;
     box-shadow: -2px 3px 20px #888888;
-    font-family: sans-serif;
+}
+
+#voting-template h1 {
+    font-family: keepcalm;
 }
 
 #voting-template h1:before {
@@ -29,5 +44,9 @@ body {
 
 .choice-rectangle label {
     font-size: 1.5em;
-    font-weight: bold;
+    font-family: keepcalm;
+}
+
+#form-submit {
+    margin-top: 20px;
 }

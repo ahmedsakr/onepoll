@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <a href="{% url 'polls:index' %}">🡐 BACK TO INDEX</a>
+    <a href="{% url 'polls:index' %}">BACK TO INDEX</a>
     <form action="{% url 'polls:submit' %}" method="post">
 
         {% csrf_token %}

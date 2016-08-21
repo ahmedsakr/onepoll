@@ -15,9 +15,9 @@
             {% if question_id %}
             "{% url 'polls:detail' question_id %}"
             {% else %}
-            "{% url 'polls:index' %}"
+            "{% url 'polls:new' %}"
             {% endif %}
-            
+
         )}, 2000);
     </script>
 </head>
