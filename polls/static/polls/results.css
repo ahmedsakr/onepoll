@@ -1,0 +1,48 @@
+@font-face {
+    font-family: keepcalm;
+    src: url('../fonts/keepcalm.ttf');
+}
+
+
+body {
+    background-color: #EBEBEB;
+    font-family: keepcalm;
+    text-align: center;
+}
+
+#results {
+    margin-top: 10%;
+    position: absolute;
+    background-color: #CD5555;
+    width: 60%;
+    right: 20%;
+}
+
+#results h2:before {
+    content: 'Poll: ';
+    color: #86C67C;
+    font-weight: bolder;
+}
+
+#results .background {
+    position: relative;
+    background-color: #CDB7B5;
+    border: solid black 1px;
+    height: 1.5em;
+}
+
+#results .foreground {
+    position: absolute;
+    width: 0%;
+    background-color: #4CAF50;
+    text-indent: -1000em;
+    text-align: center;
+    height: 1.5em;
+}
+
+#results p {
+    position: absolute;
+    margin: 5 auto;
+    width: 800px;
+    height: 1.5em;
+}

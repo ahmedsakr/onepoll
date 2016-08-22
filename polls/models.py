@@ -11,6 +11,12 @@ class Question(models.Model):
         return self.question_text
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+    def get_total_votes(self):
+        votes = 0
+        for choice in self.choice_set.all():
+            votes += choice.votes
+
+        return votes
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
