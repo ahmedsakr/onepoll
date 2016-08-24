@@ -47,7 +47,7 @@ def pluralize(votes):
         return ''
 
 def percentage(votes, total_votes):
-    return float(votes / total_votes) * 100
+    return (float(votes) / total_votes) * 100
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
