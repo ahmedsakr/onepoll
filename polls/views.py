@@ -22,9 +22,29 @@ class DetailView(generic.DetailView):
     template_name = 'polls/detail.html'
 
 
-class ResultsView(generic.DetailView):
-    model = Question
-    template_name = 'polls/results.html'
+def results(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+    template = 'polls/results.html'
+
+    if request.POST.get('request') == 'update':
+        count = 1
+        data = ''
+        for choice in question.choice_set.all():
+            if count < question.choice_set.count():
+                data += "%s (%d vote%s, %%)=%d;" % (choice.choice_text, choice.votes, pluralize(choice.votes), choice.votes)
+            else:
+                data += "%s (%d vote%s, %%)=%d" % (choice.choice_text, choice.votes, pluralize(choice.votes), choice.votes)
+            count += 1
+
+        return HttpResponse(data)
+    else:
+        return render(request, template, { 'question': question});
+
+def pluralize(votes):
+    if votes > 1:
+        return 's'
+    else:
+        return ''
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

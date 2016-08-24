@@ -5,6 +5,7 @@
     <title>Results</title>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/results.css' %}"/>
     <script src="{% static 'js/results.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
 <body onload="loadResults({{ question.get_total_votes }}, {{ question.choice_set.count }});">
@@ -12,14 +13,15 @@
 
     <div id="results">
         <h2>{{ question.question_text }}</h2>
-        <h3>Total votes: {{ question.get_total_votes }}</h3>
+        <h3>{{ question.get_total_votes }} vote{{ question.get_total_votes|pluralize }}</h3>
         {% for choice in question.choice_set.all %}
             <div id="background{{ forloop.counter }}" class="background">
                 <div id="foreground{{ forloop.counter }}" class="foreground" value={{ choice.votes }}>
-                    <p>{{ choice.choice_text }} // {{ choice.votes|percentage:question.get_total_votes }}%</p>
+                    <p>{{ choice.choice_text }} ({{ choice.votes }} vote{{ choice.votes|pluralize }}, {{ choice.votes|percentage:question.get_total_votes }}%)</p>
                 </div>
             </div>
         {% endfor %}
-        </ul>
     </div>
+
+    <input type='button' value='Update results' onclick="update({{ question.id }}, '{% url 'polls:results' question.id %}')" id="update" disabled/>
 </body>

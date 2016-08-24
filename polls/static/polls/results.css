@@ -12,10 +12,10 @@ body {
 
 #results {
     margin-top: 10%;
-    position: absolute;
+    margin-bottom: 15px;
     background-color: #CD5555;
-    width: 60%;
-    right: 20%;
+    width: 100%;
+    padding-top: 5px;
 }
 
 #results h2:before {
@@ -28,7 +28,7 @@ body {
     position: relative;
     background-color: #CDB7B5;
     border: solid black 1px;
-    height: 1.5em;
+    height: 2em;
 }
 
 #results .foreground {
@@ -36,13 +36,12 @@ body {
     width: 0%;
     background-color: #4CAF50;
     text-indent: -1000em;
-    text-align: center;
-    height: 1.5em;
+    height: 2em;
 }
 
 #results p {
     position: absolute;
     margin: 5 auto;
     width: 800px;
-    height: 1.5em;
+    height: 2em;
 }
