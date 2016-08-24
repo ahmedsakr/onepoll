@@ -31,9 +31,9 @@ def results(request, question_id):
         data = ''
         for choice in question.choice_set.all():
             if count < question.choice_set.count():
-                data += "%s (%d vote%s, %%)=%d;" % (choice.choice_text, choice.votes, pluralize(choice.votes), choice.votes)
+                data += "%s (%d vote%s, %.1f%%)=%d;" % (choice.choice_text, choice.votes, pluralize(choice.votes), percentage(choice.votes, question.get_total_votes()), choice.votes)
             else:
-                data += "%s (%d vote%s, %%)=%d" % (choice.choice_text, choice.votes, pluralize(choice.votes), choice.votes)
+                data += "%s (%d vote%s, %.1f%%)=%d" % (choice.choice_text, choice.votes, pluralize(choice.votes), percentage(choice.votes, question.get_total_votes()), choice.votes)
             count += 1
 
         return HttpResponse(data)
@@ -45,6 +45,9 @@ def pluralize(votes):
         return 's'
     else:
         return ''
+
+def percentage(votes, total_votes):
+    return (votes / total_votes) * 100
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

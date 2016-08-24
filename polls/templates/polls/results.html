@@ -23,5 +23,5 @@
         {% endfor %}
     </div>
 
-    <input type='button' value='Update results' onclick="update({{ question.id }}, '{% url 'polls:results' question.id %}')" id="update" disabled/>
+    <input type='button' value='Update results' onclick="update('{% url 'polls:results' question.id %}')" id="update" disabled/>
 </body>

@@ -24,7 +24,7 @@ function loadResults(total_votes, total_choices) {
     }, 10);
 }
 
-function update(pid, updateUrl) {
+function update(updateUrl) {
     var elemBtn = document.getElementById("update");
 
     // disable the user from requesting another update until this ongoing
@@ -56,14 +56,16 @@ function update(pid, updateUrl) {
             var total_votes = 0;
             for (var i = 0; i < choices.length; i++) {
                 var choice = choices[i];
-
                 var votes = parseInt(choice.split('=')[1]);
                 var elem = document.getElementById('foreground' + (i+1));
+
                 elem.style.width = '0%';
-                $( '#foreground' + (i + 1) + ' p').text(choice.split('=')[0]);
                 elem.setAttribute('value', votes);
+                $( '#foreground' + (i + 1) + ' p').text(choice.split('=')[0]);
+
                 total_votes += votes;
             }
+            
             $( '#results h3' ).text(total_votes + ' vote' + pluralize(total_votes));
             loadResults(total_votes, i);
         }
@@ -96,7 +98,6 @@ function getCookie(name) {
 function requiresCsrfProtection(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
-
 
 function pluralize(amount) {
     if (amount > 1) {
