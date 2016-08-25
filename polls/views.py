@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+
+from random import randint
 # Create your views here.
 
 from .models import Choice, Question
@@ -17,10 +19,18 @@ class IndexView(generic.ListView):
         return Question.objects.order_by('-pub_date')[:5]
 
 
-class DetailView(generic.DetailView):
-    model = Question
+def detail(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
     template_name = 'polls/detail.html'
 
+    return render(request, template_name, {'question': question})
+
+def random(request):
+    questions = list(Question.objects.all())
+    random = randint(0, len(questions) - 1)
+    question_id = questions[random].id
+
+    return HttpResponseRedirect(reverse('polls:detail', args=(question_id,)))
 
 def results(request, question_id):
     question = get_object_or_404(Question, id=question_id)

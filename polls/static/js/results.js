@@ -65,7 +65,7 @@ function update(updateUrl) {
 
                 total_votes += votes;
             }
-            
+
             $( '#results h3' ).text(total_votes + ' vote' + pluralize(total_votes));
             loadResults(total_votes, i);
         }
