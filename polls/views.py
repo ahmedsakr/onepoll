@@ -86,7 +86,7 @@ def new(request):
 
 def public(request):
     template = 'polls/public.html'
-    return render(request, template)
+    return render(request, template, {'questions': Question.objects.all()})
 
 def submit(request):
 

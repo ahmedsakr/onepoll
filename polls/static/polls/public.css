@@ -50,6 +50,14 @@ td {
     text-align: right;
 }
 
+td a {
+    color: orange;
+}
+
+td a:visited {
+    color: white;
+}
+
 
 tr:nth-child(even) {
     background-color: #787878;
