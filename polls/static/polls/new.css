@@ -11,10 +11,8 @@ a {
 
 form {
     background-color: gray;
-    position: absolute;
-    width: 50%;
-    top: 25%;
-    left: 25%;
+    margin: 0 auto;
+    width: 60%;
     box-shadow: -2px 3px 20px #888888;
     font-family: sans-serif;
     text-align: center;
@@ -30,7 +28,7 @@ form input.question-text {
 }
 
 form button {
-    margin-top: 5%;
+    margin-top: 20px;
     width: 100%;
     font-weight: bold;
     font-family: sans-serif;

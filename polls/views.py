@@ -38,7 +38,7 @@ def results(request, question_id):
 
     if request.POST.get('request') == 'update':
         count = 1
-        data = ''
+        data = 'total_votes=%d;' % question.get_total_votes()
         for choice in question.choice_set.all():
             if count < question.choice_set.count():
                 data += "%s (%d vote%s, %.1f%%)=%d;" % (choice.choice_text, choice.votes, pluralize(choice.votes), percentage(choice.votes, question.get_total_votes()), choice.votes)

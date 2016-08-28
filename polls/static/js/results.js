@@ -1,51 +1,34 @@
 function loadResults(total_votes, total_choices) {
-    var width = 1;
-    var i = 1;
-    var elem = $("#foreground" + i);
-    var value = elem.attr('value');
-    var percentage = ((value / total_votes) * 100).toFixed(1);
+    $ ('#update').attr('disabled', '');
+
+    var width = 0.1;
+    var id = 1;
+    var elem = $("#foreground" + id);
+    var percentage = ((elem.attr('value') / total_votes) * 100).toFixed(1);
 
     var interval = setInterval(function() {
         if (width < percentage) {
-            width++;
+            width += 0.15;
             elem.css('width',  width + '%');
-        } else if (i < total_choices){
-            elem.css('text-indent',  '0em');
-
-            // moving on to the next choice
-            i++;
-            width = 1;
-            elem = $("#foreground" + i);
-            value = elem.attr('value');
-            percentage = ((value / total_votes) * 100).toFixed(1);
+        } else if (id < total_choices){
+            id++;
+            width = 0;
+            elem = $("#foreground" + id);
+            percentage = ((elem.attr('value') / total_votes) * 100).toFixed(1);
         } else {
-
-            // all choices has been loaded
-            elem.css('text-indent',  '0em');
             clearInterval(interval);
             $ ('#update').removeAttr('disabled');
         }
-    }, 10);
+    }, 1);
 }
 
 function update(updateUrl) {
-    var elemBtn = document.getElementById("update");
-
     // disable the user from requesting another update until this ongoing
     // request is finalized.
-    elemBtn.setAttribute('disabled', '');
+    $ ('#update').attr('disabled', '');
 
-    // acquire the csrf token, and set the request header to it
-    // NOTE: failing to do this will result in a 403 forbidden repsonse from
-    // the Django server
-    var csrftoken = getCookie('csrftoken');
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-            if (!requiresCsrfProtection(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        }
-    });
+    // installs the csrf into the header in preparation for the POST call
+    setupDjangoToken();
 
     // POST a request to the server for the latest results on the poll
     $.ajax({
@@ -56,51 +39,27 @@ function update(updateUrl) {
         },
 
         success: function(data, status) {
-            var choices = data.split(';')
-            var total_votes = 0;
-            for (var i = 0; i < choices.length; i++) {
-                var choice = choices[i];
+            var info = data.split(';')
+            var total_votes = parseInt(info[0].split('=')[1]);
+
+            for (var i = 1; i < info.length; i++) {
+                var choice = info[i];
                 var votes = parseInt(choice.split('=')[1]);
-                var elem = document.getElementById('foreground' + (i+1));
 
-                elem.style.width = '0%';
-                elem.setAttribute('value', votes);
-                $( '#foreground' + (i + 1) + ' p').text(choice.split('=')[0]);
-
-                total_votes += votes;
+                $ ('#foreground' + i).css('width', '0%');
+                $ ('#foreground' + i).attr('value', votes);
+                $ ('#foreground' + i + ' p').text(choice.split('=')[0]);
             }
 
-            $( '#results h3' ).text(total_votes + ' vote' + pluralize(total_votes));
+            $ ('#results h3').text(total_votes + ' vote' + pluralize(total_votes));
             loadResults(total_votes, i);
+        },
+
+        error: function(response) {
+            alert("An error has occurred. Try again later. error_code=" + response.status);
+            $ ('#update').removeAttr('disabled');
         }
     });
-}
-
-/**
- * Acquires the value of a cookie.
- */
-function getCookie(name) {
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-
-            if ((name + '=') === cookie.substring(0, name.length + 1)) {
-                return decodeURIComponent(cookie.substring(name.length + 1));
-            }
-        }
-    }
-
-    return null;
-}
-
-/**
- * GET, HEAD, OPTIONS, and TRACE all do not require a csrf protection, this
- * method tests whether the method requires csrf protection
- */
-function requiresCsrfProtection(method) {
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
 function pluralize(amount) {
