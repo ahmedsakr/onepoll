@@ -85,7 +85,8 @@ def new(request):
     return render(request, template)
 
 def public(request):
-    return HttpResponse("Yep")
+    template = 'polls/public.html'
+    return render(request, template)
 
 def submit(request):
 

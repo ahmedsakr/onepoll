@@ -1,0 +1,45 @@
+{% load static %}
+
+<head>
+    <title>Public polls</title>
+    <link rel='stylesheet' type='text/css' href="{% static 'polls/public.css' %}"/>
+</head>
+
+<body>
+    <div id='filters'>
+        <fieldset>
+            <legend>Search by keywords</legend>
+            <input type="text" placeholder="Separate with commas">
+            <input type="radio" name='search' value=20 checked> Find polls matching any keyword
+            <input type="radio" name='search' value=50> Find polls matching all keywords
+        </fieldset>
+
+        <fieldset>
+            <legend>Polls to retrieve</legend>
+            <input type="radio" name='amount' value=10 checked> 10 polls
+            <input type="radio" name='amount' value=20> 20 polls
+            <input type="radio" name='amount' value=50> 50 polls
+        </fieldset>
+
+        <fieldset>
+            <legend>Request nature</legend>
+            <input type="radio" name='nature' value='all' checked> All polls
+            <input type="radio" name='nature' value='latest'> Latest polls
+            <input type="radio" name='nature' value='hot'> Hot polls
+            <input type="radio" name='nature' value='top'> Top polls
+        </fieldset>
+
+        <input type="button" value="Refine" id="refine-btn">
+    </div>
+
+    <div id='polls'>
+        <table>
+            <tr>
+                <th>Poll id</th>
+                <th>Question</th>
+                <th># of Votes</th>
+                <th>Views</th>
+            </tr>
+        </table>
+    </div>
+</body>

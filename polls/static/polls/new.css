@@ -43,3 +43,7 @@ form button {
     width: 20%;
     margin-bottom: 5%;
 }
+
+#choice input {
+    width: 100%;
+}
