@@ -3,9 +3,7 @@ body {
 }
 
 #response {
-    position: absolute;
-    top: 40%;
-    width: 100%;
+    margin: 20% auto;
     text-align: center;
     background-color: #A52A2A;
     font-family: sans-serif;

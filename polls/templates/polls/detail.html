@@ -12,6 +12,14 @@
 
 <body>
     <a href="{% url 'polls:index' %}">BACK TO INDEX</a>
+
+    {% if private %}
+    <div id="private">
+        <img src="{% static 'polls/images/Lock-icon.png' %}"/>
+        <h1 id="private">This is an unlisted, private poll. Saving the URL is critical.</h1>
+        <img src="{% static 'polls/images/Lock-icon.png' %}"/>
+    </div>
+    {% endif %}
     <div id='voting-template'>
         <h1>{{ question.question_text }}</h1>
 

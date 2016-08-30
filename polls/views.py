@@ -15,8 +15,8 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        """Return the latest published polls - that are public!!"""
+        return Question.objects.all().filter(public_poll=1).order_by('-pub_date')[:5]
 
 
 def detail(request, question_id):
@@ -26,10 +26,16 @@ def detail(request, question_id):
     question.views += 1
     question.save()
 
-    return render(request, template_name, {'question': question})
+    if question.public_poll == 1:
+        return render(request, template_name, {'question': question})
+    else:
+        return render(request, template_name, {
+            'question': question,
+            'private': True
+        })
 
 def random(request):
-    questions = list(Question.objects.all())
+    questions = list(Question.objects.all().filter(public_poll=1))
     random = randint(0, len(questions) - 1)
     question_id = questions[random].id
 
@@ -89,7 +95,9 @@ def new(request):
 
 def public(request):
     template = 'polls/public.html'
-    return render(request, template, {'questions': Question.objects.order_by('-pub_date')[:10]})
+    return render(request, template, {
+        'questions': Question.objects.all().filter(public_poll=1).order_by('-pub_date')[:10]
+    })
 
 def submit(request):
 

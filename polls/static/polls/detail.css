@@ -14,11 +14,28 @@ a {
     color: blue;
 }
 
+#private {
+    margin: 20 auto;
+    text-align: center;
+}
+
+#private h1{
+    color: #FF6600;
+    text-align: center;
+}
+
+#private img {
+    width: 40px;
+    height: auto;
+}
+
+#private h1, img {
+    display: inline-block;
+}
+
 #voting-template {
     background-color: gray;
-    position: absolute;
-    top: 10%;
-    width: 99%;
+    width: 100%;
     text-align: center;
     box-shadow: -2px 3px 20px #888888;
 }
@@ -39,7 +56,7 @@ a {
 
 .choice-rectangle input {
     position: absolute;
-    left: 0%;
+    left: 1%;
 }
 
 .choice-rectangle label {
