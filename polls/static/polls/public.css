@@ -14,11 +14,11 @@ body {
 #polls {
     text-align: center;
     margin: 5% auto;
-    width: 60%;
-    height: 50%;
+    width: 100%;
+    max-height: 50%;
     background-color: #3D3D3D;
     box-shadow: -2px 3px 20px #888888;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 legend {
@@ -35,17 +35,19 @@ table {
 }
 
 table, th {
-    border: 1px solid #86C67C;
     border-collapse: collapse;
     color: white;
 }
 
 th {
+    background-color: #CD5555;
+    border-right: 2px solid black;
     font-size: 1.5em;
+    padding: 10px;
 }
 
 td {
-    border-right: 1px solid #86C67C;
+    border-right: 2px solid black;
     border-collapse: collapse;
     text-align: right;
 }
