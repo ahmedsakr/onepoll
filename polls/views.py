@@ -23,6 +23,9 @@ def detail(request, question_id):
     question = get_object_or_404(Question, id=question_id)
     template_name = 'polls/detail.html'
 
+    question.views += 1
+    question.save()
+
     return render(request, template_name, {'question': question})
 
 def random(request):
@@ -86,7 +89,7 @@ def new(request):
 
 def public(request):
     template = 'polls/public.html'
-    return render(request, template, {'questions': Question.objects.all()})
+    return render(request, template, {'questions': Question.objects.order_by('-pub_date')[:10]})
 
 def submit(request):
 
