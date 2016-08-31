@@ -15,7 +15,7 @@ body {
     text-align: center;
     margin: 5% auto;
     width: 100%;
-    max-height: 50%;
+    height: 50%;
     background-color: #3D3D3D;
     box-shadow: -2px 3px 20px #888888;
     overflow-y: auto;
@@ -35,6 +35,7 @@ table {
 }
 
 table, th {
+    border-bottom: 2px solid black;
     border-collapse: collapse;
     color: white;
 }
@@ -42,6 +43,7 @@ table, th {
 th {
     background-color: #CD5555;
     border-right: 2px solid black;
+    border-bottom: 2px solid black;
     font-size: 1.5em;
     padding: 10px;
 }
@@ -53,13 +55,14 @@ td {
 }
 
 td a {
-    color: orange;
-}
-
-td a:visited {
     color: white;
+    background-color: #86C67C;
+    text-align: center;
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
 }
-
 
 tr:nth-child(even) {
     background-color: #787878;

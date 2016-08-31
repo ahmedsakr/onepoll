@@ -3,15 +3,18 @@
 <head>
     <title>Public polls</title>
     <link rel='stylesheet' type='text/css' href="{% static 'polls/public.css' %}"/>
+    <script src="{% static 'js/django_setup.js' %}"></script>
+    <script src="{% static 'js/public.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
-<body>
+<body onload="updatePolls({% url 'polls:public' %})">
     <div id='filters'>
         <fieldset>
             <legend>Filter by keywords</legend>
-            <input type="text" placeholder="Separate with commas">
-            <input type="radio" name='search' value=20 checked> Find polls matching any keyword
-            <input type="radio" name='search' value=50> Find polls matching all keywords
+            <input type="text" name='keywords' placeholder="Separate with commas">
+            <input type="radio" name='search' value='any' checked> Find polls matching any keyword
+            <input type="radio" name='search' value='match'> Find polls matching all keywords
         </fieldset>
 
         <fieldset>
@@ -23,12 +26,11 @@
 
         <fieldset>
             <legend>Sorting Method</legend>
-            <input type="radio" name='nature' value='latest' checked> Latest polls
-            <input type="radio" name='nature' value='hot'> Hot polls
-            <input type="radio" name='nature' value='top'> Top polls
+            <input type="radio" name='sort' value='pub_date' checked> Latest polls
+            <input type="radio" name='sort' value='views'> Hot polls
         </fieldset>
 
-        <input type="button" value="Refine" id="refine-btn">
+        <input type="button" value="Refine" id="refine-btn" onclick="updatePolls({% url 'polls:public' %})">
     </div>
 
     <div id='polls'>
@@ -40,15 +42,6 @@
                 <th>Views</th>
                 <th>Publish date</th>
             </tr>
-            {% for question in questions %}
-            <tr>
-                <td><a href='{% url 'polls:detail' question.id %}'>{{ question.id }}</a></td>
-                <td>{{ question.question_text }}</td>
-                <td>{{ question.get_total_votes }}</td>
-                <td>{{ question.views }}</td>
-                <td>{{ question.pub_date }}</td>
-            </tr>
-            {% endfor %}
         </table>
     </div>
 </body>
