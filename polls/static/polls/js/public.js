@@ -1,40 +1,53 @@
 function updatePolls(updateUrl) {
-    $ ('table').css('display', 'none');
-    var keywords = $('[name="keywords"]')
-    var search = $('[name="search"]').filter(':checked');
-    var amount = $('[name="amount"]').filter(':checked');
-    var sort = $('[name="sort"]').filter(':checked');
+    // hide the table and delete the rows
+    $('#polls').fadeOut("fast", function() {
+        $('tbody').children().next().remove();
 
-    setupDjangoToken();
+        // acquire all the filter elements
+        var keywords = $('[name="keywords"]')
+        var search = $('[name="search"]').filter(':checked');
+        var amount = $('[name="amount"]').filter(':checked');
+        var sort = $('[name="sort"]').filter(':checked');
 
-    $.ajax({
-        type: "POST",
-        url: updateUrl,
-        data: {
-            'request': 'update',
-            'keywords': keywords.val(),
-            'search': search.val(),
-            'amount': amount.val(),
-            'sort': sort.val()
-        },
+        // pre-post setup for django
+        setupDjangoToken();
 
-        success: function(data, status) {
-            $('tbody').children().next().remove();
-            var polls = data.split('\n');
-            polls.splice(-1, 1);
-            for (var i = 0; i < polls.length; i++) {
-                var info = String(polls[i]).split(';');
-                var txt = "<tr>";
+        // POST request to retrieve information with the updated filters
+        $.ajax({
+            type: "POST",
+            url: updateUrl,
+            data: {
+                'request': 'update',
+                'keywords': keywords.val(),
+                'search': search.val(),
+                'amount': amount.val(),
+                'sort': sort.val()
+            },
 
-                for (var j = 0; j < info.length; j++) {
-                    txt += '<td>' + info[j] + '</td>'
+            success: function(data, status) {
+                var polls = data.split('\n');
+
+                // there is an extra empty element in the polls array due to
+                // every line having a '\n' at the very end.
+                polls.pop();
+
+                for (var i = 0; i < polls.length; i++) {
+                    var info = String(polls[i]).split(';');
+                    var txt = "<tr>\n";
+                    txt += "<td><a href='/" + info[0] + "/'>" + info[0] + "</a></td>\n";
+
+                    // index stars at 1 because info[0] has already been
+                    // manually added as shown above.
+                    for (var j = 1; j < info.length; j++) {
+                        txt += '\t<td>' + info[j] + '</td>\n'
+                    }
+
+                    txt += '</tr>'
+                    $('tbody').append(txt)
                 }
 
-                txt += '</tr>'
-                $('table').append(txt)
+                $('#polls').fadeIn('slow');
             }
-
-            $ ('table').css('display', 'table');
-        }
+        });
     });
 }
