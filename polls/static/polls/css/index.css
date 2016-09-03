@@ -3,48 +3,19 @@
     src: url('../fonts/keepcalm.ttf');
 }
 
+head {
+    display: inline-block;
+}
+
 body {
     background-color: #EBEBEB;
     font-family: keepcalm;
 }
 
-#menu_item {
-    display: inline-block;
-    width: 32%;
-}
-
-h1 {
-    width: 100%;
-    text-align: center;
-    color: black;
+#latest-polls {
     background-color: gray;
-    font-weight: bold;
-    font-size: 4em;
 }
-
-h3 {
-    margin-top: 5%;
-    text-align: center;
-}
-
-.menu_item {
-    padding: 10px;
-    color: black;
-    background-color: #86C67C;
-    font-size: 1.5em;
-    text-decoration: none;
-    border-radius: 5px;
-    display: inline;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-}
-
-ul {
-    background-color: gray;
-    margin-top: 5%;
-    padding: 5%;
-}
-li a {
+#latest-polls a {
     color: #86C67C;
     text-align: center;
     font-weight:bold;
@@ -52,7 +23,7 @@ li a {
     text-decoration: none;
 }
 
-li a:before {
+#latest-polls a:before {
     content: "Q: ";
     color: black;
 }

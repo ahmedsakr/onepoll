@@ -1,29 +1,29 @@
 {% load static %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/index.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navigation.css' %}"/>
     <title>Home</title>
 </head>
 
 <body>
-    <h1>POLLS</h1>
-
-    <div id='menu_item'>
-        <h3><a href="{% url 'polls:new' %}" class='menu_item'>Create new poll</a></h3>
+    <div id="navigation">
+        <h1>testpolls</h1>
+        <ul>
+            <li><a href="{% url 'polls:index' %}" class='active'>Home</a></li>
+            <li><a href="{% url 'polls:new' %}">New poll</a></li>
+            <li><a href="{% url 'polls:random' %}">Random poll</a></li>
+            <li><a href="{% url 'polls:public' %}">Public polls</a></li>
+        </ul>
     </div>
-    <div id='menu_item'>
-        <h3><a href="{% url 'polls:random' %}" class='menu_item'>Random poll</a></h3>
+    <div id="latest-polls">
+        {% if latest_question_list %}
+        <ul>
+        {% for question in latest_question_list %}
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <p>No polls are available.</p>
+        {% endif %}
     </div>
-    <div id='menu_item'>
-        <h3><a href="{% url 'polls:public' %}" class='menu_item'>View public polls</a></h3>
-    </div>
-
-    {% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-    {% else %}
-    <p>No polls are available.</p>
-    {% endif %}
 </body>

@@ -7,6 +7,9 @@
 body {
     background-color: #EBEBEB;
     font-family: keepcalm;
+}
+
+h1 {
     text-align: center;
 }
 
@@ -16,11 +19,12 @@ body {
     background-color: #CD5555;
     width: 100%;
     padding-top: 5px;
+    text-align: center;
 }
 
 #results h2:before {
     content: 'Poll: ';
-    color: #86C67C;
+    color: #4CAF50;
     font-weight: bolder;
 }
 
@@ -43,4 +47,8 @@ body {
     margin: 5 auto;
     width: 800px;
     height: 2em;
+}
+
+input {
+    width: 20%;
 }

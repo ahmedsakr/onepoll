@@ -1,0 +1,50 @@
+@font-face {
+    font-family: keepcalm;
+    src: url('../fonts/keepcalm.ttf');
+}
+
+#navigation {
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    background-color: gray;
+    font-family: keepcalm;
+}
+
+#navigation h1 {
+    text-align: left;
+    color: black;
+    font-weight: bold;
+    font-size: 4em;
+    display: inline;
+    padding: 0px;
+}
+
+#navigation li{
+    float: left;
+}
+
+#navigation li a{
+    display: block;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 8px;
+}
+
+#navigation li a.active {
+    background-color: #4CAF50;
+}
+
+#navigation li a:hover:not(.active) {
+    background-color: #111;
+}
+
+#navigation ul {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}

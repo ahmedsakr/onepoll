@@ -3,10 +3,19 @@
 <head>
     <title> Create new poll </title>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/new.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navigation.css' %}" />
 </head>
 
 <body>
-    <a href="{% url 'polls:index' %}">BACK TO INDEX</a>
+    <div id="navigation">
+        <h1>testpolls</h1>
+        <ul>
+            <li><a href="{% url 'polls:index' %}">Home</a></li>
+            <li><a href="{% url 'polls:new' %}" class='active'>New poll</a></li>
+            <li><a href="{% url 'polls:random' %}">Random poll</a></li>
+            <li><a href="{% url 'polls:public' %}">Public polls</a></li>
+        </ul>
+    </div>
     <form action="{% url 'polls:submit' %}" method="post">
         {% csrf_token %}
 

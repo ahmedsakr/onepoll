@@ -3,13 +3,23 @@
 <head>
     <title>Vote</title>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/detail.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navigation.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'polls/js/detail.js' %}"></script>
     <script>registerListeners({{ question.choice_set.count }});</script>
 </head>
 
 <body>
-    <a href="{% url 'polls:index' %}">BACK TO INDEX</a>
+    <div id="navigation">
+        <h1>testpolls</h1>
+        <ul>
+            <li><a href="{% url 'polls:index' %}">Home</a></li>
+            <li><a href="{% url 'polls:new' %}">New poll</a></li>
+            <li><a href="{% url 'polls:random' %}">Random poll</a></li>
+            <li><a href="{% url 'polls:public' %}">Public polls</a></li>
+            <li style="float: right" ><a href="{% url 'polls:detail' question.id %}" class="active">Poll: {{ question.id }}</a></li>
+        </ul>
+    </div>
 
     {% if private %}
     <div id="private">
