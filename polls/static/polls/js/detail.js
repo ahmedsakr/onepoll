@@ -3,14 +3,12 @@
  * available listeners.
  */
 function registerListeners(count) {
-    $(document).ready(
-        function() {
-            for (x = 1; x <= count; x++) {
-
-                registerHoverListener('#rect-' + x);
-                registerSelectionListener('#rect-' + x);
-            }
-        });
+    $(document).ready(function() {
+        for (x = 1; x <= count; x++) {
+            registerHoverListener('#option-' + x);
+            registerSelectionListener('#option-' + x);
+        }
+    });
 }
 
 /**
@@ -19,11 +17,9 @@ function registerListeners(count) {
  * rectangles are dimmed to an opacity of 0.7.
  */
 function registerHoverListener(elem) {
-    $(elem).hover(
-        function() {
+    $(elem).hover(function() {
             $(this).css({opacity: 1});
-        },
-        function() {
+    }, function() {
             $(this).css({opacity: 0.7});
     });
 }
@@ -34,9 +30,8 @@ function registerHoverListener(elem) {
  * to navigate to the far-left radio button and selecting it.
  */
 function registerSelectionListener(elem) {
-    $(elem).click(
-        function() {
-            selectedChoice = $(this).attr('name').slice(-1);
-            $( '#choice' + selectedChoice).prop('checked', true);
+    $(elem).click(function() {
+        selectedChoice = $(this).attr('id').slice(-1);
+        $( '#radio' + selectedChoice).prop('checked', true);
     });
 }

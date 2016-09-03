@@ -5,9 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/detail.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'polls/js/detail.js' %}"></script>
-    <script>
-    registerListeners({{ question.choice_set.count }});
-    </script>
+    <script>registerListeners({{ question.choice_set.count }});</script>
 </head>
 
 <body>
@@ -22,19 +20,19 @@
     {% endif %}
     <div id='voting-template'>
         <h1>{{ question.question_text }}</h1>
-
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+        {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
         <form action="{% url 'polls:vote' question.id %}" method="post">
-        {% csrf_token %}
-        {% for choice in question.choice_set.all %}
-            <div id='rect-{{forloop.counter}}' name='rect-{{forloop.counter}}' class='choice-rectangle'>
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+            <div id='option-{{forloop.counter}}' class='choice-rectangle'>
                 <h6>option {{ forloop.counter }}</h6>
-                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+                <input type="radio" name="choice" id="radio{{ forloop.counter }}" value="{{ choice.id }}" />
                 <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
             </div>
-        {% endfor %}
-        <input type="submit" value="Vote" id="form-submit"/>
+            {% endfor %}
+            <input type="submit" value="Vote" id="form-submit"/>
         </form>
     </div>
 </body>
