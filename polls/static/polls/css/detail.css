@@ -63,6 +63,10 @@ a {
     font-size: 1.5em;
 }
 
+.choice-rectangle:hover {
+    opacity: 1;
+}
+
 #form-submit {
     margin-top: 20px;
 }
