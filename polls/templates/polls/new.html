@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 
 <head>
     <title> Create new poll </title>
@@ -10,13 +10,13 @@
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
-            <li><a href="{% url 'polls:index' %}">Home</a></li>
-            <li><a href="{% url 'polls:new' %}" class='active'>New poll</a></li>
-            <li><a href="{% url 'polls:random' %}">Random poll</a></li>
-            <li><a href="{% url 'polls:public' %}">Public polls</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'new' %}" class='active'>New poll</a></li>
+            <li><a href="{% url 'random' %}">Random poll</a></li>
+            <li><a href="{% url 'public' %}">Public polls</a></li>
         </ul>
     </div>
-    <form action="{% url 'polls:submit' %}" method="post">
+    <form action="{% url 'submit' %}" method="post">
         {% csrf_token %}
 
         <h2>NEW PUBLIC POLL</h2>

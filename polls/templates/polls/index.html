@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/index.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navigation.css' %}"/>
@@ -11,10 +11,10 @@
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
-            <li><a href="{% url 'polls:index' %}" class='active'>Home</a></li>
-            <li><a href="{% url 'polls:new' %}">New poll</a></li>
-            <li><a href="{% url 'polls:random' %}">Random poll</a></li>
-            <li><a href="{% url 'polls:public' %}">Public polls</a></li>
+            <li><a href="{% url 'index' %}" class='active'>Home</a></li>
+            <li><a href="{% url 'new' %}">New poll</a></li>
+            <li><a href="{% url 'random' %}">Random poll</a></li>
+            <li><a href="{% url 'public' %}">Public polls</a></li>
             <li style="float: right; background-color: #CD5555"><a onclick="accountSlide()">Sign In / Register</a></li>
         </ul>
 
@@ -31,7 +31,7 @@
         {% if latest_question_list %}
         <ul>
         {% for question in latest_question_list %}
-            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+            <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
         {% endfor %}
         </ul>
         {% else %}

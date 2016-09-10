@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 
 <head>
     {% if error_message %}
@@ -13,9 +13,9 @@
             window.location.replace(
 
             {% if question_id %}
-            "{% url 'polls:detail' question_id %}"
+            "{% url 'detail' question_id %}"
             {% else %}
-            "{% url 'polls:new' %}"
+            "{% url 'new' %}"
             {% endif %}
 
         )}, 2000);

@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 
 <head>
     <title>Public polls</title>
@@ -9,14 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
-<body onload="updatePolls({% url 'polls:public' %})">
+<body onload="updatePolls({% url 'public' %})">
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
-            <li><a href="{% url 'polls:index' %}">Home</a></li>
-            <li><a href="{% url 'polls:new' %}">New poll</a></li>
-            <li><a href="{% url 'polls:random' %}">Random poll</a></li>
-            <li><a href="{% url 'polls:public' %}" class='active'>Public polls</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'new' %}">New poll</a></li>
+            <li><a href="{% url 'random' %}">Random poll</a></li>
+            <li><a href="{% url 'public' %}" class='active'>Public polls</a></li>
         </ul>
     </div>
     <div id='filters'>
@@ -40,7 +40,7 @@
             <input type="radio" name='sort' value='views'> Hot polls
         </fieldset>
 
-        <input type="button" value="Refine" id="refine-btn" onclick="updatePolls({% url 'polls:public' %})">
+        <input type="button" value="Refine" id="refine-btn" onclick="updatePolls({% url 'public' %})">
     </div>
 
     <div id='polls'>

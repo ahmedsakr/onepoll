@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 {% load custom_filters %}
 
 <head>
@@ -14,11 +14,11 @@
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
-            <li><a href="{% url 'polls:index' %}">Home</a></li>
-            <li><a href="{% url 'polls:new' %}">New poll</a></li>
-            <li><a href="{% url 'polls:random' %}">Random poll</a></li>
-            <li><a href="{% url 'polls:public' %}">Public polls</a></li>
-            <li style="float: right"><a href="{% url 'polls:results' question.id%}" class='active'>Poll results</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'new' %}">New poll</a></li>
+            <li><a href="{% url 'random' %}">Random poll</a></li>
+            <li><a href="{% url 'public' %}">Public polls</a></li>
+            <li style="float: right"><a href="{% url 'results' question.id%}" class='active'>Poll results</a></li>
         </ul>
     </div>
     <h1>Thank you for participating in <span style='color:#CD5555'>poll #{{question.id}}</span></h1>
@@ -35,5 +35,5 @@
         {% endfor %}
     </div>
 
-    <input type='button' value='Update results' onclick="update('{% url 'polls:results' question.id %}')" id="update" disabled/>
+    <input type='button' value='Update results' onclick="update('{% url 'results' question.id %}')" id="update" disabled/>
 </body>

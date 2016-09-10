@@ -39,7 +39,7 @@ def random(request):
     random = randint(0, len(questions) - 1)
     question_id = questions[random].id
 
-    return HttpResponseRedirect(reverse('polls:detail', args=(question_id,)))
+    return HttpResponseRedirect(reverse('detail', args=(question_id,)))
 
 def results(request, question_id):
     question = get_object_or_404(Question, id=question_id)
@@ -87,7 +87,7 @@ def vote(request, question_id):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        return HttpResponseRedirect(reverse('results', args=(question.id,)))
 
 def new(request):
     template = 'polls/new.html'

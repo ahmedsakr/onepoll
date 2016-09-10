@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 
 <head>
     <title>Vote</title>
@@ -13,11 +13,11 @@
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
-            <li><a href="{% url 'polls:index' %}">Home</a></li>
-            <li><a href="{% url 'polls:new' %}">New poll</a></li>
-            <li><a href="{% url 'polls:random' %}">Random poll</a></li>
-            <li><a href="{% url 'polls:public' %}">Public polls</a></li>
-            <li style="float: right" ><a href="{% url 'polls:detail' question.id %}" class="active">Poll: {{ question.id }}</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'new' %}">New poll</a></li>
+            <li><a href="{% url 'random' %}">Random poll</a></li>
+            <li><a href="{% url 'public' %}">Public polls</a></li>
+            <li style="float: right" ><a href="{% url 'detail' question.id %}" class="active">Poll: {{ question.id }}</a></li>
         </ul>
     </div>
 
@@ -33,7 +33,7 @@
         {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
         {% endif %}
-        <form action="{% url 'polls:vote' question.id %}" method="post">
+        <form action="{% url 'vote' question.id %}" method="post">
             {% csrf_token %}
             {% for choice in question.choice_set.all %}
             <div id='option-{{forloop.counter}}' class='choice-rectangle'>
