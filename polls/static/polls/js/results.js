@@ -8,7 +8,7 @@ function loadResults(total_votes, total_choices) {
 
     var interval = setInterval(function() {
         if (width < percentage) {
-            width += 0.15;
+            width += 0.25;
             elem.css('width',  width + '%');
         } else if (id < total_choices){
             id++;

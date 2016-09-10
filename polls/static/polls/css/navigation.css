@@ -3,12 +3,18 @@
     src: url('../fonts/keepcalm.ttf');
 }
 
+body {
+    background-color: #EBEBEB;
+    font-family: keepcalm;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
 #navigation {
     top: 0%;
     left: 0%;
     width: 100%;
     background-color: gray;
-    font-family: keepcalm;
 }
 
 #navigation h1 {

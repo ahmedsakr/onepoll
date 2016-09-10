@@ -3,27 +3,6 @@
     src: url('../fonts/keepcalm.ttf');
 }
 
-body {
-    background-color: #EBEBEB;
-    font-family: keepcalm;
-}
-
-#latest-polls {
-    background-color: gray;
-}
-#latest-polls a {
-    color: #86C67C;
-    text-align: center;
-    font-weight:bold;
-    font-size: 2em;
-    text-decoration: none;
-}
-
-#latest-polls a:before {
-    content: "Q: ";
-    color: black;
-}
-
 #accounts {
     text-align: center;
     background-color: #4CAF50;
@@ -38,7 +17,22 @@ body {
     display: inline;
 }
 
-#accounts input {
-    border: none;
-    border-radius: 5px;
+#latest-poll {
+    background-color: gray;
+}
+
+#latest-poll h2 {
+    text-align: center;
+    background-color: #4CAF50;
+}
+
+#latest-poll a {
+    font-size: 1.2em;
+    text-decoration: none;
+    width: 100%;
+}
+
+#latest-poll a:before {
+    content: "POLL: ";
+    color: black;
 }

@@ -1,6 +1,6 @@
 function updatePolls(updateUrl) {
     // disable the refine button to prevent multiple concurrent requests.
-    $('#refine-btn').attr('disabled', '');
+    $("#filters input[type='button']").attr('disabled', '');
 
     $('#polls').fadeOut("fast", function() {
 
@@ -43,7 +43,7 @@ function updatePolls(updateUrl) {
                 }
 
                 $('#polls').fadeIn('slow', function() {
-                    $('#refine-btn').removeAttr('disabled');
+                    $("#filters input[type='button']").removeAttr('disabled');
                 });
             }
         });

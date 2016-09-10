@@ -10,13 +10,11 @@ from random import randint
 
 from .models import Choice, Question
 
-class IndexView(generic.ListView):
+def index(request):
     template_name = 'polls/index.html'
-    context_object_name = 'latest_question_list'
+    question = list(Question.objects.all().filter(public_poll=1).order_by('-pub_date'))[0]
 
-    def get_queryset(self):
-        """Return the latest published polls - that are public!!"""
-        return Question.objects.all().filter(public_poll=1).order_by('-pub_date')[:5]
+    return render(request, template_name, {'question': question})
 
 
 def detail(request, question_id):

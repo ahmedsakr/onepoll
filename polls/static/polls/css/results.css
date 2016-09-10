@@ -3,12 +3,6 @@
     src: url('../fonts/keepcalm.ttf');
 }
 
-
-body {
-    background-color: #EBEBEB;
-    font-family: keepcalm;
-}
-
 h1 {
     text-align: center;
 }

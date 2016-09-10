@@ -15,7 +15,9 @@
             <li><a href="{% url 'new' %}">New poll</a></li>
             <li><a href="{% url 'random' %}">Random poll</a></li>
             <li><a href="{% url 'public' %}">Public polls</a></li>
-            <li style="float: right; background-color: #CD5555"><a onclick="accountSlide()">Sign In / Register</a></li>
+            <li style="float: right; background-color: #CD5555">
+                <a onclick="accountSlide()" href="javascript:void(0);">Sign In / Register</a>
+            </li>
         </ul>
 
         <div id="accounts">
@@ -27,13 +29,10 @@
             <h4> Don't have an account? <a href="/register/">Register here</a></h4>
         </div>
     </div>
-    <div id="latest-polls">
-        {% if latest_question_list %}
-        <ul>
-        {% for question in latest_question_list %}
-            <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
-        {% endfor %}
-        </ul>
+    <div id="latest-poll">
+        <h2>Latest poll</h2>
+        {% if question %}
+        <a href="{% url 'detail' question.id %}">{{ question.question_text }}</a>
         {% else %}
         <p>No polls are available.</p>
         {% endif %}

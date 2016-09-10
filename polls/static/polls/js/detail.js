@@ -8,6 +8,8 @@ function registerSelectionListeners(count) {
         for (var x = 1; x <= count; x++) {
             $('#option-' + x).click(function() {
                 $(this).children().filter('input').prop('checked', true);
+                $('form').children().filter("[id^='option-']").css('opacity', '0.7');
+                $(this).css('opacity', '1');
             });
         }
     });

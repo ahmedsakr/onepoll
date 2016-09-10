@@ -1,24 +1,21 @@
-body {
-    background-color: #EBEBEB;
-}
-
-
 #filters {
+    background-color: gray;
     text-align: center;
+    padding: 5px 0px 5px 0px;
+    width: 100%;
 }
 
-#refine-btn {
+#filters input[type='button'] {
     margin-left: 10px;
 }
 
 #polls {
     text-align: center;
     display: none;
-    margin: 5% auto;
     width: 100%;
+    margin-top: 15px;
     max-height: 400px;
     background-color: #3D3D3D;
-    box-shadow: -2px 3px 20px #888888;
     overflow-y: auto;
 }
 

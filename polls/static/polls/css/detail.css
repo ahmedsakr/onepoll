@@ -3,11 +3,6 @@
     src: url('../fonts/keepcalm.ttf');
 }
 
-body {
-    background-color: #EBEBEB;
-    font-family: keepcalm;
-}
-
 a {
     font-size: 1.5em;
     text-decoration: none;
@@ -37,7 +32,6 @@ a {
     background-color: gray;
     width: 100%;
     text-align: center;
-    box-shadow: -2px 3px 20px #888888;
 }
 
 #voting-template h1:before {
@@ -55,18 +49,15 @@ a {
 }
 
 .choice-rectangle input {
-    position: absolute;
-    left: 1%;
+    display: none;
 }
 
 .choice-rectangle label {
     font-size: 1.5em;
 }
 
-.choice-rectangle:hover {
-    opacity: 1;
-}
-
-#form-submit {
+#voting-template input[type='submit'] {
+    width: 20%;
+    font-size: 1em;
     margin-top: 20px;
 }
