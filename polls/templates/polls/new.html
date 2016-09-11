@@ -4,9 +4,7 @@
     <title> Create new poll </title>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/new.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navigation.css' %}" />
-</head>
 
-<body>
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
@@ -16,6 +14,9 @@
             <li><a href="{% url 'public' %}">Public polls</a></li>
         </ul>
     </div>
+</head>
+
+<body>
     <form action="{% url 'submit' %}" method="post">
         {% csrf_token %}
 

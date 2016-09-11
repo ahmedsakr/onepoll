@@ -8,9 +8,7 @@
     <script src="{% static 'polls/js/django_setup.js' %}"></script>
     <script src="{% static 'polls/js/results.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-</head>
 
-<body onload="loadResults({{ question.get_total_votes }}, {{ question.choice_set.count }});">
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
@@ -21,6 +19,9 @@
             <li style="float: right"><a href="{% url 'results' question.id%}" class='active'>Poll results</a></li>
         </ul>
     </div>
+</head>
+
+<body onload="loadResults({{ question.get_total_votes }}, {{ question.choice_set.count }});">
     <h1>Thank you for participating in <span style='color:#CD5555'>poll #{{question.id}}</span></h1>
 
     <div id="results">

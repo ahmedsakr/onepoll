@@ -5,9 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'polls/js/accounts.js' %}"></script>
     <title>Home</title>
-</head>
 
-<body onload="$('#accounts').prop('display', 'none').hide();">
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
@@ -28,6 +26,9 @@
             <h4> Don't have an account? <a href="/register/">Register here</a></h4>
         </div>
     </div>
+</head>
+
+<body>
     <div id="latest-poll">
         <h2>Latest poll</h2>
         {% if question %}

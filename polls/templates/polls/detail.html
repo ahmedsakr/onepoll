@@ -7,9 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'polls/js/detail.js' %}"></script>
     <script>registerSelectionListeners({{ question.choice_set.count }});</script>
-</head>
 
-<body>
     <div id="navigation">
         <h1><span style='color: #CD5555'>one</span>poll</h1>
         <ul>
@@ -20,7 +18,9 @@
             <li style="float: right" ><a href="{% url 'detail' question.id %}" class="active">Poll: {{ question.id }}</a></li>
         </ul>
     </div>
+</head>
 
+<body>
     {% if private %}
     <div id="private">
         <img src="{% static 'polls/images/Lock-icon.png' %}"/>
