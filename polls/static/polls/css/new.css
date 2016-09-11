@@ -1,7 +1,5 @@
 form {
     background-color: gray;
-    margin: 0 auto;
-    box-shadow: -2px 3px 20px #888888;
     font-family: sans-serif;
     text-align: center;
 }
@@ -11,25 +9,23 @@ form h2 {
     background-color: #86C67C;
 }
 
-form input.question-text {
+form input[name='question_text'] {
     width: 80%;
 }
 
-form button {
+form input[type='submit'] {
     margin-top: 20px;
     width: 100%;
     font-weight: bold;
-    font-family: sans-serif;
     font-size: 1.5em
 }
 
-#choice {
+form div {
     display: inline-block;
-    position: relative;
     width: 20%;
-    margin-bottom: 5%;
+    margin-bottom: 20px;
 }
 
-#choice input {
+form div input {
     width: 100%;
 }

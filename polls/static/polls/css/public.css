@@ -11,6 +11,7 @@
 
 #polls {
     text-align: center;
+    font-family: sans-serif;
     display: none;
     width: 100%;
     margin-top: 15px;
@@ -55,10 +56,8 @@ td {
 td a {
     color: white;
     background-color: #86C67C;
-    text-align: center;
     text-decoration: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0px 10px 0px 10px;
     margin-right: 10px;
 }
 
