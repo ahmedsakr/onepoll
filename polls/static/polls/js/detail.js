@@ -6,9 +6,9 @@
 function registerSelectionListeners(count) {
     $(document).ready(function() {
         for (var x = 1; x <= count; x++) {
-            $('#option-' + x).click(function() {
+            $('form').children().filter('div').click(function() {
+                $('form').children().filter('div').css('opacity', '0.7');
                 $(this).children().filter('input').prop('checked', true);
-                $('form').children().filter("[id^='option-']").css('opacity', '0.7');
                 $(this).css('opacity', '1');
             });
         }

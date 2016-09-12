@@ -5,7 +5,7 @@ a {
 }
 
 #private {
-    margin: 20 auto;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -20,39 +20,46 @@ a {
 }
 
 #private h1, img {
-    display: inline-block;
+    display: inline;
 }
 
-#voting-template {
+form {
     background-color: gray;
     width: 100%;
     text-align: center;
 }
 
-#voting-template h1:before {
+form h1:before {
     content: 'Poll: ';
     color: #86C67C;
 }
 
-#voting-template h6 {
-    font-family: sans-serif;
-}
-
-.choice-rectangle {
+form div {
     background-color: #86C67C;
     opacity: 0.7;
 }
 
-.choice-rectangle input {
-    display: none;
+form div:last-child {
+    background-color: inherit;
+    text-align: right;
+    display: block;
 }
 
-.choice-rectangle label {
+form h6 {
+    font-family: sans-serif;
+}
+
+form div label {
     font-size: 1.5em;
 }
 
-#voting-template input[type='submit'] {
-    width: 20%;
+form input[type='radio'] {
+    display: none;
+}
+
+form input[type='submit'] {
+    display: inline;
     font-size: 1em;
     margin-top: 20px;
+    width: 10%;
 }

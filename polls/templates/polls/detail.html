@@ -28,21 +28,22 @@
         <img src="{% static 'polls/images/Lock-icon.png' %}"/>
     </div>
     {% endif %}
-    <div id='voting-template'>
+    <form action="{% url 'vote' question.id %}" method="post">
+        {% csrf_token %}
         <h1>{{ question.question_text }}</h1>
         {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
         {% endif %}
-        <form action="{% url 'vote' question.id %}" method="post">
-            {% csrf_token %}
-            {% for choice in question.choice_set.all %}
-            <div id='option-{{forloop.counter}}' class='choice-rectangle'>
-                <h6>option {{ forloop.counter }}</h6>
-                <input type="radio" name="choice" id="radio{{ forloop.counter }}" value="{{ choice.id }}" />
-                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-            </div>
-            {% endfor %}
+        {% for choice in question.choice_set.all %}
+        <div>
+            <h6>option {{ forloop.counter }}</h6>
+            <input type="radio" name="choice" value="{{ choice.id }}" />
+            <label>{{ choice.choice_text }}</label>
+        </div>
+        {% endfor %}
+
+        <div>
             <input type="submit" value="Vote"/>
-        </form>
-    </div>
+        </div>
+    </form>
 </body>
