@@ -42,6 +42,7 @@ form div {
 form div:last-child {
     background-color: inherit;
     text-align: right;
+    opacity: inherit;
     display: block;
 }
 

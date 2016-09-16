@@ -23,7 +23,7 @@ body, header {
     font-weight: bold;
     font-size: 4em;
     display: inline;
-    padding: 0px;
+    padding: 10px;
 }
 
 #navigation li{
@@ -33,7 +33,7 @@ body, header {
 #navigation li a {
     display: block;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-decoration: none;
     padding: 8px 8px;
 }
