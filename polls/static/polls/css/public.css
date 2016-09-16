@@ -15,7 +15,7 @@
     display: none;
     width: 100%;
     margin-top: 15px;
-    max-height: 350px;
+    max-height: 300px;
     background-color: #3D3D3D;
     overflow-y: auto;
 }

@@ -11,9 +11,13 @@ import polls.submit, polls.public, polls.utils
 
 def index(request):
     template_name = 'polls/index.html'
-    question = list(Question.objects.all().filter(public_poll=1).order_by('-pub_date'))[0]
+    question = Question.objects.all().filter(public_poll=1)
+    question = list(question.order_by('-pub_date'))[0]
 
-    return render(request, template_name, {'question': question})
+    return render(request, template_name, {
+        'question': question,
+        'stats_polls': Question.objects.count(),
+        'votes_casted': polls.utils.get_total_votes()})
 
 
 def detail(request, question_id):

@@ -29,12 +29,28 @@
 </head>
 
 <body>
-    <div id="latest-poll">
+    <div class='centre-block' id="latest-poll">
         <h2>Latest poll</h2>
         {% if question %}
         <a href="{% url 'detail' question.id %}">{{ question.question_text }}</a>
         {% else %}
         <p>No polls are available.</p>
         {% endif %}
+    </div>
+
+    <div class='centre-block'>
+        <h2>Statistics</h2>
+        <div id="statistics">
+            <div>
+                <h3>Polls: {{ stats_polls }}</h3>
+                <h4>Private polls: </h4>
+                <h4>Public polls: </h4>
+            </div>
+            <div>
+                <h3>Votes casted: {{ votes_casted }}</h3>
+                <h4>Average votes casted per poll: </h4>
+                <h4>Amount of users: </h4>
+            </div>
+        </div>
     </div>
 </body>

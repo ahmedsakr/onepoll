@@ -13,11 +13,14 @@
     display: inline;
 }
 
-#latest-poll {
+.centre-block {
+    margin-top: 20px;
     background-color: gray;
+    text-align: center;
 }
 
-#latest-poll h2 {
+.centre-block h2 {
+    padding: 5px;
     text-align: center;
     background-color: #4CAF50;
 }
@@ -31,4 +34,31 @@
 #latest-poll a:before {
     content: "POLL: ";
     color: black;
+}
+
+#statistics {
+    display: flex;
+}
+
+#statistics div {
+    flex: 1;
+    -webkit-flex: 2;
+    padding: 5px 20px 5px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    border: solid #A52A2A 3px;
+    padding: 5px;
+    background-color: #422C2F;
+}
+
+#statistics div h3 {
+    flex: 1 100%;
+    padding: 2px 0px 2px 0px;
+    color: white;
+    background-color: #A52A2A;
+    border-radius: 10px;
+}
+
+#statistics div h4 {
+    background-color: white;
 }
