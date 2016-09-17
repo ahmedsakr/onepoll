@@ -1,11 +1,6 @@
-@font-face {
-    font-family: keepcalm;
-    src: url('../fonts/keepcalm.ttf');
-}
-
 body, header {
     background-color: #EBEBEB;
-    font-family: keepcalm;
+    font-family: sans-serif;
     margin: 0 auto;
     max-width: 80%;
 }

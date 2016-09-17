@@ -43,22 +43,30 @@
 
     <div class='centre-block'>
         <div class='centre-block-title'>
-            Statistics
+            Stats
         </div>
         <div id="statistics">
             <div class='statistic'>
                 <div class='statistic-title'>
                     {{ total_polls }} Poll{{ total_polls|pluralize }}
                 </div>
-                <h4>Public polls: {{ public_polls }}</h4>
-                <h4>Private polls: {{ total_polls|subtract:public_polls }}</h4>
+                <div class='statistic-detail'>
+                    Public polls: {{ public_polls }}
+                </div>
+                <div class='statistic-detail'>
+                    Private polls: {{ total_polls|subtract:public_polls }}
+                </div>
             </div>
             <div class='statistic'>
                 <div class='statistic-title'>
                     {{ votes_casted }} Vote{{ votes_casted|pluralize }} casted
                 </div>
-                <h4>Average votes casted per poll: {{ votes_casted|divide:total_polls }}</h4>
-                <h4>Amount of users: </h4>
+                <div class='statistic-detail'>
+                    Average votes per poll: {{ votes_casted|divide:total_polls }}
+                </div>
+                <div class='statistic-detail'>
+                    Amount of users:
+                </div>
             </div>
         </div>
     </div>

@@ -47,6 +47,7 @@
     flex: 1 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     padding: 5px 20px 5px 20px;
     margin: 10px;
 }
@@ -55,14 +56,16 @@
     flex: 1 1 100%;
     padding: 2px 0px 2px 0px;
     color: white;
-    font-size: 36px;
+    font-size: 24px;
     background-color: #A52A2A;
 }
 
-#statistics div h4 {
+.statistic-detail {
     flex: 1 2 40%;
+    max-width: 30%;
     background-color: white;
     padding: 2px 0px 2px 0px;
     border-radius: 10px;
+    font-size: 12px;
     margin: 10px;
 }

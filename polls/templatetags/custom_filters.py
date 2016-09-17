@@ -15,7 +15,7 @@ def percentage(value, arg):
 
 @register.filter
 def divide(value, arg):
-    return round(value / arg, 1)
+    return round(float(value) / arg, 1)
 
 @register.filter
 def subtract(value, arg):
