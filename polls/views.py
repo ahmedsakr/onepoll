@@ -16,7 +16,8 @@ def index(request):
 
     return render(request, template_name, {
         'question': question,
-        'stats_polls': Question.objects.count(),
+        'total_polls': Question.objects.count(),
+        'public_polls': Question.objects.all().filter(public_poll=1).count(),
         'votes_casted': polls.utils.get_total_votes()})
 
 
