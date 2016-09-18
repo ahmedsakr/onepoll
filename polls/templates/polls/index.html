@@ -59,13 +59,13 @@
             </div>
             <div class='statistic'>
                 <div class='statistic-title'>
-                    {{ votes_casted }} Vote{{ votes_casted|pluralize }} casted
+                    {{ unique_voters}} voter{{ unique_voters|pluralize }}
                 </div>
                 <div class='statistic-detail'>
                     Average votes per poll: {{ votes_casted|divide:total_polls }}
                 </div>
                 <div class='statistic-detail'>
-                    Amount of users:
+                    Votes casted: {{ votes_casted }}
                 </div>
             </div>
         </div>

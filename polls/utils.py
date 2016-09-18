@@ -1,4 +1,4 @@
-from .models import Question
+from .models import Question, Participant
 
 def pluralize(num):
     if num != 1:
@@ -23,3 +23,14 @@ def get_total_votes():
         total_votes += question.get_total_votes()
 
     return total_votes
+
+def get_unique_voters():
+    views = set()
+    for user in Participant.objects.all():
+        views.add(user.ip)
+
+    return len(views)
+
+def user_has_voted(request, question):
+    ip = get_ip(request)
+    return any(user.ip == ip for user in question.participant_set.all())

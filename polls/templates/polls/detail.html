@@ -43,7 +43,11 @@
         {% endfor %}
 
         <div>
+            {% if already_participated == True %}
+            <h3>You have already participated in this poll. <a href="{% url 'results' question.id %}">Click for results.</a></h3>
+            {% else %}
             <input type="submit" value="Vote"/>
+            {% endif %}
         </div>
     </form>
 </body>

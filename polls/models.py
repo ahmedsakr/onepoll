@@ -8,7 +8,7 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
     public_poll = models.IntegerField(default=1)
     views = models.IntegerField(default=0)
-    
+
     def __str__(self):
         return self.question_text
     def was_published_recently(self):
@@ -26,3 +26,7 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
     def __str__(self):
         return self.choice_text
+
+class Participant(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    ip = models.CharField(max_length=30)

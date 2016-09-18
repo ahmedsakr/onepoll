@@ -6,7 +6,7 @@ from django.views import generic
 
 from random import randint
 
-from .models import Choice, Question
+from .models import Choice, Question, Participant
 import polls.submit, polls.public, polls.utils
 
 def index(request):
@@ -18,7 +18,9 @@ def index(request):
         'question': question,
         'total_polls': Question.objects.count(),
         'public_polls': Question.objects.all().filter(public_poll=1).count(),
-        'votes_casted': polls.utils.get_total_votes()})
+        'votes_casted': polls.utils.get_total_votes(),
+        'unique_voters': polls.utils.get_unique_voters(),
+    })
 
 
 def detail(request, question_id):
@@ -29,10 +31,14 @@ def detail(request, question_id):
     question.save()
 
     if question.public_poll == 1:
-        return render(request, template_name, {'question': question})
+        return render(request, template_name, {
+        'question': question,
+        'already_participated': polls.utils.user_has_voted(request, question),
+        })
     else:
         return render(request, template_name, {
             'question': question,
+            'already_participated': polls.utils.user_has_voted(request, question),
             'private': True
         })
 
@@ -69,6 +75,12 @@ def results(request, question_id):
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
+    if polls.utils.user_has_voted(request, question):
+        return render(request, 'polls/detail.html', {
+            'question': question,
+            'already_participated': True,
+        })
+
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
@@ -81,6 +93,7 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
 
+        question.participant_set.create(ip=polls.utils.get_ip(request))
         total_votes = 0
 
         # Always return an HttpResponseRedirect after successfully dealing
