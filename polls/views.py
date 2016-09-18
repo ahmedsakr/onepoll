@@ -11,6 +11,9 @@ import polls.submit, polls.public, polls.utils
 
 def index(request):
     template_name = 'polls/index.html'
+    if len(Question.objects.all()) == 0:
+        return render(request, template_name)
+        
     question = Question.objects.all().filter(public_poll=1)
     question = list(question.order_by('-pub_date'))[0]
 

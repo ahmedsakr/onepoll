@@ -48,24 +48,48 @@
         <div id="statistics">
             <div class='statistic'>
                 <div class='statistic-title'>
+                    {% if total_polls %}
                     {{ total_polls }} Poll{{ total_polls|pluralize }}
+                    {% else %}
+                    0 Polls
+                    {% endif %}
                 </div>
                 <div class='statistic-detail'>
+                    {% if public_polls %}
                     Public polls: {{ public_polls }}
+                    {% else %}
+                    Public polls: 0
+                    {% endif %}
                 </div>
                 <div class='statistic-detail'>
+                    {% if total_polls %}
                     Private polls: {{ total_polls|subtract:public_polls }}
+                    {% else %}
+                    Private polls: 0
+                    {% endif %}
                 </div>
             </div>
             <div class='statistic'>
                 <div class='statistic-title'>
+                    {% if voters %}
                     {{ unique_voters}} voter{{ unique_voters|pluralize }}
+                    {% else %}
+                    0 voters
+                    {% endif%}
                 </div>
                 <div class='statistic-detail'>
+                    {% if total_polls %}
                     Average votes per poll: {{ votes_casted|divide:total_polls }}
+                    {% else %}
+                    Average votes per poll: 0
+                    {% endif %}
                 </div>
                 <div class='statistic-detail'>
+                    {% if votes_casted %}
                     Votes casted: {{ votes_casted }}
+                    {% else %}
+                    Votes casted: 0
+                    {% endif %}
                 </div>
             </div>
         </div>
