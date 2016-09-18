@@ -1,10 +1,13 @@
 {% load staticfiles %}
-
+<!DOCTYPE html>
+<html>
 <head>
     <title> Create new poll </title>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/new.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navigation.css' %}" />
+</head>
 
+<body>
     <div id="navigation">
         <h1>onepoll</h1>
         <ul>
@@ -14,9 +17,7 @@
             <li><a href="{% url 'public' %}">Public polls</a></li>
         </ul>
     </div>
-</head>
-
-<body>
+    
     <form action="{% url 'submit' %}" method="post">
         {% csrf_token %}
 
@@ -48,3 +49,4 @@
         <input type='submit' value="Submit"/>
     </form>
 </body>
+</html>

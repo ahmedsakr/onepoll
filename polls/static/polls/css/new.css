@@ -22,7 +22,7 @@ form input[type='submit'] {
 form div {
     display: inline-block;
     width: 20%;
-    margin-bottom: 20px;
+    margin: 0px 5px 20px 5px;
 }
 
 form div input {

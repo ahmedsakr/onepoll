@@ -1,5 +1,6 @@
 {% load staticfiles %}
-
+<!DOCTYPE html>
+<html>
 <head>
     <title>Public polls</title>
     <link rel='stylesheet' type='text/css' href="{% static 'polls/css/public.css' %}"/>
@@ -7,7 +8,9 @@
     <script src="{% static 'polls/js/django_setup.js' %}"></script>
     <script src="{% static 'polls/js/public.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
 
+<body onload="updatePolls({% url 'public' %})">
     <div id="navigation">
         <h1>onepoll</h1>
         <ul>
@@ -17,9 +20,7 @@
             <li><a href="{% url 'public' %}" class='active'>Public polls</a></li>
         </ul>
     </div>
-</head>
-
-<body onload="updatePolls({% url 'public' %})">
+    
     <div id='filters'>
         <fieldset>
             <legend>Filter by keywords</legend>
@@ -56,3 +57,4 @@
         </table>
     </div>
 </body>
+</html>

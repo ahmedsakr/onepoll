@@ -1,16 +1,15 @@
-#accounts {
+form {
     display: none;
     text-align: center;
     background-color: #4CAF50;
 }
 
-#accounts h3{
+.accounts-label{
     color: white;
     display: inline;
 }
 
-#accounts h4 {
-    display: inline;
+.accounts-register {
 }
 
 .centre-block {

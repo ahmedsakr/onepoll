@@ -1,12 +1,16 @@
 {% load staticfiles %}
 {% load custom_filters %}
+<!DOCTYPE html>
+<html>
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/index.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navigation.css' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'polls/js/accounts.js' %}"></script>
     <title>Home</title>
+</head>
 
+<body>
     <div id="navigation">
         <h1>onepoll</h1>
         <ul>
@@ -19,17 +23,23 @@
             </li>
         </ul>
 
-        <div id="accounts">
-            <h3>username:</h3>
-            <input type="text"/>
-            <h3>password: </h3>
-            <input type="password"/>
-            <h4> Don't have an account? <a href="/register/">Register here</a></h4>
-        </div>
+        <form method="POST" action="/login/">
+            {% csrf_token %}
+            <div class='accounts-label'>
+                username:
+            </div>
+            <input type="text" name='username'/>
+            <div class='accounts-label'>
+                password:
+            </div>
+            <input type="password" name='password'/>
+            <input type="submit" value="login"/>
+            <div class='accounts-register'>
+                 Don't have an account? <a href="{% url 'register' %}">Register here</a>.
+            </div>
+        </form>
     </div>
-</head>
-
-<body>
+    
     <div class='centre-block' id="latest-poll">
         <div class='centre-block-title'>
             Latest poll
@@ -95,3 +105,4 @@
         </div>
     </div>
 </body>
+</html>

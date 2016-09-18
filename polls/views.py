@@ -13,7 +13,7 @@ def index(request):
     template_name = 'polls/index.html'
     if len(Question.objects.all()) == 0:
         return render(request, template_name)
-        
+
     question = Question.objects.all().filter(public_poll=1)
     question = list(question.order_by('-pub_date'))[0]
 
@@ -25,6 +25,9 @@ def index(request):
         'unique_voters': polls.utils.get_unique_voters(),
     })
 
+def register(request):
+    template_name = 'polls/register.html'
+    return render(request, template_name)
 
 def detail(request, question_id):
     question = get_object_or_404(Question, id=question_id)
@@ -47,6 +50,9 @@ def detail(request, question_id):
 
 def random(request):
     questions = list(Question.objects.all().filter(public_poll=1))
+    if len(questions) == 0:
+        return HttpResponseRedirect(reverse('index'))
+
     random = randint(0, len(questions) - 1)
     question_id = questions[random].id
 

@@ -7,6 +7,7 @@ app_name = 'polls'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
+    url(r'^register/$', views.register, name='register'),
     url(r'^random/$', views.random, name='random'),
     url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^public/$', views.public, name='public'),

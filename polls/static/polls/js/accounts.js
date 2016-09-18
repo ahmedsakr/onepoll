@@ -1,7 +1,7 @@
 function accountSlide() {
-    if ($('#accounts').css('display') == 'none') {
-        $('#accounts').slideDown();
+    if ($('form').css('display') == 'none') {
+        $('form').slideDown();
     } else {
-        $('#accounts').slideUp();
+        $('form').slideUp();
     }
 }
