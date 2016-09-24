@@ -1,23 +1,23 @@
-function loadResults(total_votes, total_choices) {
-    $ ('#update').attr('disabled', '');
+function loadResults(votes, total_votes, total_choices) {
+    $ ('input').attr('disabled', '');
+    var get_percentage = function(votes) {
+        return ((votes / total_votes) * 100).toFixed(1);
+    }
 
-    var width = 0.1;
-    var id = 1;
-    var elem = $("#foreground" + id);
-    var percentage = ((elem.attr('value') / total_votes) * 100).toFixed(1);
+    var elems = $("[class='progress-foreground']");
+    var width = 0, id = 0, percentage = get_percentage(votes[id]);
 
     var interval = setInterval(function() {
         if (width < percentage) {
             width += 0.25;
-            elem.css('width',  width + '%');
-        } else if (id < total_choices){
+            elems[id].style.width = width + '%';
+        } else if (id < total_choices - 1){
             id++;
             width = 0;
-            elem = $("#foreground" + id);
-            percentage = ((elem.attr('value') / total_votes) * 100).toFixed(1);
+            percentage = get_percentage(votes[id]);
         } else {
             clearInterval(interval);
-            $ ('#update').removeAttr('disabled');
+            $ ('input').removeAttr('disabled');
         }
     }, 1);
 }
@@ -39,33 +39,36 @@ function update(updateUrl) {
         },
 
         success: function(data, status) {
-            var info = data.split(';')
-            var total_votes = parseInt(info[0].split('=')[1]);
-
-            for (var i = 1; i < info.length; i++) {
-                var choice = info[i];
-                var votes = parseInt(choice.split('=')[1]);
-
-                $ ('#foreground' + i).css('width', '0%');
-                $ ('#foreground' + i).attr('value', votes);
-                $ ('#foreground' + i + ' p').text(choice.split('=')[0]);
+            var pluralize = function(amount) {
+                if (amount > 1) {
+                    return 's';
+                } else {
+                    return '';
+                }
             }
 
-            $ ('#results h3').text(total_votes + ' vote' + pluralize(total_votes));
-            loadResults(total_votes, i);
+            var info = data.split(';')
+            var total_votes = parseInt(info.shift().split('=')[1]);
+            var votes_arr = [];
+
+            $('h3').text(total_votes + ' vote' + pluralize(total_votes));
+            var elems = $("[class='progress-foreground']")
+            elems = elems.css("width", "0%").children().filter('div');
+
+            for (var i = 0; i < info.length; i++) {
+                var choice = info[i];
+                
+                elems[i].innerHTML = choice.split('=')[0];
+                var votes = parseInt(choice.split('=')[1]);
+                votes_arr.push(votes);
+            }
+
+            loadResults(votes_arr, total_votes, i);
         },
 
         error: function(response) {
             alert("An error has occurred. Try again later. error_code=" + response.status);
-            $ ('#update').removeAttr('disabled');
+            $ ('input').removeAttr('disabled');
         }
     });
-}
-
-function pluralize(amount) {
-    if (amount > 1) {
-        return 's';
-    } else {
-        return '';
-    }
 }

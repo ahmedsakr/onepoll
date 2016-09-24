@@ -33,9 +33,6 @@ def detail(request, question_id):
     question = get_object_or_404(Question, id=question_id)
     template_name = 'polls/detail.html'
 
-    question.views += 1
-    question.save()
-
     if question.public_poll == 1:
         return render(request, template_name, {
         'question': question,

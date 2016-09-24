@@ -7,7 +7,6 @@ class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     public_poll = models.IntegerField(default=1)
-    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.question_text

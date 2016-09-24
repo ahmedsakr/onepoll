@@ -13,29 +13,29 @@ h1 {
 
 #results h2:before {
     content: 'Poll: ';
-    color: #4CAF50;
+    color: white;
     font-weight: bolder;
 }
 
-#results .background {
+.progress-description, .progress-background, .progress-foreground {
+    height: 2em;
+}
+
+.progress-background {
     position: relative;
     background-color: #CDB7B5;
     border: solid black 1px;
-    height: 2em;
 }
 
-#results .foreground {
-    position: absolute;
+.progress-foreground {
     width: 0%;
     background-color: #4CAF50;
-    height: 2em;
 }
 
-#results p {
+.progress-description {
     position: absolute;
-    margin: 5 auto;
-    width: 800px;
-    height: 2em;
+    font-size: 1.5em;
+    width:100%;
 }
 
 input {

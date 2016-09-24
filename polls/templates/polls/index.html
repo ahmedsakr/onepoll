@@ -39,7 +39,7 @@
             </div>
         </form>
     </div>
-    
+
     <div class='centre-block' id="latest-poll">
         <div class='centre-block-title'>
             Latest poll
@@ -81,7 +81,7 @@
             </div>
             <div class='statistic'>
                 <div class='statistic-title'>
-                    {% if voters %}
+                    {% if unique_voters %}
                     {{ unique_voters}} voter{{ unique_voters|pluralize }}
                     {% else %}
                     0 voters

@@ -50,10 +50,9 @@ def refine_polls(request):
     questions = questions.order_by('-%s' % sort)[:int(amount)]
 
     for question in questions:
-        filtered_polls += '%d;%s;%d;%d;%s\n' % (question.id,
+        filtered_polls += '%d;%s;%d;%s\n' % (question.id,
         question.question_text,
         question.get_total_votes(),
-        question.views,
         question.pub_date.strftime('%m-%d-%Y %H:%M'))
 
     return filtered_polls

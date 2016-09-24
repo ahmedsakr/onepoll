@@ -25,11 +25,7 @@ def get_total_votes():
     return total_votes
 
 def get_unique_voters():
-    views = set()
-    for user in Participant.objects.all():
-        views.add(user.ip)
-
-    return len(views)
+    return len(set(Participant.objects.all()))
 
 def user_has_voted(request, question):
     ip = get_ip(request)
