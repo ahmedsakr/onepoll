@@ -31,11 +31,6 @@ form {
     width: 100%;
 }
 
-#latest-poll a:before {
-    content: "POLL: ";
-    color: black;
-}
-
 #statistics {
     display: flex;
     flex-wrap: wrap;

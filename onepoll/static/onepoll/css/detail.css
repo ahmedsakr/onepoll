@@ -23,21 +23,17 @@ form {
     text-align: center;
 }
 
-form h1:before {
-    content: 'Poll: ';
-    color: #86C67C;
+form h1 {
+    display: inline-block;
 }
 
-form div {
+.choice-block {
     background-color: #86C67C;
     opacity: 0.7;
 }
 
 form div:last-child {
-    background-color: inherit;
     text-align: right;
-    opacity: inherit;
-    display: block;
 }
 
 form h6 {

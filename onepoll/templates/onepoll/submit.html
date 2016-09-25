@@ -7,14 +7,14 @@
     {% else %}
     <title>Poll submitted: Redirecting</title>
     {% endif %}
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/submit.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/submit.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
         setTimeout(function() {
             window.location.replace(
 
-            {% if question_id %}
-            "{% url 'detail' question_id %}"
+            {% if poll_id %}
+            "{% url 'detail' poll_id %}"
             {% else %}
             "{% url 'new' %}"
             {% endif %}
@@ -27,7 +27,7 @@
         {% if error_message %}
         <h1>SUBMIT FAILED: {{ error_message }}</h1>
         {% else %}
-        <h1>SUBMITTED POLL (poll id: {{ question_id}})</h1>
+        <h1>SUBMITTED POLL (poll id: {{ poll_id}})</h1>
         {% endif %}
         <h3>REDIRECTING... </h3>
     </div>

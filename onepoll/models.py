@@ -3,10 +3,11 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-class Question(models.Model):
+class Poll(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     public_poll = models.IntegerField(default=1)
+    category = models.CharField(max_length=50, default='other')
 
     def __str__(self):
         return self.question_text
@@ -20,12 +21,12 @@ class Question(models.Model):
         return votes
 
 class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
     def __str__(self):
         return self.choice_text
 
 class Participant(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     ip = models.CharField(max_length=30)

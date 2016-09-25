@@ -3,11 +3,17 @@
 <html>
 <head>
     <title>Vote</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/detail.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navigation.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/category.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/detail.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'polls/js/detail.js' %}"></script>
-    <script>registerSelectionListeners({{ question.choice_set.count }});</script>
+    <script type="text/javascript" src="{% static 'onepoll/js/block_selector.js' %}"></script>
+    <script>
+        registerBlockSelectors("form", "div:not(:last-child)", function(parent, blocks, element) {
+            $(parent).children().filter(blocks).css('opacity', '0.7');
+            element.css('opacity', '1');
+        });
+    </script>
 </head>
 
 <body>
@@ -18,10 +24,10 @@
             <li><a href="{% url 'new' %}">New poll</a></li>
             <li><a href="{% url 'random' %}">Random poll</a></li>
             <li><a href="{% url 'public' %}">Public polls</a></li>
-            <li style="float: right" ><a href="{% url 'detail' question.id %}" class="active">Poll: {{ question.id }}</a></li>
+            <li style="float: right" ><a href="{% url 'detail' poll.id %}" class="active">Poll: {{ poll.id }}</a></li>
         </ul>
     </div>
-    
+
     {% if private %}
     <div id="private">
         <img src="{% static 'polls/images/Lock-icon.png' %}"/>
@@ -29,14 +35,19 @@
         <img src="{% static 'polls/images/Lock-icon.png' %}"/>
     </div>
     {% endif %}
-    <form action="{% url 'vote' question.id %}" method="post">
+    <form action="{% url 'vote' poll.id %}" method="post">
         {% csrf_token %}
-        <h1>{{ question.question_text }}</h1>
+        <div class='category-entry' name='{{ poll.category }}'>
+            <div class="category-name">
+                {{ poll.category }}
+            </div>
+        </div>
+        <h1>{{ poll.question_text }}</h1>
         {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
         {% endif %}
-        {% for choice in question.choice_set.all %}
-        <div>
+        {% for choice in poll.choice_set.all %}
+        <div class="choice-block">
             <h6>option {{ forloop.counter }}</h6>
             <input type="radio" name="choice" value="{{ choice.id }}" />
             <label>{{ choice.choice_text }}</label>
@@ -45,7 +56,7 @@
 
         <div>
             {% if already_participated == True %}
-            <h3>You have already participated in this poll. <a href="{% url 'results' question.id %}">Click for results.</a></h3>
+            <h3>You have already participated in this poll. <a href="{% url 'results' poll.id %}">Click for results.</a></h3>
             {% else %}
             <input type="submit" value="Vote"/>
             {% endif %}

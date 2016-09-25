@@ -1,0 +1,42 @@
+{% load staticfiles %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/results.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}"/>
+    <script src="{% static 'onepoll/js/django_setup.js' %}"></script>
+    <script src="{% static 'onepoll/js/results.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<body onload="update('{% url 'results' poll.id %}')">
+    <div id="navigation">
+        <h1>onepoll</h1>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'new' %}">New poll</a></li>
+            <li><a href="{% url 'random' %}">Random poll</a></li>
+            <li><a href="{% url 'public' %}">Public polls</a></li>
+            <li style="float: right"><a href="{% url 'results' poll.id %}" class='active'>Poll results</a></li>
+        </ul>
+    </div>
+
+    <h1>Thank you for participating in <span style='color:#CD5555'>poll #{{poll.id}}</span></h1>
+
+    <div id="results">
+        <h2>{{ poll.question_text }}</h2>
+        <h3>{{ poll.get_total_votes }} vote{{ poll.get_total_votes|pluralize }}</h3>
+        {% for choice in poll.choice_set.all %}
+            <div class="progress-background">
+                <div class="progress-foreground">
+                    <div class="progress-description"></div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <input type='button' value='Update results' onclick="update('{% url 'results' poll.id %}')"/>
+</body>
+</html>

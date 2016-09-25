@@ -1,4 +1,4 @@
-from .models import Question, Participant
+from .models import Poll, Participant
 
 def pluralize(num):
     if num != 1:
@@ -19,14 +19,14 @@ def get_ip(request):
     return ip
 def get_total_votes():
     total_votes = 0
-    for question in Question.objects.all():
-        total_votes += question.get_total_votes()
+    for poll in Poll.objects.all():
+        total_votes += poll.get_total_votes()
 
     return total_votes
 
 def get_unique_voters():
     return len(set(Participant.objects.all()))
 
-def user_has_voted(request, question):
+def user_has_voted(request, poll):
     ip = get_ip(request)
-    return any(user.ip == ip for user in question.participant_set.all())
+    return any(user.ip == ip for user in poll.participant_set.all())

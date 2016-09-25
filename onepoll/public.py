@@ -1,4 +1,4 @@
-from .models import Question
+from .models import Poll
 
 def refine_polls(request):
     # get all the filter data from the user
@@ -9,7 +9,7 @@ def refine_polls(request):
     filtered_polls = ''
 
     # acquire all objects and remove all private polls right off the bat
-    questions = Question.objects.all().filter(public_poll=1)
+    polls = Poll.objects.all().filter(public_poll=1)
 
     # keywords have been found, so further filtering is required
     if keywords[0] != '':
@@ -22,7 +22,7 @@ def refine_polls(request):
             all keywords and filtering will do it.
             '''
             for keyword in keywords:
-                questions = questions.filter(question_text__contains=keyword)
+                polls = polls.filter(question_text__contains=keyword)
 
             # if no polls have passsed all keywords, prematurely return
             # an empty HttpResponse
@@ -35,24 +35,25 @@ def refine_polls(request):
             any keyword are to be collected. So as shown, an empty QuerySet
             is created and the filtered results will be added to it.
             '''
-            temp = Question.objects.none()
+            temp = Poll.objects.none()
             for keyword in keywords:
-                temp = temp | questions.filter(question_text__contains=keyword)
+                temp = temp | polls.filter(question_text__contains=keyword)
 
             # if no polls have passsed any keyword, prematurely return
             # an empty HttpResponse
             if len(temp) == 0:
                 return ''
 
-            questions = temp
+            polls = temp
 
 
-    questions = questions.order_by('-%s' % sort)[:int(amount)]
+    polls = polls.order_by('-%s' % sort)[:int(amount)]
 
-    for question in questions:
-        filtered_polls += '%d;%s;%d;%s\n' % (question.id,
-        question.question_text,
-        question.get_total_votes(),
-        question.pub_date.strftime('%m-%d-%Y %H:%M'))
+    for poll in polls:
+        filtered_polls += '%d;%s;%s;%d;%s\n' % (poll.id,
+        poll.category,
+        poll.question_text,
+        poll.get_total_votes(),
+        poll.pub_date.strftime('%m-%d-%Y %H:%M'))
 
     return filtered_polls

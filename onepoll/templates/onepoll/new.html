@@ -1,0 +1,96 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Create new poll </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/new.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/category.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'onepoll/js/block_selector.js' %}"></script>
+    <script>
+        registerBlockSelectors("#categories", "div")
+    </script>
+</head>
+
+<body>
+    <div id="navigation">
+        <h1>onepoll</h1>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'new' %}" class='active'>New poll</a></li>
+            <li><a href="{% url 'random' %}">Random poll</a></li>
+            <li><a href="{% url 'public' %}">Public polls</a></li>
+        </ul>
+    </div>
+
+    <form action="{% url 'submit' %}" method="post">
+        {% csrf_token %}
+
+        <h2>NEW PUBLIC POLL</h2>
+        <h3>Question</h3>
+        <input type='text' name='question_text'>
+        <h3>Choices</h3>
+
+        <div class='choice-block'>
+            <p>Choice 1</p>
+            <input type='text' name='choice1_text'>
+        </div>
+        <div class='choice-block'>
+            <p>Choice 2</p>
+            <input type='text' name='choice2_text'>
+        </div>
+        <div class='choice-block'>
+            <p>Choice 3</p>
+            <input type='text' name='choice3_text'>
+        </div>
+        <div class='choice-block'>
+            <p>Choice 4</p>
+            <input type='text' name='choice4_text'>
+        </div>
+
+        <br/>
+        <div id="categories">
+            <div class='category-entry' name='science'>
+                <input type='radio' name="category" value="science">
+                <div class="category-name">
+                    Science
+                </div>
+            </div>
+            <div class='category-entry' name='mathematics'>
+                <input type='radio' name="category" value="mathematics">
+                <div class="category-name">
+                    Mathematics
+                </div>
+            </div>
+            <div class='category-entry' name='business'>
+                <input type='radio' name="category" value="business">
+                <div class="category-name">
+                    Business
+                </div>
+            </div>
+            <div class='category-entry' name='history'>
+                <input type='radio' name="category" value="history">
+                <div class="category-name">
+                    History
+                </div>
+            </div>
+            <div class='category-entry' name='general_knowledge'>
+                <input type='radio' name="category" value="general_knowledge">
+                <div class="category-name">
+                    General Knowledge
+                </div>
+            </div>
+            <div class='category-entry' name='other'>
+                <input type='radio' name="category" value="other" checked>
+                <div class="category-name">
+                    Other
+                </div>
+            </div>
+        </div>
+        <input type='radio' name='privacy' value='public' checked> Public
+        <input type='radio' name='privacy' value='private'> Private
+        <input type='submit' value="Submit"/>
+    </form>
+</body>
+</html>

@@ -3,10 +3,10 @@
 <html>
 <head>
     <title>Public polls</title>
-    <link rel='stylesheet' type='text/css' href="{% static 'polls/css/public.css' %}"/>
-    <link rel='stylesheet' type='text/css' href="{% static 'polls/css/navigation.css' %}"/>
-    <script src="{% static 'polls/js/django_setup.js' %}"></script>
-    <script src="{% static 'polls/js/public.js' %}"></script>
+    <link rel='stylesheet' type='text/css' href="{% static 'onepoll/css/public.css' %}"/>
+    <link rel='stylesheet' type='text/css' href="{% static 'onepoll/css/navigation.css' %}"/>
+    <script src="{% static 'onepoll/js/django_setup.js' %}"></script>
+    <script src="{% static 'onepoll/js/public.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
@@ -49,6 +49,7 @@
         <table>
             <tr>
                 <th>Poll id</th>
+                <th>Category</th>
                 <th>Question</th>
                 <th># of Votes</th>
                 <th>Publish date</th>

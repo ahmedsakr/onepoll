@@ -9,22 +9,26 @@ form h2 {
     background-color: #86C67C;
 }
 
-form input[name='question_text'] {
+input[name='question_text'] {
     width: 80%;
 }
 
-form input[type='submit'] {
+input[type='submit'] {
     margin-top: 20px;
     width: 100%;
     font-size: 1.5em
 }
 
-form div {
+input[name^="choice"] {
+    width: 100%;
+}
+
+.choice-block {
     display: inline-block;
     width: 20%;
     margin: 0px 5px 20px 5px;
 }
 
-form div input {
-    width: 100%;
+#categories {
+    margin-bottom: 25px;
 }
