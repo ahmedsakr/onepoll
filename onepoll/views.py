@@ -14,7 +14,10 @@ def index(request):
     if len(Poll.objects.all()) == 0:
         return render(request, template_name)
 
-    latest_poll = list(Poll.objects.all().filter(public_poll=1).order_by('-pub_date'))[0]
+    polls = Poll.objects.all().filter(public_poll=1)
+    latest_poll = None
+    if len(polls) != 0:
+        latest_poll = list(Poll.objects.all().filter(public_poll=1).order_by('-pub_date'))[0]
 
     return render(request, template_name, {
         'poll': latest_poll,
