@@ -9,7 +9,7 @@ function registerBlockSelectors(parent, blocks, func) {
             $(this).children().filter('input').prop('checked', true);
 
             if (arglen == 3) {
-                func(parent, blocks, $(this));
+                func($(this), $(parent).children().filter(blocks));
             }
         });
     });

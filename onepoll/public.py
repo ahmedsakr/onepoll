@@ -6,10 +6,14 @@ def refine_polls(request):
     search = request.POST.get('search')
     sort = request.POST.get('sort')
     amount = request.POST.get('amount')
+    category = request.POST.get('category')
     filtered_polls = ''
+    print(request.POST)
 
-    # acquire all objects and remove all private polls right off the bat
+    # filter out all private posts and posts not in the specified category.
     polls = Poll.objects.all().filter(public_poll=1)
+    if category != "all":
+        polls = polls.filter(category=category)
 
     # keywords have been found, so further filtering is required
     if keywords[0] != '':
@@ -25,7 +29,6 @@ def refine_polls(request):
                 polls = polls.filter(question_text__contains=keyword)
 
             # if no polls have passsed all keywords, prematurely return
-            # an empty HttpResponse
             if len(questions) == 0:
                 return ''
 
@@ -40,20 +43,17 @@ def refine_polls(request):
                 temp = temp | polls.filter(question_text__contains=keyword)
 
             # if no polls have passsed any keyword, prematurely return
-            # an empty HttpResponse
             if len(temp) == 0:
                 return ''
 
             polls = temp
 
 
-    polls = polls.order_by('-%s' % sort)[:int(amount)]
-
+    polls = polls.order_by('pub_date')[:int(amount)]
     for poll in polls:
-        filtered_polls += '%d;%s;%s;%d;%s\n' % (poll.id,
-        poll.category,
-        poll.question_text,
-        poll.get_total_votes(),
-        poll.pub_date.strftime('%m-%d-%Y %H:%M'))
+        filtered_polls += '{:d};{:s};{:s};{:d};{:s}\n'.format(*get_poll_data(poll))
 
     return filtered_polls
+
+def get_poll_data(poll):
+    return (poll.id, poll.category, poll.question_text, poll.get_total_votes(), poll.pub_date.strftime('%m-%d-%Y %H:%M'))

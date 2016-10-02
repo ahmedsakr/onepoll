@@ -30,16 +30,24 @@
         </fieldset>
 
         <fieldset>
+            <legend>Filter by category</legend>
+            Search in
+            <select>
+                <option value="all">All categories</option>
+                <option value="science">Science</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="business">Business</option>
+                <option value="history">History</option>
+                <option value="general">General Knowledge</option>
+                <option value="other">Other</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
             <legend>Polls to retrieve</legend>
             <input type="radio" name='amount' value=10 checked> 10 polls
             <input type="radio" name='amount' value=20> 20 polls
             <input type="radio" name='amount' value=50> 50 polls
-        </fieldset>
-
-        <fieldset>
-            <legend>Sorting Method</legend>
-            <input type="radio" name='sort' value='pub_date' checked> Latest polls
-            <input type="radio" name='sort' value='views'> Hot polls
         </fieldset>
 
         <input type="button" value="Refine" onclick="updatePolls({% url 'public' %})">

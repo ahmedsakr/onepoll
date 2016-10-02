@@ -25,7 +25,7 @@ function updatePolls(updateUrl) {
                 'keywords': keywords.val(),
                 'search': search.val(),
                 'amount': amount.val(),
-                'sort': sort.val()
+                'category': $('select').find(':selected').attr('value')
             },
 
             success: function(data, status) {

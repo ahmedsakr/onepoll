@@ -86,7 +86,7 @@ def vote(request, poll_id):
     if onepoll.utils.user_has_voted(request, poll):
         return render(request, 'onepoll/detail.html', {
             'poll': poll,
-            'already_participated': True,
+            'participated': True,
         })
 
     try:
@@ -100,13 +100,8 @@ def vote(request, poll_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-
         poll.participant_set.create(ip=onepoll.utils.get_ip(request))
-        total_votes = 0
 
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
         return HttpResponseRedirect(reverse('results', args=(poll.id,)))
 
 def new(request):
@@ -117,8 +112,7 @@ def public(request):
     template = 'onepoll/public.html'
 
     if request.POST.get('request') == 'update':
-        filtered_polls = onepoll.public.refine_polls(request)
-        return HttpResponse(filtered_polls)
+        return HttpResponse(onepoll.public.refine_polls(request))
     else:
         return render(request, template)
 
