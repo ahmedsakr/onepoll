@@ -34,9 +34,10 @@ def register_poll(request, question_text, choices, category):
 
     # register the question in the database
     poll = Poll(question_text = question_text, pub_date = timezone.now(), category = category)
-    poll.save()
     if request.POST.get('privacy') == 'private':
         poll.public_poll = 0
+
+    poll.save()
 
     for choice in choices:
         poll.choice_set.create(choice_text=choice, votes=0)

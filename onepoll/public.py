@@ -1,6 +1,6 @@
 from .models import Poll
 
-def refine_polls(request):
+def get_filtered_polls(request):
     # get all the filter data from the user
     keywords = request.POST.get('keywords').split(',')
     search = request.POST.get('search')
@@ -8,7 +8,6 @@ def refine_polls(request):
     amount = request.POST.get('amount')
     category = request.POST.get('category')
     filtered_polls = ''
-    print(request.POST)
 
     # filter out all private posts and posts not in the specified category.
     polls = Poll.objects.all().filter(public_poll=1)
@@ -28,7 +27,7 @@ def refine_polls(request):
             for keyword in keywords:
                 polls = polls.filter(question_text__contains=keyword)
 
-            # if no polls have passsed all keywords, prematurely return
+            # if no polls have passed all keywords, prematurely return
             if len(questions) == 0:
                 return ''
 
@@ -42,7 +41,7 @@ def refine_polls(request):
             for keyword in keywords:
                 temp = temp | polls.filter(question_text__contains=keyword)
 
-            # if no polls have passsed any keyword, prematurely return
+            # if no polls have passed any keyword, prematurely return
             if len(temp) == 0:
                 return ''
 

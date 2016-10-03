@@ -30,3 +30,24 @@ def get_unique_voters():
 def user_has_voted(request, poll):
     ip = get_ip(request)
     return any(user.ip == ip for user in poll.participant_set.all())
+
+def get_statistics():
+    polls = Poll.objects.all()
+    public_polls = polls.filter(public_poll=1)
+    unique_voters = get_unique_voters()
+    total_votes = get_total_votes()
+    total_polls = len(polls)
+
+    average_votes = 0
+    if total_polls != 0:
+        average_votes = float(total_votes) / total_polls
+
+    return ([
+        '%d Poll%s' % (total_polls, pluralize(total_polls)),
+        'Public polls: %d' % (len(public_polls)),
+        'Private polls: %d' % (total_polls - len(public_polls))
+    ], [
+        '%d voter%s' % (unique_voters, pluralize(unique_voters)),
+        'Average votes per poll: %.1f' % (average_votes),
+        'Votes casted: %d' % (total_votes)
+    ])
