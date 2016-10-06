@@ -11,7 +11,6 @@ from onepoll import submit, public, utils
 
 def view_index(request):
     template_name = 'onepoll/index.html'
-    print(utils.get_statistics())
     if len(Poll.objects.all()) == 0:
         return render(request, template_name, {
             'statistics': utils.get_statistics()
@@ -100,7 +99,10 @@ def view_vote(request, poll_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        poll.participant_set.create(ip=onepoll.utils.get_ip(request))
+
+        if request.POST['name'] == '':
+            request.POST['name'] = 'Anonymous'
+        poll.participant_set.create(ip=utils.get_ip(request), name=request.POST['name'])
 
         return HttpResponseRedirect(reverse('results', args=(poll.id,)))
 

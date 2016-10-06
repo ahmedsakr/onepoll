@@ -50,7 +50,7 @@ def get_filtered_polls(request):
 
     polls = polls.order_by('pub_date')[:int(amount)]
     for poll in polls:
-        filtered_polls += '{:d};{:s};{:s};{:d};{:s}\n'.format(*get_poll_data(poll))
+        filtered_polls += '{:d}\0;;\0{:s}\0;;\0{:s}\0;;\0{:d}\0;;\0{:s}\n'.format(*get_poll_data(poll))
 
     return filtered_polls
 

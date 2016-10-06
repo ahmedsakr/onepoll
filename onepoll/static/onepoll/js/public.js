@@ -38,7 +38,7 @@ function updatePolls(updateUrl) {
                 polls.pop();
 
                 for (var i = 0; i < polls.length; i++) {
-                    var poll = String(polls[i]).split(';');
+                    var poll = String(polls[i]).split('\0;;\0');
                     addRow(poll);
                 }
 

@@ -30,3 +30,4 @@ class Choice(models.Model):
 class Participant(models.Model):
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     ip = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, default="Anonymous")

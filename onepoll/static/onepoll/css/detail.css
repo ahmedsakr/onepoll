@@ -48,7 +48,7 @@ form input[type='radio'] {
     display: none;
 }
 
-form input[type='submit'] {
+form input[type='submit'], form input[type="text"] {
     display: inline;
     font-size: 1em;
     margin-top: 20px;

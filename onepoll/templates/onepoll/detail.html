@@ -58,6 +58,7 @@
             {% if participated == True %}
             <h3>You have already participated in this poll. <a href="{% url 'results' poll.id %}">Click for results.</a></h3>
             {% else %}
+            <input type="text" placeholder="Name (optional)" name="name">
             <input type="submit" value="Vote"/>
             {% endif %}
         </div>
