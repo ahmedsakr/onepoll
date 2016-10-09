@@ -30,8 +30,8 @@ def view_register(request):
     template_name = 'onepoll/register.html'
     return render(request, template_name)
 
-def view_detail(request, poll_id):
-    poll = get_object_or_404(Poll, id=poll_id)
+def view_detail(request, pid):
+    poll = get_object_or_404(Poll, pid=pid)
     template_name = 'onepoll/detail.html'
     return render(request, template_name, {
         'poll': poll,
@@ -45,12 +45,12 @@ def view_random(request):
         return HttpResponseRedirect(reverse('index'))
 
     random = randint(0, len(polls) - 1)
-    poll_id = polls[random].id
+    pid = polls[random].pid
 
-    return HttpResponseRedirect(reverse('detail', args=(poll_id,)))
+    return HttpResponseRedirect(reverse('detail', args=(pid,)))
 
-def view_results(request, poll_id):
-    poll = get_object_or_404(Poll, id=poll_id)
+def view_results(request, pid):
+    poll = get_object_or_404(Poll, pid=pid)
     template = 'onepoll/results.html'
 
     if request.POST.get('request') == 'update':
@@ -73,8 +73,8 @@ def view_results(request, poll_id):
     else:
         return render(request, template, { 'poll': poll});
 
-def view_vote(request, poll_id):
-    poll = get_object_or_404(Poll, pk=poll_id)
+def view_vote(request, pid):
+    poll = get_object_or_404(Poll, pid=pid)
     if utils.user_has_voted(request, poll):
         return render(request, 'onepoll/detail.html', {
             'poll': poll,
@@ -98,7 +98,7 @@ def view_vote(request, poll_id):
             name = 'Anonymous'
         poll.participant_set.create(ip=utils.get_ip(request), name=name)
 
-        return HttpResponseRedirect(reverse('results', args=(poll.id,)))
+        return HttpResponseRedirect(reverse('results', args=(poll.pid,)))
 
 def view_new(request):
     template = 'onepoll/new.html'
@@ -117,7 +117,7 @@ def view_submit(request):
     response, question_text, choices, category = submit.validate_data(request)
 
     if response == "ok":
-        poll_id = submit.register_poll(request, question_text, choices, category)
-        return render(request, template, {'poll_id': poll_id})
+        pid = submit.register_poll(request, question_text, choices, category)
+        return render(request, template, {'pid': pid})
     else:
         return render(request, template, {'error_message': response})

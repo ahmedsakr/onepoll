@@ -13,8 +13,8 @@
         setTimeout(function() {
             window.location.replace(
 
-            {% if poll_id %}
-            "{% url 'detail' poll_id %}"
+            {% if pid %}
+            "{% url 'detail' pid %}"
             {% else %}
             "{% url 'new' %}"
             {% endif %}
@@ -27,7 +27,7 @@
         {% if error_message %}
         <h1>SUBMIT FAILED: {{ error_message }}</h1>
         {% else %}
-        <h1>SUBMITTED POLL (poll id: {{ poll_id}})</h1>
+        <h1>SUBMITTED POLL (poll id: {{ pid}})</h1>
         {% endif %}
         <h3>REDIRECTING... </h3>
     </div>

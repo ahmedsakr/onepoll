@@ -1,3 +1,6 @@
+import string
+import random
+
 from django.utils import timezone
 from .models import Poll
 
@@ -33,7 +36,7 @@ def validate_data(request):
 def register_poll(request, question_text, choices, category):
 
     # register the question in the database
-    poll = Poll(question_text = question_text, pub_date = timezone.now(), category = category)
+    poll = Poll(pid=generate_id(), question_text = question_text, pub_date = timezone.now(), category = category)
     if request.POST.get('privacy') == 'private':
         poll.public_poll = 0
 
@@ -42,4 +45,8 @@ def register_poll(request, question_text, choices, category):
     for choice in choices:
         poll.choice_set.create(choice_text=choice, votes=0)
 
-    return poll.id
+    return poll.pid
+
+def generate_id(size=4):
+    chars =  string.ascii_uppercase + string.ascii_lowercase + string.digits
+    return "".join(random.SystemRandom().choice(chars) for x in range(size))

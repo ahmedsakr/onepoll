@@ -51,7 +51,7 @@
                 {{ poll.category }}
             </div>
         </div>
-        <a href="{% url 'detail' poll.id %}">{{ poll.question_text }}</a>
+        <a href="{% url 'detail' poll.pid %}">{{ poll.question_text }}</a>
         {% else %}
         <p>No polls are available.</p>
         {% endif %}

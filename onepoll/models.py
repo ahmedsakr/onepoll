@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 
 class Poll(models.Model):
+    pid = models.CharField(max_length=4, default='AbcD')
     question_text = models.CharField(max_length=200)
     pub_date = models.DateField('date published')
     public_poll = models.IntegerField(default=1)

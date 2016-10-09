@@ -31,15 +31,16 @@ function updatePolls(updateUrl) {
             success: function(data, status) {
                 if (data != "") {
                     json = JSON.parse(data);
+                    var pdata = [];
 
                     for (var i = 0; i < json.length; i++) {
-                        var pdata = [];
-                        pdata.push(json[i].pk);
+                        pdata.push(json[i].fields.pid);
                         pdata.push(json[i].fields.category);
                         pdata.push(json[i].fields.question_text);
                         pdata.push(json[i].fields.pub_date);
-
                         addRow(pdata);
+
+                        pdata.length = 0; // empty the array
                     }
                 }
 
@@ -57,7 +58,7 @@ function updatePolls(updateUrl) {
  */
 function addRow(data) {
     var txt = "<tr>\n";
-    txt += "\t<td><a href='/" + data[0] + "/'>" + data[0] + "</a></td>\n";
+    txt += "\t<td><a href='/p/" + data[0] + "/'>" + data[0] + "</a></td>\n";
 
     // index starts at 1 because data[0] has already been
     // manually added as shown above.
