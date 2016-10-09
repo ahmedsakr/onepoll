@@ -1,5 +1,5 @@
 from .models import Poll
-
+from django.core import serializers
 def get_filtered_polls(request):
     # get all the filter data from the user
     keywords = request.POST.get('keywords').split(',')
@@ -49,10 +49,4 @@ def get_filtered_polls(request):
 
 
     polls = polls.order_by('pub_date')[:int(amount)]
-    for poll in polls:
-        filtered_polls += '{:d}\0;;\0{:s}\0;;\0{:s}\0;;\0{:d}\0;;\0{:s}\n'.format(*get_poll_data(poll))
-
-    return filtered_polls
-
-def get_poll_data(poll):
-    return (poll.id, poll.category, poll.question_text, poll.get_total_votes(), poll.pub_date.strftime('%m-%d-%Y %H:%M'))
+    return serializers.serialize('json', polls.all(), fields=('pub_date', 'question_text',  'category'))

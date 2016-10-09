@@ -29,17 +29,18 @@ function updatePolls(updateUrl) {
             },
 
             success: function(data, status) {
+                if (data != "") {
+                    json = JSON.parse(data);
 
-                // the polls are separated by a newline
-                var polls = data.split('\n');
+                    for (var i = 0; i < json.length; i++) {
+                        var pdata = [];
+                        pdata.push(json[i].pk);
+                        pdata.push(json[i].fields.category);
+                        pdata.push(json[i].fields.question_text);
+                        pdata.push(json[i].fields.pub_date);
 
-                // there is an extra empty element in the polls array due to
-                // every line having a '\n' at the very end.
-                polls.pop();
-
-                for (var i = 0; i < polls.length; i++) {
-                    var poll = String(polls[i]).split('\0;;\0');
-                    addRow(poll);
+                        addRow(pdata);
+                    }
                 }
 
                 $('#polls').fadeIn('slow', function() {

@@ -33,18 +33,11 @@ def view_register(request):
 def view_detail(request, poll_id):
     poll = get_object_or_404(Poll, id=poll_id)
     template_name = 'onepoll/detail.html'
-
-    if poll.public_poll == 1:
-        return render(request, template_name, {
+    return render(request, template_name, {
         'poll': poll,
-        'already_participated': utils.user_has_voted(request, poll),
-        })
-    else:
-        return render(request, template_name, {
-            'poll': poll,
-            'already_participated': utils.user_has_voted(request, poll),
-            'private': True
-        })
+        'participated': utils.user_has_voted(request, poll),
+        'private': poll.public_poll == 0,
+    })
 
 def view_random(request):
     polls = Poll.objects.all().filter(public_poll=1)
@@ -100,9 +93,10 @@ def view_vote(request, poll_id):
         selected_choice.votes += 1
         selected_choice.save()
 
-        if request.POST['name'] == '':
-            request.POST['name'] = 'Anonymous'
-        poll.participant_set.create(ip=utils.get_ip(request), name=request.POST['name'])
+        name = request.POST['name']
+        if name == '':
+            name = 'Anonymous'
+        poll.participant_set.create(ip=utils.get_ip(request), name=name)
 
         return HttpResponseRedirect(reverse('results', args=(poll.id,)))
 

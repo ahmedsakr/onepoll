@@ -5,14 +5,12 @@ from django.utils import timezone
 
 class Poll(models.Model):
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateField('date published')
     public_poll = models.IntegerField(default=1)
     category = models.CharField(max_length=50, default='other')
 
     def __str__(self):
         return self.question_text
-    def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
     def get_total_votes(self):
         votes = 0
         for choice in self.choice_set.all():
