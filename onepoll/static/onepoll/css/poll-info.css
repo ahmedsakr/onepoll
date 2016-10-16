@@ -1,40 +1,39 @@
-.category-entry, .category-name {
+.poll-info {
     display: inline-block;
-}
-
-.category-entry {
     border-radius: 5px;
     border: solid 1px black;
     padding: 2px 10px 2px 10px;
     margin: 2px;
-}
-
-.category-name {
     font-size: 16px;
     font-weight: bold;
     color: white;
 }
 
-.category-entry[name='science'] {
+
+.poll-info[name='science'] {
     background-color: green;
 }
 
-.category-entry[name='mathematics'] {
+.poll-info[name='mathematics'] {
     background-color: #50A6C2;
 }
 
-.category-entry[name='business'] {
+.poll-info[name='business'] {
     background-color: #9932CC;
 }
 
-.category-entry[name='history'] {
+.poll-info[name='history'] {
     background-color: #FFA500;
 }
 
-.category-entry[name='general knowledge'] {
+.poll-info[name='general knowledge'] {
     background-color: #8B6969;
 }
 
-.category-entry[name='other'] {
+.poll-info[name='other'] {
     background-color: #3A3A38;
+}
+
+.poll-info[name='submitter'] {
+    background-color: #333;
 }

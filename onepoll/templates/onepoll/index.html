@@ -4,7 +4,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/index.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/category.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/poll-info.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/accounts.js' %}"></script>
@@ -46,10 +46,8 @@
             Latest poll
         </div>
         {% if poll %}
-        <div class='category-entry' name='{{ poll.category }}'>
-            <div class="category-name">
-                {{ poll.category }}
-            </div>
+        <div class='poll-info' name='{{ poll.category }}'>
+            {{ poll.category }}
         </div>
         <a href="{% url 'detail' poll.pid %}">{{ poll.question_text }}</a>
         {% else %}

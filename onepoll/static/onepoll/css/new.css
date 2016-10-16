@@ -14,9 +14,11 @@ input[name='question_text'] {
 }
 
 input[type='submit'] {
-    margin-top: 20px;
-    width: 100%;
-    font-size: 1.5em
+    width: 15%;
+}
+
+input[name="submitter"] {
+    width: 10%;
 }
 
 input[name^="choice"] {
@@ -31,4 +33,9 @@ input[name^="choice"] {
 
 #categories {
     margin-bottom: 25px;
+}
+
+#form-actions {
+    text-align: right;
+    margin-top: 20px;
 }

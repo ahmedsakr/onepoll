@@ -8,10 +8,10 @@ def validate_data(request):
     try:
         question_text = request.POST.get('question_text').strip()
     except (AttributeError):
-        return ('illegal request', None, None, None)
+        return ('illegal request', None, None, None, None)
     else:
         if question_text == None or question_text == "":
-            return ('QUESTION NOT FOUND', None, None, None)
+            return ('QUESTION NOT FOUND', None, None, None, None)
 
         if not question_text.endswith('?'):
             question_text += '?'
@@ -27,16 +27,18 @@ def validate_data(request):
 
         # All polls should have a minimum of two choices.
         if len(choices) < 2:
-            return ('You have not provided a minimum of two choices.', None, None, None)
+            return ('You have not provided a minimum of two choices.', None, None, None, None)
 
         category = request.POST.get('category')
+        submitter = request.POST.get('submitter')
+        if submitter == "":
+            submitter = "Anonymous"
+        return ('ok', question_text, choices, category, submitter)
 
-        return ('ok', question_text, choices, category)
-
-def register_poll(request, question_text, choices, category):
+def register_poll(request, question_text, choices, category, submitter):
 
     # register the question in the database
-    poll = Poll(pid=generate_id(), question_text = question_text, pub_date = timezone.now(), category = category)
+    poll = Poll(pid=generate_id(), question_text = question_text, pub_date = timezone.now(), category = category, submitter = submitter)
     if request.POST.get('privacy') == 'private':
         poll.public_poll = 0
 

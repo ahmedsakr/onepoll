@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Vote</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/category.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/poll-info.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/detail.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -37,9 +37,12 @@
     {% endif %}
     <form action="{% url 'vote' poll.pid %}" method="post">
         {% csrf_token %}
-        <div class='category-entry' name='{{ poll.category }}'>
-            <div class="category-name">
+        <div id="poll-info">
+            <div class='poll-info' name='{{ poll.category }}'>
                 {{ poll.category }}
+            </div>
+            <div class='poll-info' name="submitter">
+                Submitted by: {{ poll.submitter }}
             </div>
         </div>
         <h1>{{ poll.question_text }}</h1>

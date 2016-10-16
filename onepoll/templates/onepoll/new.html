@@ -4,7 +4,7 @@
 <head>
     <title> Create new poll </title>
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/new.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/category.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/poll-info.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/block_selector.js' %}"></script>
@@ -51,46 +51,38 @@
 
         <br/>
         <div id="categories">
-            <div class='category-entry' name='science'>
+            <div class='poll-info' name='science'>
                 <input type='radio' name="category" value="science">
-                <div class="category-name">
-                    Science
-                </div>
+                Science
             </div>
-            <div class='category-entry' name='mathematics'>
+            <div class='poll-info' name='mathematics'>
                 <input type='radio' name="category" value="mathematics">
-                <div class="category-name">
-                    Mathematics
-                </div>
+                Mathematics
             </div>
-            <div class='category-entry' name='business'>
+            <div class='poll-info' name='business'>
                 <input type='radio' name="category" value="business">
-                <div class="category-name">
-                    Business
-                </div>
+                Business
             </div>
-            <div class='category-entry' name='history'>
+            <div class='poll-info' name='history'>
                 <input type='radio' name="category" value="history">
-                <div class="category-name">
-                    History
-                </div>
+                History
             </div>
-            <div class='category-entry' name='general knowledge'>
+            <div class='poll-info' name='general knowledge'>
                 <input type='radio' name="category" value="general knowledge">
-                <div class="category-name">
-                    General Knowledge
-                </div>
+                General Knowledge
             </div>
-            <div class='category-entry' name='other'>
+            <div class='poll-info' name='other'>
                 <input type='radio' name="category" value="other" checked>
-                <div class="category-name">
-                    Other
-                </div>
+                Other
             </div>
         </div>
         <input type='radio' name='privacy' value='public' checked> Public
         <input type='radio' name='privacy' value='private'> Private
-        <input type='submit' value="Submit"/>
+        
+        <div id="form-actions">
+            <input type="text" name="submitter" placeholder="Name (optional)" />
+            <input type='submit' value="Submit"/>
+        </div>
     </form>
 </body>
 </html>
