@@ -11,7 +11,7 @@ def get_filtered_polls(request):
 
     # filter out all private posts and posts not in the specified category.
     polls = Poll.objects.all().filter(public_poll=1)
-    if category != "all":
+    if category != "All":
         polls = polls.filter(category=category)
 
     # keywords have been found, so further filtering is required

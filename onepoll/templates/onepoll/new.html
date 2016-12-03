@@ -27,7 +27,7 @@
     <form action="{% url 'submit' %}" method="post">
         {% csrf_token %}
 
-        <h2>NEW PUBLIC POLL</h2>
+        <h2>NEW POLL</h2>
         <h3>Question</h3>
         <input type='text' name='question_text'>
         <h3>Choices</h3>
@@ -51,34 +51,34 @@
 
         <br/>
         <div id="categories">
-            <div class='poll-info' name='science'>
-                <input type='radio' name="category" value="science">
+            <div class='poll-info' name='Science'>
+                <input type='radio' name="category" value="Science">
                 Science
             </div>
-            <div class='poll-info' name='mathematics'>
-                <input type='radio' name="category" value="mathematics">
+            <div class='poll-info' name='Mathematics'>
+                <input type='radio' name="category" value="Mathematics">
                 Mathematics
             </div>
-            <div class='poll-info' name='business'>
-                <input type='radio' name="category" value="business">
+            <div class='poll-info' name='Business'>
+                <input type='radio' name="category" value="Business">
                 Business
             </div>
-            <div class='poll-info' name='history'>
-                <input type='radio' name="category" value="history">
+            <div class='poll-info' name='History'>
+                <input type='radio' name="category" value="History">
                 History
             </div>
-            <div class='poll-info' name='general knowledge'>
-                <input type='radio' name="category" value="general knowledge">
+            <div class='poll-info' name='General Knowledge'>
+                <input type='radio' name="category" value="General Knowledge">
                 General Knowledge
             </div>
-            <div class='poll-info' name='other'>
-                <input type='radio' name="category" value="other" checked>
+            <div class='poll-info' name='Other'>
+                <input type='radio' name="category" value="Other" checked>
                 Other
             </div>
         </div>
         <input type='radio' name='privacy' value='public' checked> Public
         <input type='radio' name='privacy' value='private'> Private
-        
+
         <div id="form-actions">
             <input type="text" name="submitter" placeholder="Name (optional)" />
             <input type='submit' value="Submit"/>

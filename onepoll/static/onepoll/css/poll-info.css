@@ -10,27 +10,27 @@
 }
 
 
-.poll-info[name='science'] {
+.poll-info[name='Science'] {
     background-color: green;
 }
 
-.poll-info[name='mathematics'] {
+.poll-info[name='Mathematics'] {
     background-color: #50A6C2;
 }
 
-.poll-info[name='business'] {
+.poll-info[name='Business'] {
     background-color: #9932CC;
 }
 
-.poll-info[name='history'] {
+.poll-info[name='History'] {
     background-color: #FFA500;
 }
 
-.poll-info[name='general knowledge'] {
+.poll-info[name='General Knowledge'] {
     background-color: #8B6969;
 }
 
-.poll-info[name='other'] {
+.poll-info[name='Other'] {
     background-color: #3A3A38;
 }
 
