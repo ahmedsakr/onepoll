@@ -1,3 +1,5 @@
+import json
+
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
@@ -54,22 +56,26 @@ def view_results(request, pid):
     template = 'onepoll/results.html'
 
     if request.POST.get('request') == 'update':
-        count = 1
-        data = 'total_votes=%d;' % poll.get_total_votes()
+        json_data = {}
+        json_data["total_votes"] = poll.get_total_votes()
 
-        pluralize = None
-        percentage = None
+        choices = {}
+        json_data["choices"] = choices
+        count = 0
+
         for choice in poll.choice_set.all():
+            choice_data = {}
             pluralize = utils.pluralize(choice.votes)
             percentage = utils.percentage(choice.votes, poll.get_total_votes())
 
-            if count < poll.choice_set.count():
-                data += "%s (%d vote%s, %.1f%%)=%d;" % (choice.choice_text, choice.votes, pluralize, percentage, choice.votes)
-            else:
-                data += "%s (%d vote%s, %.1f%%)=%d" % (choice.choice_text, choice.votes, pluralize, percentage, choice.votes)
+            choice_data["id"] = count
+            choice_data["votes"] = choice.votes
+            choice_data["text"] = "%s (%d vote%s, %.1f%%)" % (choice.choice_text, choice.votes, pluralize, percentage)
+
+            choices["choice%d" %(count)] = choice_data
             count += 1
 
-        return HttpResponse(data)
+        return HttpResponse(json.dumps(json_data))
     else:
         return render(request, template, { 'poll': poll});
 

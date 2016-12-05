@@ -11,7 +11,6 @@ function updatePolls(updateUrl) {
         var keywords = $('[name="keywords"]')
         var search = $('[name="search"]').filter(':checked');
         var amount = $('[name="amount"]').filter(':checked');
-        var sort = $('[name="sort"]').filter(':checked');
 
         // pre-post setup for django
         setupDjangoToken();
@@ -44,6 +43,13 @@ function updatePolls(updateUrl) {
                     }
                 }
 
+                $('#polls').fadeIn('slow', function() {
+                    $("#filters input[type='button']").removeAttr('disabled');
+                });
+            },
+
+            error: function(data, status) {
+                alert("An error occurred while connecting to the server. Please try again!");
                 $('#polls').fadeIn('slow', function() {
                     $("#filters input[type='button']").removeAttr('disabled');
                 });

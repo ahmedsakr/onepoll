@@ -47,23 +47,24 @@ function update(updateUrl) {
                 }
             }
 
-            var info = data.split(';')
-            var total_votes = parseInt(info.shift().split('=')[1]);
-            var votes_arr = [];
+            // parse the received json data, and initalize needed attributes
+            json = JSON.parse(data);
+            choices = json.choices;
+            total_votes = json.total_votes;
+            var choicesVotes = [];
 
+            // update total votes header and acquire all progress bars
             $('h3').text(total_votes + ' vote' + pluralize(total_votes));
             var elems = $("[class='progress-foreground']")
             elems = elems.css("width", "0%").children().filter('div');
 
-            for (var i = 0; i < info.length; i++) {
-                var choice = info[i];
-                
-                elems[i].innerHTML = choice.split('=')[0];
-                var votes = parseInt(choice.split('=')[1]);
-                votes_arr.push(votes);
-            }
+            // update text-over progress bar and collect number of votes for every choice
+            $.each(choices, function(key, choice) {
+                elems[choice.id].innerHTML = choice.text;
+                choicesVotes.push(choice.votes);
+            });
 
-            loadResults(votes_arr, total_votes, i);
+            loadResults(choicesVotes, total_votes, Object.keys(choices).length);
         },
 
         error: function(response) {
