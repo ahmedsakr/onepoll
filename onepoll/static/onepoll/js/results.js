@@ -1,5 +1,4 @@
 function loadResults(votes, total_votes, total_choices) {
-    $ ('input').attr('disabled', '');
     var get_percentage = function(votes) {
         return ((votes / total_votes) * 100).toFixed(1);
     }
@@ -25,7 +24,7 @@ function loadResults(votes, total_votes, total_choices) {
 function update(updateUrl) {
     // disable the user from requesting another update until this ongoing
     // request is finalized.
-    $ ('#update').attr('disabled', '');
+    $ ('input').attr('disabled', '');
 
     // installs the csrf into the header in preparation for the POST call
     setupDjangoToken();
@@ -61,7 +60,7 @@ function update(updateUrl) {
             // update text-over progress bar and collect number of votes for every choice
             $.each(choices, function(key, choice) {
                 elems[choice.id].innerHTML = choice.text;
-                choicesVotes.push(choice.votes);
+                choicesVotes.splice(choice.id, 0, choice.votes);
             });
 
             loadResults(choicesVotes, total_votes, Object.keys(choices).length);

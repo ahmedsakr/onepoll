@@ -49,16 +49,19 @@ th {
 td {
     border-right: 2px solid black;
     border-collapse: collapse;
-    text-align: right;
+    text-align: center;
     padding: 5px;
 }
 
 td a {
     color: white;
+    display: block;
+    float: right;
+    width: 100px;
     background-color: #86C67C;
+    border: solid 1px orange;
     text-decoration: none;
     padding: 0px 10px 0px 10px;
-    margin-right: 10px;
 }
 
 tr:nth-child(even) {
