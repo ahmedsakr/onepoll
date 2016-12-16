@@ -1,3 +1,75 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/register.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'onepoll/js/accounts.js' %}"></script>
+
+    <title>Register</title>
+</head>
+
+<body>
+    <div id="navigation">
+        <h1>onepoll</h1>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'new' %}">New poll</a></li>
+            <li><a href="{% url 'random' %}">Random poll</a></li>
+            <li><a href="{% url 'public' %}">Public polls</a></li>
+        </ul>
+    </div>
+
+    <div id="register-form">
+        <h2>CREATING A ONEPOLL ACCOUNT</h2>
+        <div class="form-component form-block" name="description">
+            <span style='color: '>Thank you for your interest in joining the OnePoll community!<br/>
+            Registering your free account with OnePoll: <br/>
+            <ul>
+                <li>Allows you to host all your polls under one account and view them at any time</li>
+                <li>Grants you administrative privileges (edit, delete, lock) to polls you submit</li>
+                <li>Allows you to participate in community polls with your own unique handle</li>
+            </ul>
+
+            At any time that you no longer wish to participate on OnePoll and want to have your
+            account deleted, you can freely do so at your own discretion in account settings.
+            Once deleted, the action cannot be reversed.
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-block">
+                <div class="form-component">
+                    Username (handle)
+                </div>
+                <input type="text"/> <br/>
+                <input type="button"  value="Check availability"/>
+
+                <div class="form-component">
+                    Password
+                </div>
+                <input type="password" placeholder="password"/> <br/>
+                <input type="password" placeholder="confirm password"/>
+            </div>
+
+            <div class="form-block">
+                <div class="form-component" style="text-align: left;">
+                    The following is completely optional and can be avoided completely. However, you should be aware
+                    that if you shall forget your password and have provided no means of recovery, you will not
+                    be able to recover your account. That being said, you will be able to add an e-mail on file at any
+                    time after creating your account.
+                </div>
+
+                <div class="form-component">
+                    E-mail
+                </div>
+                <input type='text'/> <br/>
+            </div>
+            <div class="form-component" style="text-align: right;">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
 </html>
