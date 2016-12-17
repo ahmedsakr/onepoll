@@ -6,7 +6,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/register.css' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/accounts.js' %}"></script>
-
+    <script type="text/javascript" src="{% static 'onepoll/js/tooltipsy.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'onepoll/js/register.js' %}"></script>
     <title>Register</title>
 </head>
 
@@ -41,21 +42,26 @@
             {% csrf_token %}
             <div class="form-block">
                 <div class="form-component">
-                    Username (handle)
+                    Username
+                    <div class ="pwdtooltip customtooltip" title="Usernames may contain alphanumeric characters, dashes, and underscores up to a total of 16 characters. Spaces are not permitted.">
+                        ?
+                    </div>
                 </div>
-                <input type="text"/> <br/>
-                <input type="button"  value="Check availability"/>
+                <input type="text" name="username" placeholder="Username"/> <br/>
 
                 <div class="form-component">
                     Password
+                    <div class="pwdtooltip customtooltip" title="Please enter a secure password between 8-16 characters. A secure password usually contains upper/lowercase letters, numbers, and special symbols.">
+                        ?
+                    </div>
                 </div>
-                <input type="password" placeholder="password"/> <br/>
+                <input type="password" placeholder="password" name="password"/> <br/>
                 <input type="password" placeholder="confirm password"/>
             </div>
 
             <div class="form-block">
                 <div class="form-component" style="text-align: left;">
-                    The following is completely optional and can be avoided completely. However, you should be aware
+                    The following is optional. However, you should be aware
                     that if you shall forget your password and have provided no means of recovery, you will not
                     be able to recover your account. That being said, you will be able to add an e-mail on file at any
                     time after creating your account.
@@ -64,12 +70,24 @@
                 <div class="form-component">
                     E-mail
                 </div>
-                <input type='text'/> <br/>
+                <input type='text' name="email" placeholder="E-mail"/> <br/>
             </div>
             <div class="form-component" style="text-align: right;">
-                <input type="submit" value="Submit">
+                <input type="button" value="Submit" onclick="submitForm();">
             </div>
         </form>
     </div>
+
+    <script>
+        $('.customtooltip').tooltipsy({
+            css: {
+                'padding': '10px',
+                'max-width': '300px',
+                'color': 'white',
+                'background-color': 'black',
+                'border-radius': '5px'
+            }
+        });
+    </script>
 </body>
 </html>
