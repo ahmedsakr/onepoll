@@ -10,6 +10,7 @@ from random import randint
 
 from .models import Choice, Poll, Participant
 from onepoll import submit, public, utils
+from onepoll.accounts import *
 
 def view_index(request):
     template_name = 'onepoll/index.html'
@@ -30,6 +31,21 @@ def view_index(request):
 
 def view_register(request):
     template_name = 'onepoll/register.html'
+    if len(request.POST) > 0:
+        person = Person(request)
+        if is_valid_data(request):
+            status = register_account(person)
+            if status == "registered":
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                return render(request, "onepoll/register.html", {
+                    'status' : status,
+                })
+        else:
+            return render(request, "onepoll/register.html", {
+                'status': 'data_integrity'
+            })
+
     return render(request, template_name)
 
 def view_detail(request, pid):

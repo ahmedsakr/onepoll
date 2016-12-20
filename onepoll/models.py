@@ -3,6 +3,13 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+class Account(models.Model):
+    username = models.CharField(max_length=16)
+    password = models.CharField(max_length=50)
+    email = models.CharField(max_length=50, default='')
+    registration_date = models.DateField('registration date')
+
+
 class Poll(models.Model):
     pid = models.CharField(max_length=4, default='AbcD')
     question_text = models.CharField(max_length=200)
