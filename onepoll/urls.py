@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.view_index, name='index'),
     url(r'^register/$', views.view_register, name='register'),
+    url(r'^login/$', views.view_login, name='login'),
     url(r'^random/$', views.view_random, name='random'),
     url(r'^public/$', views.view_public, name='public'),
     url(r'^new/$', views.view_new, name='new'),

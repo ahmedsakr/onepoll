@@ -48,6 +48,15 @@ def view_register(request):
 
     return render(request, template_name)
 
+def view_login(request):
+    print (request.POST)
+    print (len(request.POST))
+
+    if is_valid_data(request):
+        return HttpResponseRedirect(reverse('index'))
+
+    return HttpResponse("lol")
+
 def view_detail(request, pid):
     poll = get_object_or_404(Poll, pid=pid)
     template_name = 'onepoll/detail.html'

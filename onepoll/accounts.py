@@ -11,15 +11,19 @@ class Person:
         self.hashed_password = request.POST.get("password")
         self.email = request.POST.get("email")
 
-def is_valid_data(request):
+def is_valid_data(request, request_type="login"):
     person = Person(request)
 
     if len(person.username) < 3 or len(person.username) > 16:
         return False
-    if person.hashed_password != request.POST.get("password1"):
+    if len(person.hashed_password) < 8:
         return False
-    if not is_valid_email(person.email):
-        return False
+
+    if request_type == "register":
+        if person.hashed_password != request.POST.get("password1"):
+            return False
+        if person.email != None and not is_valid_email(person.email):
+            return False
 
     return True
 
