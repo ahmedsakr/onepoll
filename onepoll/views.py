@@ -12,12 +12,13 @@ from .models import Choice, Poll, Participant
 from onepoll import submit, public, utils
 from onepoll.accounts import *
 
-def view_index(request, authenticated=''):
+def view_index(request, username='', authenticated=''):
     template_name = 'onepoll/index.html'
     if len(Poll.objects.all()) == 0:
         return render(request, template_name, {
             'statistics': utils.get_statistics(),
             'authenticated': authenticated,
+            'username': username,
         })
 
     polls = Poll.objects.all().filter(public_poll=1)
@@ -29,33 +30,25 @@ def view_index(request, authenticated=''):
         'poll': latest_poll,
         'statistics': utils.get_statistics(),
         'authenticated': authenticated,
+        'username': username,
     })
 
 def view_register(request):
     template_name = 'onepoll/register.html'
     if len(request.POST) > 0:
-        person = Person(request)
-        if is_valid_data(request, "register"):
-            status = register_account(person)
-            if status == "registered":
-                return HttpResponseRedirect(reverse('index'))
-            else:
-                return render(request, "onepoll/register.html", {
-                    'status' : status,
-                })
+        status = register_account(request)
+        if status == "registered":
+            return HttpResponseRedirect(reverse('index'))
         else:
-            return render(request, "onepoll/register.html", {
-                'status': 'data_integrity'
+            return render(request, template_name, {
+                'status' : status,
             })
 
     return render(request, template_name)
 
 def view_login(request):
-    if is_valid_data(request):
-        error, authenticated = authenticate_login(request)
-        return view_index(request, authenticated)
-    else:
-        return view_index(request, False)
+    username, status = authenticate_login(request)
+    return view_index(request, username, status)
 
 def view_detail(request, pid):
     poll = get_object_or_404(Poll, pid=pid)

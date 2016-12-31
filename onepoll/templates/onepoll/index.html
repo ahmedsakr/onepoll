@@ -23,10 +23,11 @@
             <li><a href="{% url 'random' %}">Random poll</a></li>
             <li><a href="{% url 'public' %}">Public polls</a></li>
             <li style="float: right; background-color: #CD5555">
-                <a onclick="loginFormSlide()" href="javascript:void(0);">Sign In / Register</a>
+                <a onclick="loginFormSlide()" href="javascript:void(0);" name="account-text">Sign In / Register</a>
             </li>
         </ul>
 
+        {% if authenticated == "" or authenticated == False %}
         <form method="POST">
             {% csrf_token %}
             <div class='accounts-label'>
@@ -42,6 +43,7 @@
                  Don't have an account? <a href="{% url 'register' %}">Register here</a>.
             </div>
         </form>
+        {% endif %}
     </div>
 
     <div class='centre-block' id="latest-poll">
@@ -81,7 +83,7 @@
 
     {% if authenticated != "" %}
     <script>
-        displayLoginResult({{ authenticated|lower }});
+        displayLoginResult({{ authenticated|lower }}, '{{ username }}');
     </script>
     {% endif %}
 </body>

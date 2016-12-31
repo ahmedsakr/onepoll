@@ -26,8 +26,10 @@ function attemptLogin() {
     $('form').removeAttr('action');
 }
 
-function displayLoginResult(authenticated) {
-    if (!authenticated) {
+function displayLoginResult(authenticated, username) {
+    if (authenticated) {
+        $('a[name="account-text"]').html('Welcome, ' + username);
+    } else {
         $('form').css('display', 'block');
         showError($('input[type="button"]'), "Incorrect username or password");
     }

@@ -28,18 +28,18 @@ def is_valid_data(request, request_type="login"):
     return True
 
 def authenticate_login(request):
+    if not is_valid_data(request):
+        return person.username, False
+
     person = Person(request)
-    
+
     try:
         db_entry = Account.objects.get(username=person.username)
     except Account.DoesNotExist:
         db_entry = None
 
-    if db_entry == None:
-        return 'username', False
-
-    if person.hashed_password == db_entry.last_access_token:
-        return 'illegal', False
+    if db_entry == None or person.hashed_password == db_entry.last_access_token:
+        return person.username, False
 
     db_entry.last_access_token = person.hashed_password
     db_entry.save()
@@ -49,7 +49,7 @@ def authenticate_login(request):
     stored_salt_size = int(db_entry.password[0])
     stored_jump = (stored_salt_size * 2) + 1
 
-    return 'none', person.hashed_password[user_jump:] == db_entry.password[stored_jump:]
+    return person.username, person.hashed_password[user_jump:] == db_entry.password[stored_jump:]
 
 def is_username_taken(person):
     return len(Account.objects.all().filter(username=person.username)) > 0
@@ -70,7 +70,11 @@ def is_valid_email(email):
 
     return False
 
-def register_account(person):
+def register_account(request):
+    if not is_valid_data(request, "register"):
+        return "data_integrity"
+
+    person = Person(request)
     if is_username_taken(person):
         return "username"
     if person.email != "" and is_email_taken(person):
