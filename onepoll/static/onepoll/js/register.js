@@ -7,7 +7,8 @@ function submitForm() {
 
         // hash the password before transmittal
         // this is still not very safe, however it is better than storing plaintext passwords
-        passwords[0].value = CryptoJS.MD5(passwords[0].value).toString();
+        passwords[0].value = hash(passwords[0]);
+        alert(passwords[0].value + "HELLO?");
         passwords[1].value = passwords[0].value;
 
         $('form').submit();
@@ -48,6 +49,7 @@ function checkCredentials(username, email, passwords) {
             }
         }
 
+        alert("WHY");
         showError(email, "Invalid E-mail format");
         return false;
     }

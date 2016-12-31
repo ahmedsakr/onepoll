@@ -5,7 +5,8 @@ from django.utils import timezone
 
 class Account(models.Model):
     username = models.CharField(max_length=16)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=60)
+    last_access_token = models.CharField(max_length=60, default='')
     email = models.CharField(max_length=50, default='')
     registration_date = models.DateField('registration date')
 

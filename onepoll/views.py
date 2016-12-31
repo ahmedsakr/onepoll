@@ -12,11 +12,12 @@ from .models import Choice, Poll, Participant
 from onepoll import submit, public, utils
 from onepoll.accounts import *
 
-def view_index(request):
+def view_index(request, authenticated=''):
     template_name = 'onepoll/index.html'
     if len(Poll.objects.all()) == 0:
         return render(request, template_name, {
-            'statistics': utils.get_statistics()
+            'statistics': utils.get_statistics(),
+            'authenticated': authenticated,
         })
 
     polls = Poll.objects.all().filter(public_poll=1)
@@ -26,14 +27,15 @@ def view_index(request):
 
     return render(request, template_name, {
         'poll': latest_poll,
-        'statistics': utils.get_statistics()
+        'statistics': utils.get_statistics(),
+        'authenticated': authenticated,
     })
 
 def view_register(request):
     template_name = 'onepoll/register.html'
     if len(request.POST) > 0:
         person = Person(request)
-        if is_valid_data(request):
+        if is_valid_data(request, "register"):
             status = register_account(person)
             if status == "registered":
                 return HttpResponseRedirect(reverse('index'))
@@ -49,13 +51,11 @@ def view_register(request):
     return render(request, template_name)
 
 def view_login(request):
-    print (request.POST)
-    print (len(request.POST))
-
     if is_valid_data(request):
-        return HttpResponseRedirect(reverse('index'))
-
-    return HttpResponse("lol")
+        error, authenticated = authenticate_login(request)
+        return view_index(request, authenticated)
+    else:
+        return view_index(request, False)
 
 def view_detail(request, pid):
     poll = get_object_or_404(Poll, pid=pid)

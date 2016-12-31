@@ -78,5 +78,11 @@
             {% endfor %}
         </div>
     </div>
+
+    {% if authenticated != "" %}
+    <script>
+        displayLoginResult({{ authenticated|lower }});
+    </script>
+    {% endif %}
 </body>
 </html>

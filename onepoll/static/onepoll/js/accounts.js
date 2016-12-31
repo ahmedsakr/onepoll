@@ -20,27 +20,23 @@ function attemptLogin() {
         return;
     }
 
-    password.value = CryptoJS.MD5(password.value).toString();
+    password.value = hash(password);
+    $('form').attr('action', '/login/');
     $('form').submit();
+    $('form').removeAttr('action');
 }
 
-function secure_hash(input) {
-    var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-                        'u', 'v', 'w', 'x', 'y', 'z'];
+function hash(input) {
+    input.value = CryptoJS.MD5(input.value);
+    var saltSize = parseInt(Math.ceil(Math.random() * 9));
+    var salt = CryptoJS.lib.WordArray.random(saltSize);
 
+    return saltSize + salt + input.value;
 }
 
-function getIdentifierIndex(length) {
-    if (length < 0) {
-        return;
+function displayLoginResult(authenticated) {
+    if (!authenticated) {
+        $('form').css('display', 'block');
+        showError($('input[type="button"]'), "Incorrect username or password");
     }
-
-    var running_sum = 0;
-    while (length > 0) {
-        length %= 2;
-        running_sum++;
-    }
-
-    return running_sum;
 }

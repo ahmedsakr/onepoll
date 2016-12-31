@@ -22,10 +22,34 @@ def is_valid_data(request, request_type="login"):
     if request_type == "register":
         if person.hashed_password != request.POST.get("password1"):
             return False
-        if person.email != None and not is_valid_email(person.email):
+        if person.email != "" and not is_valid_email(person.email):
             return False
 
     return True
+
+def authenticate_login(request):
+    person = Person(request)
+    
+    try:
+        db_entry = Account.objects.get(username=person.username)
+    except Account.DoesNotExist:
+        db_entry = None
+
+    if db_entry == None:
+        return 'username', False
+
+    if person.hashed_password == db_entry.last_access_token:
+        return 'illegal', False
+
+    db_entry.last_access_token = person.hashed_password
+    db_entry.save()
+
+    user_salt_size = int(person.hashed_password[0])
+    user_jump = (user_salt_size * 2) + 1
+    stored_salt_size = int(db_entry.password[0])
+    stored_jump = (stored_salt_size * 2) + 1
+
+    return 'none', person.hashed_password[user_jump:] == db_entry.password[stored_jump:]
 
 def is_username_taken(person):
     return len(Account.objects.all().filter(username=person.username)) > 0
@@ -49,10 +73,10 @@ def is_valid_email(email):
 def register_account(person):
     if is_username_taken(person):
         return "username"
-    if is_email_taken(person):
+    if person.email != "" and is_email_taken(person):
         return "email"
 
-    account = Account(username=person.username, password=person.hashed_password, email=person.email, registration_date= timezone.now())
+    account = Account(username=person.username, password=person.hashed_password, last_access_token=person.hashed_password, email=person.email, registration_date=timezone.now())
     account.save()
 
     return "registered"
