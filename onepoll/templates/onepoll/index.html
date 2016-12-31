@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/accounts.js' %}"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/md5.js' %}"></script>
-    <script type="text/javascript" src="{% static 'onepoll/js/error_display.js' %}"></script>
+    <script type="text/javascript" src="{% static 'onepoll/js/common_methods.js' %}"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/tooltipsy.min.js' %}"></script>
     <title>Home</title>
 </head>
@@ -23,7 +23,7 @@
             <li><a href="{% url 'random' %}">Random poll</a></li>
             <li><a href="{% url 'public' %}">Public polls</a></li>
             <li style="float: right; background-color: #CD5555">
-                <a onclick="accountSlide()" href="javascript:void(0);">Sign In / Register</a>
+                <a onclick="loginFormSlide()" href="javascript:void(0);">Sign In / Register</a>
             </li>
         </ul>
 

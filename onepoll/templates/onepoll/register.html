@@ -8,8 +8,7 @@
     <script type="text/javascript" src="{% static 'onepoll/js/md5.js' %}"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/accounts.js' %}"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/tooltipsy.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'onepoll/js/register.js' %}"></script>
-    <script type="text/javascript" src="{% static 'onepoll/js/error_display.js' %}"></script>
+    <script type="text/javascript" src="{% static 'onepoll/js/common_methods.js' %}"></script>
     <title>Register</title>
 </head>
 
@@ -75,7 +74,7 @@
                 <input type='text' name="email" placeholder="E-mail"/> <br/>
             </div>
             <div class="form-component" style="text-align: right;">
-                <input type="button" value="Submit" onclick="submitForm();">
+                <input type="button" value="Submit" onclick="submitRegistrationForm();">
             </div>
         </form>
     </div>
