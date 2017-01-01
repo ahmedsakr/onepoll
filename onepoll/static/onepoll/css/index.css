@@ -60,7 +60,7 @@ form {
     margin: 10px;
 }
 
-@media only screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     form input[type="text"], form input[type="password"] {
         display: block;
         margin: auto;

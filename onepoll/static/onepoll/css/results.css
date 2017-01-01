@@ -41,3 +41,10 @@ h1 {
 input {
     width: 20%;
 }
+
+@media screen and (max-width: 600px) {
+
+    input[type="button"] {
+        width: 50%;
+    }
+}
