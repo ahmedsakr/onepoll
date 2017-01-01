@@ -9,9 +9,6 @@ form {
     display: inline;
 }
 
-.accounts-register {
-}
-
 .centre-block {
     margin-top: 20px;
     background-color: gray;
@@ -61,4 +58,12 @@ form {
     border-radius: 10px;
     font-size: 12px;
     margin: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+    form input[type="text"], form input[type="password"] {
+        display: block;
+        margin: auto;
+        width: 50%;
+    }
 }

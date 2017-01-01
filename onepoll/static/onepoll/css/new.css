@@ -11,6 +11,7 @@ form h2 {
 
 input[name='question_text'] {
     width: 80%;
+    margin: auto;
 }
 
 input[type='submit'] {
@@ -38,4 +39,22 @@ input[name^="choice"] {
 #form-actions {
     text-align: right;
     margin-top: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .choice-block {
+        display: block;
+        margin: auto;
+        width: 80%;
+    }
+
+
+    #form-actions input[type="text"] {
+        width: 70%;
+    }
+
+    #form-actions input[type="submit"] {
+        width: 50%;
+    }
 }

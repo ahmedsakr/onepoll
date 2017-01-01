@@ -17,6 +17,7 @@ def get_ip(request):
         ip = request.META.get('REMOTE_ADDR')
 
     return ip
+
 def get_total_votes():
     total_votes = 0
     for poll in Poll.objects.all():
