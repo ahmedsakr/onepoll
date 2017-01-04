@@ -46,6 +46,9 @@
                 Submitted by: {{ poll.submitter }}
             </div>
         </div>
+        {% if poll.image_link != "" %}
+        <img src="{{ poll.image_link }}"/>
+        {% endif %}
         <h1>{{ poll.question_text }}</h1>
         {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>

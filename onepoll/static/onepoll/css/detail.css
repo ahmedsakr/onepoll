@@ -52,6 +52,14 @@ form input[type='submit'], form input[type="text"] {
     width: 10%;
 }
 
+img {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    width: 30%;
+    height: 30%;
+}
+
 @media screen and (max-width: 600px) {
 
     form div:last-child input[type="text"] {
@@ -60,5 +68,10 @@ form input[type='submit'], form input[type="text"] {
 
     form div:last-child input[type="submit"] {
         width: 30%;
+    }
+
+    img {
+        width: 70%;
+        height: 50%;
     }
 }

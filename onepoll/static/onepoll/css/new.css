@@ -40,6 +40,18 @@ input[name^="choice"] {
     margin-top: 20px;
 }
 
+#question-image {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#question-image input {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    width: 80%;
+}
+
 @media screen and (max-width: 600px) {
 
     .choice-block {
@@ -50,10 +62,10 @@ input[name^="choice"] {
 
 
     #form-actions input[type="text"] {
-        width: 70%;
+        width: 47%;
     }
 
     #form-actions input[type="submit"] {
-        width: 50%;
+        width: 47%;
     }
 }

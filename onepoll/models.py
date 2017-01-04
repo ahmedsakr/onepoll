@@ -18,6 +18,7 @@ class Poll(models.Model):
     public_poll = models.IntegerField(default=1)
     category = models.CharField(max_length=50, default='other')
     submitter = models.CharField(max_length=20, default="Anonymous")
+    image_link = models.CharField(max_length=300, default="")
 
     def __str__(self):
         return self.question_text

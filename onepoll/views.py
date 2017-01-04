@@ -138,10 +138,10 @@ def view_public(request):
 
 def view_submit(request):
     template = 'onepoll/submit.html'
-    response, question_text, choices, category, submitter = submit.validate_data(request)
+    response, question_text, choices, category, submitter, image_link = submit.validate_data(request)
 
     if response == "ok":
-        pid = submit.register_poll(request, question_text, choices, category, submitter)
+        pid = submit.register_poll(request, question_text, choices, category, submitter, image_link)
         return render(request, template, {'pid': pid})
     else:
         return render(request, template, {'error_message': response})
