@@ -48,5 +48,5 @@ def get_filtered_polls(request):
             polls = temp
 
 
-    polls = polls.order_by('pub_date')[:int(amount)]
+    polls = polls.order_by('-pub_date')[:int(amount)]
     return serializers.serialize('json', polls.all(), fields=('pid', 'pub_date', 'question_text',  'category'))

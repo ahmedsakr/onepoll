@@ -15,7 +15,7 @@
     display: none;
     width: 100%;
     margin-top: 15px;
-    max-height: 300px;
+    max-height: 400px;
     background-color: #3D3D3D;
     overflow-y: auto;
 }
@@ -66,4 +66,10 @@ td a {
 
 tr:nth-child(even) {
     background-color: #898989;
+}
+
+@media screen and (max-width: 600px) {
+    #polls {
+        max-height: none;
+    }
 }
