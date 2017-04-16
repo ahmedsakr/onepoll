@@ -11,12 +11,12 @@ function attemptLogin() {
     var password = $('[name="password"]')[0];
 
     if (username.value.length < 3 || username.value.length > 16) {
-        showError(username, "Username must be 3-16 characters long.", [0, -20]);
+        showError(username, "Username must be 3-16 characters long.", [0, -10]);
         return;
     }
 
     if (password.value.length < 8 || password.value.length > 16) {
-        showError(password, "Password must be 8-16 characters long.", [0, -20]);
+        showError(password, "Password must be 8-16 characters long.", [0, 10]);
         return;
     }
 
