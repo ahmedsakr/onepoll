@@ -31,7 +31,7 @@ function displayLoginResult(authenticated, username) {
         $('a[name="account-text"]').html('Welcome, ' + username);
     } else {
         $('form').css('display', 'block');
-        showError($('input[type="button"]'), "Incorrect username or password");
+        showError($("[name='username']"), "Incorrect username or password", [0, -10]);
     }
 }
 

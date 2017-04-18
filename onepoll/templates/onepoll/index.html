@@ -35,27 +35,30 @@
             </div>
 
             {% if authenticated == "" or authenticated == False %}
-            <form class="form row">
+            <form class="form row" method="POST">
                 {% csrf_token %}
-                <div class="form-group col-md-6 col-md-offset-3">
-                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="username" placeholder="Username">
-                        <div class="input-group-addon"><input type="checkbox"> Remember me</div>
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="form-group col-md-12">
+                        <label class="sr-only">Username</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                            <div class="input-group-addon"><input type="checkbox">Remember me</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="sr-only">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
                 </div>
 
-                <div class="form-group col-md-2">
-                    <button type="button" class="btn btn-primary" onclick="attemptLogin();">Register</button>
-                </div>
-
-                <div class="form-group col-md-6 col-md-offset-3">
-                    <label class="sr-only" for="exampleInputPassword3">Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Password">
-                </div>
-
-                <div class="form-group col-md-2">
-                    <button type="button" class="btn btn-primary" onclick="attemptLogin();">Sign in</button>
+                <div class="col-md-2">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-primary col-md-8" onclick="">Register</button>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-primary col-md-8" onclick="attemptLogin();" name="signin">Sign in</button>
+                    </div>
                 </div>
             </form>
             {% endif %}
@@ -72,28 +75,27 @@
 
         <div class="row" id="redirection">
             <div class="centre-block col-md-8 redirection" id="developer-blog">
-                <div class='centre-block-title'>
-                    Developer Blog
-                </div>
-
-                <p>Want to know whats in the works? Tune in on <button type="button" class="btn btn-success">Medium</button>!</p>
+                <div class='centre-block-title'>Developer Blog</div>
+                <p>Want to know whats in the works? Tune in on Medium!</p>
             </div>
             <div class='centre-block col-md-4 redirection' id="latest-poll">
-                <div class='centre-block-title'>
-                    Latest poll
+                <div class='centre-block-title col-md-12'>Latest poll</div>
+                <div class="col-md-12">
+                    {% if poll %}
+                    <div class='poll-info col-md-12' name='{{ poll.category }}'>{{ poll.category }}</div>
+                    <p class="col-md-6">{{ poll.question_text }}</p>
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-primary col-md-12" onclick="location.href = '{% url 'detail' poll.pid %}'">Go to poll</button>
+                        <button type="button" class="btn btn-success col-md-12" onclick="location.href = '{% url 'results' poll.pid %}'">View results</button>
+                    </div>
+                    {% else %}
+                    <p class="col-md-12">No polls are available.</p>
+                    {% endif %}
                 </div>
-                {% if poll %}
-                <div class='poll-info' name='{{ poll.category }}'>
-                    {{ poll.category }}
-                </div>
-                <a href="{% url 'detail' poll.pid %}">{{ poll.question_text }}</a>
-                {% else %}
-                <p>No polls are available.</p>
-                {% endif %}
             </div>
         </div>
 
-        <div class="row" style="margin-top: 20px;">
+        <div style="margin-top: 20px" class="row">
             <div id="slideshow" class="col-md-8">
                 <img src="{% static 'onepoll/images/op_participation.jpg' %}" class="img-responsive"/>
                 <img src="{% static 'onepoll/images/op_participation1.jpg' %}" class="img-responsive"/>
