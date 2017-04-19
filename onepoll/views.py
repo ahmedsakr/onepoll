@@ -14,6 +14,10 @@ from onepoll.accounts import *
 
 def view_index(request, username='', authenticated=''):
     template_name = 'onepoll/index.html'
+
+    if (request.POST.get("username") != None):
+        username, authenticated = authenticate_login(request)
+
     if len(Poll.objects.all()) == 0:
         return render(request, template_name, {
             'statistics': utils.get_statistics(),
@@ -45,10 +49,6 @@ def view_register(request):
             })
 
     return render(request, template_name)
-
-def view_login(request):
-    username, status = authenticate_login(request)
-    return view_index(request, username, status)
 
 def view_detail(request, pid):
     poll = get_object_or_404(Poll, pid=pid)

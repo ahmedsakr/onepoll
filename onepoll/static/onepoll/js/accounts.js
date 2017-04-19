@@ -20,8 +20,12 @@ function attemptLogin() {
         return;
     }
 
+    if (getCookie("username") != username.value) {
+        setCookie("username", username.value, 365);
+    }
+
     password.value = hash(password);
-    $('form').attr('action', '/login/');
+    $('form').attr('action', '/');
     $('form').submit();
     $('form').removeAttr('action');
 }

@@ -42,7 +42,7 @@
                         <label class="sr-only">Username</label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="username" placeholder="Username">
-                            <div class="input-group-addon"><input type="checkbox"> Remember me</div>
+                            <div class="input-group-addon"><input type="checkbox" name="remember-me"> Remember me</div>
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@
 
         <div class="row" style="margin-top: 15px;">
             <p class="bg-info text-center">
-                OnePoll has been upgraded to version 0.2.1.
+                OnePoll has been upgraded to version 0.2.2.
                 <button type="button" class="close" aria-label="Close" onclick="$(this).parent().remove();">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -153,7 +153,7 @@
           $("#slideshow").slidesjs({
             play: {
               active: false,
-              effect: "fade",
+              effect: "slide",
               interval: 5000,
               auto: true,
               swap: false,
@@ -170,6 +170,11 @@
             }
           });
         });
+
+        if (getCookie("username")) {
+            $('[name="remember-me"]').attr("checked", "");
+            $('[name="username"]').val(getCookie("username"));
+        }
         </script>
     </div>
 </body>

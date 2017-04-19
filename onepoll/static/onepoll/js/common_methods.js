@@ -80,6 +80,13 @@ function getCookie(name) {
     return null;
 }
 
+function setCookie(name, value, daysValid) {
+    var date = new Date();
+    date.setTime(date.getTime() + (daysValid * 24 * 60 * 60 * 1000));
+
+    document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+}
+
 /**
  * GET, HEAD, OPTIONS, and TRACE all do not require a csrf protection, this
  * method tests whether the method requires csrf protection
