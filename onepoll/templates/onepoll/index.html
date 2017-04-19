@@ -15,7 +15,7 @@
     <script type="text/javascript" src="{% static 'onepoll/js/md5.js' %}"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/common_methods.js' %}"></script>
     <script type="text/javascript" src="{% static 'onepoll/js/tooltipsy.min.js' %}"></script>
-    <title>Home</title>
+    <title>OnePoll</title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                         <label class="sr-only">Username</label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="username" placeholder="Username">
-                            <div class="input-group-addon"><input type="checkbox">Remember me</div>
+                            <div class="input-group-addon"><input type="checkbox"> Remember me</div>
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group col-md-12">
-                        <button type="button" class="btn btn-primary col-md-8" onclick="">Register</button>
+                        <button type="button" class="btn btn-primary col-md-8" onclick="location.href = '{% url 'register' %}'">Register</button>
                     </div>
                     <div class="form-group col-md-12">
                         <button type="button" class="btn btn-primary col-md-8" onclick="attemptLogin();" name="signin">Sign in</button>
@@ -66,7 +66,7 @@
 
         <div class="row" style="margin-top: 15px;">
             <p class="bg-info text-center">
-                OnePoll has been upgraded to version 0.2.0.
+                OnePoll has been upgraded to version 0.2.1.
                 <button type="button" class="close" aria-label="Close" onclick="$(this).parent().remove();">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -75,16 +75,17 @@
 
         <div class="row" id="redirection">
             <div class="centre-block col-md-8 redirection" id="developer-blog">
-                <div class='centre-block-title'>Developer Blog</div>
-                <p>Want to know whats in the works? Tune in on Medium!</p>
+                <div class='centre-block-title col-md-12'>Developer Blog</div>
+                <p class="col-md-12">Want to know whats in the works? Tune in on Medium!</p>
+                <a href="http://medium.com"><img src="{% static 'onepoll/images/Medium-logo-2015-logotype.png' %}" class="img-responsive col-md-2 col-md-push-5 col-sm-4 col-sm-push-4 col-xs-6 col-xs-push-3"/></a>
             </div>
             <div class='centre-block col-md-4 redirection' id="latest-poll">
                 <div class='centre-block-title col-md-12'>Latest poll</div>
                 <div class="col-md-12">
                     {% if poll %}
                     <div class='poll-info col-md-12' name='{{ poll.category }}'>{{ poll.category }}</div>
-                    <p class="col-md-6">{{ poll.question_text }}</p>
-                    <div class="col-md-5">
+                    <p class="col-md-5">{{ poll.question_text }}</p>
+                    <div class="col-md-6">
                         <button type="button" class="btn btn-primary col-md-12" onclick="location.href = '{% url 'detail' poll.pid %}'">Go to poll</button>
                         <button type="button" class="btn btn-success col-md-12" onclick="location.href = '{% url 'results' poll.pid %}'">View results</button>
                     </div>
@@ -97,29 +98,30 @@
 
         <div style="margin-top: 20px" class="row">
             <div id="slideshow" class="col-md-8">
-                <img src="{% static 'onepoll/images/op_participation.jpg' %}" class="img-responsive"/>
-                <img src="{% static 'onepoll/images/op_participation1.jpg' %}" class="img-responsive"/>
-                <img src="{% static 'onepoll/images/op_public.jpg' %}" class="img-responsive">
-                <img src="{% static 'onepoll/images/op_results.jpg' %}" class="img-responsive">
+                <img src="{% static 'onepoll/images/op_participation.jpg' %}" class="img-responsive col-md-12"/>
+                <img src="{% static 'onepoll/images/op_participation1.jpg' %}" class="img-responsive col-md-12"/>
+                <img src="{% static 'onepoll/images/op_public.jpg' %}" class="img-responsive col-md-12"/>
+                <img src="{% static 'onepoll/images/op_results.jpg' %}" class="img-responsive col-md-12"/>
             </div>
-            <p class="col-md-4">
-                <b>Many new features have been added to OnePoll!</b>
-                <ul>
-                    <li><b>Categorize your polls:</b> Tag your post in Science, Mathematics, Business, General Knowledge, and more.</li>
-                    <li><b>Engage in the community:</b> Create your <mark>free account</mark> today to benefit from many member-only features, including saving, editing, and managing polls.</li>
-                    <li><b>View poll results in real time:</b> Poll results are instantaneous and don't require you to refresh the page.</li>
-                    <li><b>Browse and find specific polls:</b> Onepoll is equipped with a public polls page with many refining criteria to help you find a poll on our database.</li>
-                    <li><b>Visualize your poll with Images/GIFs</b>: Poll creation now supports the insertion of images/GIFs to better equip your polling needs.</li>
-                    <li><b>Gather discrete results:</b> Create secret polls that may only be accessed through your unique, private link. Private polls will never be publicly indexed.</li>
-                    <li><b>Poll Integrity</b>: Onepoll guarantees poll integrity as it does not allow multiple votes on the same poll from the same IP address.</li>
-                </ul>
-            </p>
+            <div class="col-md-4">
+                <p>
+                    <b>Many new features have been added to OnePoll!</b>
+                    <ul>
+                        <li><b>Categorize your polls:</b> Tag your post in Science, Mathematics, Business, General Knowledge, and more.</li>
+                        <li><b>Engage in the community:</b> Create your <mark>free account</mark> today to benefit from many member-only features, including saving, editing, and managing polls.</li>
+                        <li><b>View poll results in real time:</b> Poll results are instantaneous and don't require you to refresh the page.</li>
+                        <li><b>Browse and find specific polls:</b> Onepoll is equipped with a public polls page with many refining criteria to help you find a poll on our database.</li>
+                        <li><b>Visualize your poll with Images/GIFs</b>: Poll creation now supports the insertion of images/GIFs to better equip your polling needs.</li>
+                        <li><b>Gather discrete results:</b> Create secret polls that may only be accessed through your unique, private link. Private polls will never be publicly indexed.</li>
+                    </ul>
+                </p>
+            </div>
         </div>
 
         <div class="row">
             <div class='centre-block'>
                 <div class='centre-block-title'>
-                    Stats
+                    As of a few moments ago, the community has...
                 </div>
             </div>
         </div>
@@ -129,9 +131,9 @@
             <div class="statistic col-md-12">
                 {% for data in stat %}
                 {% if forloop.counter == 1 %}
-                <div class='statistic-title col-md-6'>
+                <div class='statistic-title col-md-12 text-center'>
                 {% else %}
-                <div class='statistic-detail col-md-5'>
+                <div class='statistic-detail col-md-8 col-md-push-2 text-center'>
                 {% endif %}
                     {{ data }}
                 </div>

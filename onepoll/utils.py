@@ -7,7 +7,10 @@ def pluralize(num):
         return ''
 
 def percentage(num, total):
-    return (float(num) / total) * 100
+    if total == 0:
+        return 0
+    else:
+        return (float(num) / total) * 100
 
 def get_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
