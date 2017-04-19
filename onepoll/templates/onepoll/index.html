@@ -4,16 +4,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/bootstrap.min.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/bootstrap-theme.min.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/index.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/poll-info.css' %}"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'onepoll/js/jquery.slides.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'onepoll/js/md5.js' %}"></script>
-    <script type="text/javascript" src="{% static 'onepoll/js/tooltipsy.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'onepoll/js/onepoll.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap-theme.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/navigation.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/index.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/poll-info.css' %}"/>
+    <script type="text/javascript" src="{% static './onepoll/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static './onepoll/js/jquery.slides.min.js' %}"></script>
+    <script type="text/javascript" src="{% static './onepoll/js/tooltipsy.min.js' %}"></script>
+    <script type="text/javascript" src="{% static './onepoll/js/md5.js' %}"></script>
+    <script type="text/javascript" src="{% static './onepoll/js/onepoll.js' %}"></script>
     <title>OnePoll</title>
 </head>
 
@@ -52,10 +52,10 @@
                 </div>
 
                 <div class="col-md-2">
-                    <div class="form-group col-md-12">
+                    <div class="col-md-12">
                         <button type="button" class="btn btn-primary col-md-8" onclick="location.href = '{% url 'register' %}'">Register</button>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="col-md-12">
                         <button type="button" class="btn btn-primary col-md-8" onclick="attemptLogin();" name="signin">Sign in</button>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
 
         <div class="row" style="margin-top: 15px;">
             <p class="bg-info text-center">
-                OnePoll has been upgraded to version 0.2.2.
+                OnePoll has been upgraded to version 0.2.3.
                 <button type="button" class="close" aria-label="Close" onclick="$(this).parent().remove();">
                     <span aria-hidden="true">&times;</span>
                 </button>

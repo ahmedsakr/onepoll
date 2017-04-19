@@ -15,6 +15,7 @@ function loginFormSlide() {
 function attemptLogin() {
     var username = $('[name="username"]')[0];
     var password = $('[name="password"]')[0];
+    var rememberme = $('[name="remember-me"]').prop("checked");
 
     if (username.value.length < 3 || username.value.length > 16) {
         showError(username, "Username must be 3-16 characters long.", [0, -10]);
@@ -26,8 +27,10 @@ function attemptLogin() {
         return;
     }
 
-    if (getCookie("username") != username.value) {
+    if (rememberme == true && getCookie("username") != username.value) {
         setCookie("username", username.value, 365);
+    } else if (rememberme == false && getCookie("username")) {
+        deleteCookie("username");
     }
 
     password.value = hash(password);
@@ -382,4 +385,11 @@ function hash(input) {
         date.setTime(date.getTime() + (daysValid * 24 * 60 * 60 * 1000));
 
         document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+    }
+
+    function deleteCookie(name) {
+        var date = new Date();
+        date.setTime(date.getTime() - 1000);
+
+        document.cookie = name + "=;expires=" + date.toUTCString();
     }
