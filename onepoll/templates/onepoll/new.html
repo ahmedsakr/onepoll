@@ -4,6 +4,8 @@
 <head>
     <title> Create new poll </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap-theme.min.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/new.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/poll-info.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}" />
@@ -15,78 +17,82 @@
 </head>
 
 <body>
-    <div id="navigation">
-        <h1>onepoll</h1>
-        <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'new' %}" class='active'>New poll</a></li>
-            <li><a href="{% url 'random' %}">Random poll</a></li>
-            <li><a href="{% url 'public' %}">Public polls</a></li>
-        </ul>
+    <div class="container">
+        <div id="navigation">
+            <div class="row">
+                <div class="h1 text-center">onepoll <small>a community polling service</small></div>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'new' %}" class='active'>New poll</a></li>
+                    <li><a href="{% url 'random' %}">Random poll</a></li>
+                    <li><a href="{% url 'public' %}">Public polls</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <form action="{% url 'submit' %}" method="post">
+            {% csrf_token %}
+
+            <h2>NEW POLL</h2>
+            <h3>Question</h3>
+            <input type='text' name='question_text'>
+            <div id="question-image">
+                Question image (if applicable): <input type="text" name="question-image" placeholder="direct image link (.jpg, .png, .gif)"/>
+            </div>
+            <h3>Choices</h3>
+
+            <div class='choice-block'>
+                <p>Choice 1</p>
+                <input type='text' name='choice1_text'>
+            </div>
+            <div class='choice-block'>
+                <p>Choice 2</p>
+                <input type='text' name='choice2_text'>
+            </div>
+            <div class='choice-block'>
+                <p>Choice 3</p>
+                <input type='text' name='choice3_text'>
+            </div>
+            <div class='choice-block'>
+                <p>Choice 4</p>
+                <input type='text' name='choice4_text'>
+            </div>
+
+            <br/>
+            <div id="categories">
+                <div class='poll-info' name='Science'>
+                    <input type='radio' name="category" value="Science">
+                    Science
+                </div>
+                <div class='poll-info' name='Mathematics'>
+                    <input type='radio' name="category" value="Mathematics">
+                    Mathematics
+                </div>
+                <div class='poll-info' name='Business'>
+                    <input type='radio' name="category" value="Business">
+                    Business
+                </div>
+                <div class='poll-info' name='History'>
+                    <input type='radio' name="category" value="History">
+                    History
+                </div>
+                <div class='poll-info' name='General Knowledge'>
+                    <input type='radio' name="category" value="General Knowledge">
+                    General Knowledge
+                </div>
+                <div class='poll-info' name='Other'>
+                    <input type='radio' name="category" value="Other" checked>
+                    Other
+                </div>
+            </div>
+            <input type='radio' name='privacy' value='public' checked> Public
+            <input type='radio' name='privacy' value='private'> Private
+
+            <div id="form-actions">
+                <input type="text" name="submitter" placeholder="Name (optional)" />
+                <input type='submit' value="Submit"/>
+            </div>
+        </form>
     </div>
-
-    <form action="{% url 'submit' %}" method="post">
-        {% csrf_token %}
-
-        <h2>NEW POLL</h2>
-        <h3>Question</h3>
-        <input type='text' name='question_text'>
-        <div id="question-image">
-            Question image (if applicable): <input type="text" name="question-image" placeholder="direct image link (.jpg, .png, .gif)"/>
-        </div>
-        <h3>Choices</h3>
-
-        <div class='choice-block'>
-            <p>Choice 1</p>
-            <input type='text' name='choice1_text'>
-        </div>
-        <div class='choice-block'>
-            <p>Choice 2</p>
-            <input type='text' name='choice2_text'>
-        </div>
-        <div class='choice-block'>
-            <p>Choice 3</p>
-            <input type='text' name='choice3_text'>
-        </div>
-        <div class='choice-block'>
-            <p>Choice 4</p>
-            <input type='text' name='choice4_text'>
-        </div>
-
-        <br/>
-        <div id="categories">
-            <div class='poll-info' name='Science'>
-                <input type='radio' name="category" value="Science">
-                Science
-            </div>
-            <div class='poll-info' name='Mathematics'>
-                <input type='radio' name="category" value="Mathematics">
-                Mathematics
-            </div>
-            <div class='poll-info' name='Business'>
-                <input type='radio' name="category" value="Business">
-                Business
-            </div>
-            <div class='poll-info' name='History'>
-                <input type='radio' name="category" value="History">
-                History
-            </div>
-            <div class='poll-info' name='General Knowledge'>
-                <input type='radio' name="category" value="General Knowledge">
-                General Knowledge
-            </div>
-            <div class='poll-info' name='Other'>
-                <input type='radio' name="category" value="Other" checked>
-                Other
-            </div>
-        </div>
-        <input type='radio' name='privacy' value='public' checked> Public
-        <input type='radio' name='privacy' value='private'> Private
-
-        <div id="form-actions">
-            <input type="text" name="submitter" placeholder="Name (optional)" />
-            <input type='submit' value="Submit"/>
-        </div>
-    </form>
 </body>
 </html>

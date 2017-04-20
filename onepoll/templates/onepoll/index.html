@@ -36,8 +36,8 @@
             {% if authenticated == "" or authenticated == False %}
             <form class="form row" method="POST">
                 {% csrf_token %}
-                <div class="col-md-6 col-md-offset-2">
-                    <div class="form-group col-md-12">
+                <div class="col-sm-6 col-sm-offset-2">
+                    <div class="form-group col-sm-12">
                         <label class="sr-only">Username</label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="username" placeholder="Username">
@@ -45,18 +45,18 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-sm-12">
                         <label class="sr-only">Password</label>
                         <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
                 </div>
 
-                <div class="col-md-2">
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary col-md-8" onclick="location.href = '{% url 'register' %}'">Register</button>
+                <div class="col-sm-3">
+                    <div class="form-group col-sm-12 col-xs-6">
+                        <button type="button" class="btn btn-primary col-sm-9 col-xs-9" onclick="location.href = '{% url 'register' %}'">Register</button>
                     </div>
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary col-md-8" onclick="attemptLogin();" name="signin">Sign in</button>
+                    <div class="form-group col-sm-12 col-xs-6">
+                        <button type="button" class="btn btn-primary col-sm-9 col-xs-9" onclick="attemptLogin();" name="signin">Sign in</button>
                     </div>
                 </div>
             </form>
@@ -73,36 +73,34 @@
         </div>
 
         <div class="row" id="redirection">
-            <div class="centre-block col-md-8 redirection" id="developer-blog">
-                <div class='centre-block-title col-md-12'>Developer Blog</div>
+            <div class="centre-block col-sm-8 redirection" id="developer-blog">
+                <div class='centre-block-title col-sm-12'>Developer Blog</div>
                 <p class="col-md-12">Want to know whats in the works? Tune in on Medium!</p>
-                <a href="http://medium.com"><img src="{% static 'onepoll/images/Medium-logo-2015-logotype.png' %}" class="img-responsive col-md-2 col-md-push-5 col-sm-4 col-sm-push-4 col-xs-6 col-xs-push-3"/></a>
+                <a href="http://medium.com"><img src="{% static 'onepoll/images/Medium-logo-2015-logotype.png' %}" class="img-responsive col-sm-3 col-sm-push-4 col-xs-6 col-xs-push-3"/></a>
             </div>
-            <div class='centre-block col-md-4 redirection' id="latest-poll">
-                <div class='centre-block-title col-md-12'>Latest poll</div>
-                <div class="col-md-12">
+            <div class='centre-block col-sm-4 redirection' id="latest-poll">
+                <div class='centre-block-title col-sm-12'>Latest poll</div>
+                <div class="col-sm-12 col-xs-12">
                     {% if poll %}
-                    <div class='poll-info col-md-12' name='{{ poll.category }}'>{{ poll.category }}</div>
-                    <p class="col-md-5">{{ poll.question_text }}</p>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary col-md-12" onclick="location.href = '{% url 'detail' poll.pid %}'">Go to poll</button>
-                        <button type="button" class="btn btn-success col-md-12" onclick="location.href = '{% url 'results' poll.pid %}'">View results</button>
+                    <div class='poll-info col-sm-12 col-xs-12' name='{{ poll.category }}'>{{ poll.category }}</div>
+                    <p class="col-sm-5 col-xs-12">{{ poll.question_text }}</p>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-primary col-sm-12 col-xs-12" onclick="location.href = '{% url 'detail' poll.pid %}'">Go to poll</button>
+                        <button type="button" class="btn btn-success col-sm-12 col-xs-12" onclick="location.href = '{% url 'results' poll.pid %}'">View results</button>
                     </div>
                     {% else %}
-                    <p class="col-md-12">No polls are available.</p>
+                    <p class="col-sm-12">No polls are available.</p>
                     {% endif %}
                 </div>
             </div>
         </div>
 
         <div style="margin-top: 20px" class="row">
-            <div id="slideshow" class="col-md-8">
-                <img src="{% static 'onepoll/images/op_participation.jpg' %}" class="img-responsive col-md-12"/>
-                <img src="{% static 'onepoll/images/op_participation1.jpg' %}" class="img-responsive col-md-12"/>
-                <img src="{% static 'onepoll/images/op_public.jpg' %}" class="img-responsive col-md-12"/>
-                <img src="{% static 'onepoll/images/op_results.jpg' %}" class="img-responsive col-md-12"/>
+            <div id="slideshow" class="col-sm-8">
+                <img src="{% static 'onepoll/images/op_participation.jpg' %}" class="img-responsive col-sm-12"/>
+                <img src="{% static 'onepoll/images/op_participation1.jpg' %}" class="img-responsive col-sm-12"/>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <p>
                     <b>Many new features have been added to OnePoll!</b>
                     <ul>
@@ -127,12 +125,12 @@
 
         <div class="row" id="statistics">
             {% for stat in statistics %}
-            <div class="statistic col-md-12">
+            <div class="statistic col-sm-12">
                 {% for data in stat %}
                 {% if forloop.counter == 1 %}
-                <div class='statistic-title col-md-12 text-center'>
+                <div class='statistic-title col-sm-12 text-center'>
                 {% else %}
-                <div class='statistic-detail col-md-8 col-md-push-2 text-center'>
+                <div class='statistic-detail col-sm-8 col-sm-push-2 text-center'>
                 {% endif %}
                     {{ data }}
                 </div>
@@ -150,23 +148,25 @@
         <script>
         $(function(){
           $("#slideshow").slidesjs({
-            play: {
-              active: false,
-              effect: "slide",
-              interval: 5000,
-              auto: true,
-              swap: false,
-              pauseOnHover: false,
-              restartDelay: 2500
-            },
+              width: 900,
+              height: 500,
+              play: {
+                  active: false,
+                  effect: "slide",
+                  interval: 5000,
+                  auto: true,
+                  swap: false,
+                  pauseOnHover: false,
+                  restartDelay: 2500
+              },
 
-            navigation: {
-                active: false
-            },
+              navigation: {
+                  active: false
+              },
 
-            pagination: {
-                active: false
-            }
+              pagination: {
+                  active: false
+              }
           });
         });
 
