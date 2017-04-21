@@ -355,6 +355,24 @@ function hash(input) {
        });
    }
 
+
+    function showStep2() {
+        var step2 = $('#step-2');
+
+        if (step2.css('display') == "none") {
+            step2.animate({
+                opacity: 1.00,
+                left: "+=250",
+                height: ["toggle", "swing"]
+            }, 400, "linear");
+        }
+    }
+
+    function updateCharCounter() {
+        var txt = $('[name="question_text"]')[0];
+        $("#char-counter").html(txt.value.length + " / 150 characters");
+    }
+
    /**              ___________________________________________________________________________________________
     *              |  All methods that are specific to managing locally stored cookies.                        |
     *              |  (i.e. get/check if a cookie exists, add a new cookie                                     |

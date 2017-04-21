@@ -1,12 +1,24 @@
 form {
-    background-color: gray;
-    font-family: sans-serif;
-    text-align: center;
+    background-color: white;
 }
 
-form h2 {
-    font-weight: bold;
-    background-color: #86C67C;
+.step-header {
+    padding: 5px;
+}
+
+#step1-header{
+    display: block;
+    background-color: #BA55A3;
+}
+
+#step-2 {
+    margin-top: 20px;
+    left: -250px;
+    display: none;
+}
+
+#step2-header {
+    background-color: #FF7F50;
 }
 
 input[name='question_text'] {
@@ -50,22 +62,4 @@ input[name^="choice"] {
     margin: auto;
     margin-top: 10px;
     width: 80%;
-}
-
-@media screen and (max-width: 600px) {
-
-    .choice-block {
-        display: block;
-        margin: auto;
-        width: 80%;
-    }
-
-
-    #form-actions input[type="text"] {
-        width: 47%;
-    }
-
-    #form-actions input[type="submit"] {
-        width: 47%;
-    }
 }
