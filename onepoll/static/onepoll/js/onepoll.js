@@ -368,9 +368,20 @@ function hash(input) {
         }
     }
 
-    function updateCharCounter() {
-        var txt = $('[name="question_text"]')[0];
-        $("#char-counter").html(txt.value.length + " / 150 characters");
+    function updateCharCounter(text, amount) {
+        var counter = $(text).parent().children(".char-counter");
+        var ratio = text.value.length / amount;
+
+        while (ratio > 1.00) {
+            text.value = text.value.substring(0, text.value.length - 1);
+            ratio = text.value.length / amount;
+        }
+
+        if (ratio >= 0.90) {
+            counter.html("<span style='color: red;'>" + text.value.length + " / " + amount + " characters</span>");
+        } else {
+            counter.html(text.value.length + " / " + amount + " characters");
+        }
     }
 
    /**              ___________________________________________________________________________________________

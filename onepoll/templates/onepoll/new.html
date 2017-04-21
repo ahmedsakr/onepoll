@@ -35,8 +35,8 @@
 
                 <div id="step-1" class="col-sm-12">
                     <div class="row h2 step-header text-center" id="step1-header">Step 1: Poll Type</div>
-                    <p class="col-sm-6"><b>Let's get you started</b>. Please select the type of poll you wish to create: </p>
-                    <div class="col-sm-6">
+                    <p class="col-sm-5"><b>Let's get you started</b>. Please select the type of poll you wish to create: </p>
+                    <div class="col-sm-7">
                         <label class="radio-inline">
                             <input type="radio" name="poll-type" value="type-factual" onclick="showStep2()"> Factual (i.e. quizzes, questions)
                         </label>
@@ -48,50 +48,91 @@
 
                 <div id="step-2" class="col-sm-12">
                     <div class="row h2 step-header text-center" id="step2-header">Step 2: The Body</div>
-                    <p class="col-sm-6">
+                    <p class="col-sm-5">
                         Great, you have chosen what type of poll you wish to start.
-                        Effective polls boast concise questions and sufficient amount of choices.
-                        4 boxes for providing choices have been initialized for you. You may add more choices up to a total of 10.</br></br>
+                        Effective polls boast concise questions and a sufficient number of choices.</br></br>
 
+                        All Polls are multiple-choice oriented. Four (4) boxes for choices have been initialized for you.
+                        You may add more choices up to a total of 10. You need a minimum of two (2) choices.</br></br>
                         If you have chosen the <b>Factual</b> option, please make sure you fill out the corresponding
-                        checkbox for the correct answer.
+                        radio button for the correct answer.
                     </p>
 
-                    <div class="col-sm-6">
-                        <div class="form-group col-sm-12">
+                    <div class="col-sm-7">
+                        <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" onkeyup="updateCharCounter()" name="question_text" placeholder="Question">
-                                <div class="input-group-addon" id="char-counter">0 / 150 characters</div>
+                                <textarea rows="2" class="form-control" onkeyup="updateCharCounter(this, 200)" name="question_text" placeholder="Question"></textarea>
+                                <div class="input-group-addon char-counter">0 / 200 characters</div>
                             </div>
                         </div>
 
-                        <div class="form-group col-sm-12">
+                        <div class="form-group">
                             <div class="input-group col-sm-12">
-                                <input type="text" class="form-control" name="choice1_text" placeholder="Choice #1">
-                                <div class="input-group-addon">0 / 150 characters</div>
+                                <div class="input-group-addon">
+                                    <label>
+                                        <input type="radio" name="correct-answer" value="choice-1">
+                                    </label>
+                                </div>
+
+                                <input type="text" class="form-control" onkeyup="updateCharCounter(this, 150)" name="choice1_text" placeholder="Choice #1">
+                                <div class="input-group-addon char-counter">0 / 150 characters</div>
                             </div>
 
                             <div class="input-group col-sm-12">
-                                <input type="text" class="form-control" name="choice2_text" placeholder="Choice #2">
-                                <div class="input-group-addon">0 / 150 characters</div>
+                                <div class="input-group-addon">
+                                    <label>
+                                        <input type="radio" name="correct-answer" value="choice-2">
+                                    </label>
+                                </div>
+
+                                <input type="text" class="form-control" onkeyup="updateCharCounter(this, 150)" name="choice2_text" placeholder="Choice #2">
+                                <div class="input-group-addon char-counter">0 / 150 characters</div>
                             </div>
 
                             <div class="input-group col-sm-12">
-                                <input type="text" class="form-control" name="choice3_text" placeholder="Choice #3">
-                                <div class="input-group-addon">0 / 150 characters</div>
+                                <div class="input-group-addon">
+                                    <label>
+                                        <input type="radio" name="correct-answer" value="choice-3">
+                                    </label>
+                                </div>
+
+                                <input type="text" class="form-control" onkeyup="updateCharCounter(this, 150)" name="choice3_text" placeholder="Choice #3">
+                                <div class="input-group-addon char-counter">0 / 150 characters</div>
                             </div>
 
                             <div class="input-group col-sm-12">
-                                <input type="text" class="form-control" name="choice4_text" placeholder="Choice #4">
-                                <div class="input-group-addon">0 / 150 characters</div>
+                                <div class="input-group-addon">
+                                    <label>
+                                        <input type="radio" name="correct-answer" value="choice-4">
+                                    </label>
+                                </div>
+
+                                <input type="text" class="form-control" onkeyup="updateCharCounter(this, 150)" name="choice4_text" placeholder="Choice #4">
+                                <div class="input-group-addon char-counter">0 / 150 characters</div>
                             </div>
+                        </div>
+                    </div>
+
+                    <p class="col-sm-5">
+                        Determining who gets to access and participate in your poll is critical.</br>
+                        <b>Public</b> polls are indexed and may be seen and interacted with by anyone, while <b>Private</b>
+                        polls will never be indexed publicly and can only be accessed through your unique link.
+                    </p>
+
+                    <div class="col-sm-7">
+                        <div class="input-group">
+                            <label class="radio-inline">
+                                <input type="radio" name="poll-privacy" value="type-factual"> List my poll as Public
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="poll-privacy" value="type-survey"> List my poll as Private
+                            </label>
                         </div>
                     </div>
                 </div>
                 <div id="question-image">
-                    Question image (if applicable): <input type="text" name="question-image" placeholder="direct image link (.jpg, .png, .gif)"/>
+                    Question image (if applicable): <input type="text" name="question-image" placeholder="direct image link (.jpg, .png, .gif)">
                 </div>
-                <br/>
                 <div id="categories">
                     <div class='poll-info' name='Science'>
                         <input type='radio' name="category" value="Science">
@@ -118,8 +159,6 @@
                         Other
                     </div>
                 </div>
-                <input type='radio' name='privacy' value='public' checked> Public
-                <input type='radio' name='privacy' value='private'> Private
 
                 <div id="form-actions">
                     <input type="text" name="submitter" placeholder="Name (optional)" />
