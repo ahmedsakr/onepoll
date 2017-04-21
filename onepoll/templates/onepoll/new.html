@@ -12,7 +12,6 @@
     <script type="text/javascript" src="{% static './onepoll/js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static './onepoll/js/onepoll.js' %}"></script>
     <script>
-        registerBlockSelectors("#categories", "div");
     </script>
 </head>
 
@@ -38,10 +37,10 @@
                     <p class="col-sm-5"><b>Let's get you started</b>. Please select the type of poll you wish to create: </p>
                     <div class="col-sm-7">
                         <label class="radio-inline">
-                            <input type="radio" name="poll-type" value="type-factual" onclick="showStep2()"> Factual (i.e. quizzes, questions)
+                            <input type="radio" name="poll-type" value="type-factual" onclick="showStep(2)"> Factual (i.e. quizzes, questions)
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="poll-type" value="type-survey" onclick="showStep2()"> Survey
+                            <input type="radio" name="poll-type" value="type-survey" onclick="showStep(2)"> Survey
                         </label>
                     </div>
                 </div>
@@ -122,47 +121,86 @@
                     <div class="col-sm-7">
                         <div class="input-group">
                             <label class="radio-inline">
-                                <input type="radio" name="poll-privacy" value="type-factual"> List my poll as Public
+                                <input type="radio" name="poll-privacy" value="public" onclick="showStep(3)"> List my poll as Public
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="poll-privacy" value="type-survey"> List my poll as Private
+                                <input type="radio" name="poll-privacy" value="private" onclick="showStep(3)"> List my poll as Private
                             </label>
                         </div>
                     </div>
                 </div>
-                <div id="question-image">
-                    Question image (if applicable): <input type="text" name="question-image" placeholder="direct image link (.jpg, .png, .gif)">
-                </div>
-                <div id="categories">
-                    <div class='poll-info' name='Science'>
-                        <input type='radio' name="category" value="Science">
-                        Science
+
+                <div id="step-3" class="col-sm-12">
+                    <div class="row h2 step-header text-center" id="step3-header">Step 3: Toppings</div>
+
+                    <p class="col-sm-5">
+                        <b>Categorize!</b> Target your poll to a specific genre so that it may reach more people.
+                    </p>
+
+                    <div class="col-sm-7">
+                        <div class="input-group col-sm-12">
+                            <label class="col-sm-6 poll-info" name="Mathematics">
+                                <input class="col-sm-2" type="radio" name="category" value="Mathematics">
+                                <p class="col-sm-10 text-center">Mathematics</p>
+                            </label>
+
+                            <label class="col-sm-6 poll-info" name="Science">
+                                <input class="col-sm-2" type="radio" name="category" value="Science">
+                                <p class="col-sm-10 text-center">Science</p>
+                            </label>
+
+                            <label class="col-sm-6 poll-info" name="Business">
+                                <input class="col-sm-2" type="radio" name="category" value="Business">
+                                <p class="col-sm-10 text-center">Business</p>
+                            </label>
+
+                            <label class="col-sm-6 poll-info" name="History">
+                                <input class="col-sm-2" type="radio" name="category" value="History">
+                                <p class="col-sm-10 text-center">History</p>
+                            </label>
+
+                            <label class="col-sm-6 poll-info" name="General Knowledge">
+                                <input class="col-sm-2" type="radio" name="category" value="General Knowledge">
+                                <p class="col-sm-10 text-center">General Knowledge</p>
+                            </label>
+
+                            <label class="col-sm-6 poll-info" name="Other">
+                                <input class="col-sm-2" type="radio" name="category" value="Other">
+                                <p class="col-sm-10 text-center">Other</p>
+                            </label>
+                        </div>
                     </div>
-                    <div class='poll-info' name='Mathematics'>
-                        <input type='radio' name="category" value="Mathematics">
-                        Mathematics
+
+                    <p class="col-sm-5">
+                        <b>Imagify!</b> You may add an image to serve as your question poll. Supported files: .png, .jpg, and .gif.
+                    </p>
+
+                    <div class="col-sm-7">
+                        <div class="form-group">
+                            <div class="input-group col-sm-12">
+                                <input type="text" class="form-control" placeholder="Image URL (must end in .png, .jpg, or .gif)">
+                            </div>
+                        </div>
                     </div>
-                    <div class='poll-info' name='Business'>
-                        <input type='radio' name="category" value="Business">
-                        Business
-                    </div>
-                    <div class='poll-info' name='History'>
-                        <input type='radio' name="category" value="History">
-                        History
-                    </div>
-                    <div class='poll-info' name='General Knowledge'>
-                        <input type='radio' name="category" value="General Knowledge">
-                        General Knowledge
-                    </div>
-                    <div class='poll-info' name='Other'>
-                        <input type='radio' name="category" value="Other" checked>
-                        Other
-                    </div>
+
+                    <!-- <p class="col-sm-5">
+                        <b>Almost done!</b> If you would like to identify this poll with your name/tag, fill out the
+                        textbox to the right.
+                    </p>
+
+                    <div class="col-sm-7">
+                        <div class="input-group col-sm-12">
+                            <input type="text" class="form-control" placeholder="Name/Tag">
+                        </div>
+                    </div> -->
                 </div>
 
-                <div id="form-actions">
-                    <input type="text" name="submitter" placeholder="Name (optional)" />
-                    <input type='submit' value="Submit"/>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="input-group col-sm-12">
+                            <input type='submit' value="Submit" class="btn btn-primary col-sm-3 col-sm-push-9"/>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

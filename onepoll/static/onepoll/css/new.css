@@ -1,4 +1,4 @@
-form {
+.col-sm-12 {
     background-color: white;
 }
 
@@ -6,10 +6,6 @@ form {
     padding: 5px;
 }
 
-#step1-header{
-    display: block;
-    background-color: #BA55A3;
-}
 
 #step-2 {
     margin-top: 20px;
@@ -17,49 +13,25 @@ form {
     display: none;
 }
 
+#step-3 {
+    margin-top: 20px;
+    left: -250px;
+    display: none;
+}
+
+#step1-header{
+    display: block;
+    background-color: #F2635F;
+}
+
 #step2-header {
-    background-color: #FF7F50;
+    background-color: #0093D1;
 }
 
-input[name='question_text'] {
-    width: 80%;
-}
-
-input[type='submit'] {
-    width: 15%;
-}
-
-input[name="submitter"] {
-    width: 10%;
-}
-
-input[name^="choice"] {
-    width: 100%;
-}
-
-.choice-block {
-    display: inline-block;
-    width: 20%;
-    margin: 0px 5px 20px 5px;
+#step3-header {
+    background-color: #E0A025;
 }
 
 #categories {
     margin-bottom: 25px;
-}
-
-#form-actions {
-    text-align: right;
-    margin-top: 20px;
-}
-
-#question-image {
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-#question-image input {
-    display: block;
-    margin: auto;
-    margin-top: 10px;
-    width: 80%;
 }

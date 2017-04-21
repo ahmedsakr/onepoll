@@ -1,12 +1,8 @@
 .poll-info {
-    display: inline-block;
-    border-radius: 5px;
+    /*display: inline-block;*/
     border: solid 1px black;
-    padding: 2px 10px 2px 10px;
-    margin: 2px;
     font-size: 16px;
     font-weight: bold;
-    color: white;
 }
 
 
@@ -31,7 +27,7 @@
 }
 
 .poll-info[name='Other'] {
-    background-color: #3A3A38;
+    background-color: #F2635F;
 }
 
 .poll-info[name='submitter'] {

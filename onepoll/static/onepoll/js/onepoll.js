@@ -356,11 +356,11 @@ function hash(input) {
    }
 
 
-    function showStep2() {
-        var step2 = $('#step-2');
+    function showStep(num) {
+        var step = $('#step-' + num);
 
-        if (step2.css('display') == "none") {
-            step2.animate({
+        if (step.css('display') == "none") {
+            step.animate({
                 opacity: 1.00,
                 left: "+=250",
                 height: ["toggle", "swing"]
