@@ -16,6 +16,7 @@ class Poll(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateField('date published')
     public_poll = models.IntegerField(default=1)
+    poll_type = models.CharField(max_length=30, default="Survey")
     category = models.CharField(max_length=50, default='other')
     submitter = models.CharField(max_length=20, default="Anonymous")
     image_link = models.CharField(max_length=300, default="")

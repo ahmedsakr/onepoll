@@ -14,16 +14,5 @@
 
 .step-header {
     padding: 5px;
-}
-
-#step1-header{
     background-color: #F2635F;
-}
-
-#step2-header {
-    background-color: #0093D1;
-}
-
-#step3-header {
-    background-color: #E0A025;
 }

@@ -37,10 +37,10 @@
                         <p class="col-sm-5"><b>Let's get you started</b>. Please select the type of poll you wish to create: </p>
                         <div class="col-sm-7">
                             <label class="radio-inline">
-                                <input type="radio" name="poll-type" value="type-factual" onclick="showStep(2)"> Factual (i.e. quizzes, questions)
+                                <input type="radio" name="poll-type" value="Factual" onclick="showStep(2)"> Factual (i.e. quizzes, questions)
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="poll-type" value="type-survey" onclick="showStep(2)"> Survey
+                                <input type="radio" name="poll-type" value="Survey" onclick="showStep(2)"> Survey
                             </label>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                                     <select class="form-control" name="poll-privacy" onchange="showStep(3)">
                                         <option value="">Choose a privacy setting</option>
                                         <option value="public">Public</option>
-                                        <option value="pirvate">Private</option>
+                                        <option value="private">Private</option>
                                     </select>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                         <div class="col-sm-7 col-xs-12">
                             <div class="form-group">
                                 <div class="input-group col-sm-12 col-xs-12">
-                                    <input type="text" class="form-control" placeholder="Image URL (must end in .png, .jpg, or .gif)">
+                                    <input type="text" class="form-control" placeholder="Image URL (must end in .png, .jpg, or .gif)" name="image-url">
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                         <div class="col-sm-7 col-xs-12">
                             <div class="form-group">
                                 <div class="input-group col-sm-12 col-xs-12">
-                                    <input type="text" class="form-control" placeholder="Name/Tag">
+                                    <input type="text" class="form-control" placeholder="Name/Tag" name="submitter-tag">
                                 </div>
                             </div>
                         </div>
