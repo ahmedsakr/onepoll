@@ -2,25 +2,21 @@
     background-color: white;
 }
 
+#step-1 {
+    margin-top: 20px;
+}
+
+#step-2, #step-3 {
+    margin-top: 20px;
+    left: -250px;
+    display: none;
+}
+
 .step-header {
     padding: 5px;
 }
 
-
-#step-2 {
-    margin-top: 20px;
-    left: -250px;
-    display: none;
-}
-
-#step-3 {
-    margin-top: 20px;
-    left: -250px;
-    display: none;
-}
-
 #step1-header{
-    display: block;
     background-color: #F2635F;
 }
 
@@ -30,8 +26,4 @@
 
 #step3-header {
     background-color: #E0A025;
-}
-
-#categories {
-    margin-bottom: 25px;
 }

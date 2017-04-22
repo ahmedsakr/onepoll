@@ -5,9 +5,7 @@
     <title>New Poll</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap.min.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap-theme.min.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/new.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/poll-info.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/navigation.css' %}" />
     <script type="text/javascript" src="{% static './onepoll/js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static './onepoll/js/onepoll.js' %}"></script>
@@ -56,8 +54,8 @@
                             Great, you have chosen what type of poll you wish to start.
                             Effective polls boast concise questions and a sufficient number of choices.</br></br>
 
-                            All Polls are multiple-choice oriented. Four (4) boxes for choices have been initialized for you.
-                            You may add more choices up to a total of 10. You need a minimum of two (2) choices.</br></br>
+                            All Polls are multiple-choice. A minimum of two (2) choices have been initialized for you.
+                            You may add more choices up to a total of 10.</br></br>
                             If you have chosen the <b>Factual</b> option, please make sure you fill out the corresponding
                             radio button for the correct answer.
                         </p>
@@ -90,21 +88,14 @@
                                 </div>
 
                                 <div class="input-group col-sm-12">
-                                    <span class="input-group-addon">
-                                        <input type="radio" name="correct-answer" value="choice-3">
-                                    </span>
-
-                                    <input type="text" class="form-control" onkeyup="updateCharCounter(this, 150)" name="choice3_text" placeholder="Choice #3">
-                                    <span class="input-group-addon char-counter">0 / 150 characters</span>
-                                </div>
-
-                                <div class="input-group col-sm-12">
-                                    <span class="input-group-addon">
-                                        <input type="radio" name="correct-answer" value="choice-4">
-                                    </span>
-
-                                    <input type="text" class="form-control" onkeyup="updateCharCounter(this, 150)" name="choice4_text" placeholder="Choice #4">
-                                    <span class="input-group-addon char-counter">0 / 150 characters</span>
+                                    <button type="button" class="btn btn-default" onclick="changeOptionGroup(this, 'add')">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                        Add Choice
+                                    </button>
+                                    <button type="button" class="btn btn-default" onclick="changeOptionGroup(this, 'delete')">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        Delete Choice
+                                    </button>
                                 </div>
                             </div>
                         </div>

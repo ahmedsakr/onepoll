@@ -384,6 +384,27 @@ function hash(input) {
         }
     }
 
+    function changeOptionGroup(button, operation) {
+        var parent = $(button).parent();                    // parent is the container of "Add choice" button.
+        var grandfather = $(button).parent().parent();      // grandfather is the container holding all choices.
+        var numChoices = grandfather.children().length - 1; // subtract by 1 to account for "Add choice" container
+
+        if (operation == "add" && numChoices < 10) {
+            numChoices++;
+
+            var choice = $(grandfather.children()[0]).clone();
+            choice.children('input[type="radio"]').val("choice-" + numChoices);
+            choice.children('input[type="text"]').attr("name", "choice" + numChoices + "_text")
+                                                 .attr("placeholder", "Choice #" + numChoices)
+                                                 .val("");
+            choice.children(".char-counter").html("0 / 150 characters");
+            choice.insertBefore(parent);
+        } else if (operation == "delete" && numChoices > 2) {
+            numChoices--;
+            $(grandfather.children()[numChoices]).remove();
+        }
+    }
+
    /**              ___________________________________________________________________________________________
     *              |  All methods that are specific to managing locally stored cookies.                        |
     *              |  (i.e. get/check if a cookie exists, add a new cookie                                     |
