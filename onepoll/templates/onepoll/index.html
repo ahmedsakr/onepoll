@@ -32,7 +32,7 @@
                     </li>
                 </ul>
             </div>
-
+        </div>
             {% if authenticated == "" or authenticated == False %}
             <form class="form row" method="POST">
                 {% csrf_token %}
@@ -61,7 +61,6 @@
                 </div>
             </form>
             {% endif %}
-        </div>
 
         <div class="row" style="margin-top: 15px;">
             <p class="bg-info text-center">
