@@ -198,7 +198,7 @@ function hash(input) {
 
   function updatePolls(updateUrl) {
       // disable the refine button to prevent multiple concurrent requests.
-      $("#filters input[type='button']").attr('disabled', '');
+      $("button").attr('disabled', '');
 
       $('#polls').fadeOut("fast", function() {
 
@@ -206,9 +206,10 @@ function hash(input) {
           $('tbody').children().next().remove();
 
           // acquire all the filter elements
-          var keywords = $('[name="keywords"]')
-          var search = $('[name="search"]').filter(':checked');
-          var amount = $('[name="amount"]').filter(':checked');
+          var keywords = $('[name="keywords"]').val();
+          var keywordMatch = $('[name="keyword-match"]').prop("checked");
+          var amount = $('[name="amount"]').val();
+          var category = $('[name="category"]').val();
 
           // pre-post setup for django
           setupDjangoToken();
@@ -219,10 +220,10 @@ function hash(input) {
               url: updateUrl,
               data: {
                   'request': 'update',
-                  'keywords': keywords.val(),
-                  'search': search.val(),
-                  'amount': amount.val(),
-                  'category': $('select').find(':selected').attr('value')
+                  'keywords': keywords,
+                  'keyword-match': keywordMatch,
+                  'amount': amount,
+                  'category': category
               },
 
               success: function(data, status) {
@@ -242,14 +243,14 @@ function hash(input) {
                   }
 
                   $('#polls').fadeIn('slow', function() {
-                      $("#filters input[type='button']").removeAttr('disabled');
+                      $("button").removeAttr('disabled');
                   });
               },
 
               error: function(data, status) {
                   alert("An error occurred while connecting to the server. Please try again!");
                   $('#polls').fadeIn('slow', function() {
-                      $("#filters input[type='button']").removeAttr('disabled');
+                      $("button").removeAttr('disabled');
                   });
               }
           });
@@ -393,11 +394,11 @@ function hash(input) {
             numChoices++;
 
             var choice = $(grandfather.children()[0]).clone();
-            choice.children('input[type="radio"]').val("choice-" + numChoices);
-            choice.children('input[type="text"]').attr("name", "choice" + numChoices + "_text")
-                                                 .attr("placeholder", "Choice #" + numChoices)
-                                                 .val("");
-            choice.children(".char-counter").html("0 / 150 characters");
+            choice.find('input:radio').val("choice-" + numChoices).prop("checked", false);
+            choice.find('input:text').attr("name", "choice" + numChoices + "_text")
+                                     .attr("placeholder", "Choice #" + numChoices)
+                                     .val("");
+            choice.find(".char-counter").html("0 / 150 characters");
             choice.insertBefore(parent);
         } else if (operation == "delete" && numChoices > 2) {
             numChoices--;

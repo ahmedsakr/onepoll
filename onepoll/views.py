@@ -130,7 +130,7 @@ def view_new(request):
 
 def view_public(request):
     template = 'onepoll/public.html'
-
+    
     if request.POST.get('request') == 'update':
         return HttpResponse(public.get_filtered_polls(request))
     else:

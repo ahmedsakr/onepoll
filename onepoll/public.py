@@ -3,7 +3,7 @@ from django.core import serializers
 def get_filtered_polls(request):
     # get all the filter data from the user
     keywords = request.POST.get('keywords').split(',')
-    search = request.POST.get('search')
+    keyword_match = request.POST.get('keyword-match')
     sort = request.POST.get('sort')
     amount = request.POST.get('amount')
     category = request.POST.get('category')
@@ -17,7 +17,7 @@ def get_filtered_polls(request):
     # keywords have been found, so further filtering is required
     if keywords[0] != '':
 
-        if search == 'match':
+        if keyword_match == 'true':
 
             '''
             if the user has specified that all the keywords they have provided
@@ -28,10 +28,10 @@ def get_filtered_polls(request):
                 polls = polls.filter(question_text__contains=keyword)
 
             # if no polls have passed all keywords, prematurely return
-            if len(questions) == 0:
+            if len(polls) == 0:
                 return ''
 
-        elif search == 'any':
+        elif keyword_match == 'false':
             '''
             The difference from a 'match' request is that all polls containing
             any keyword are to be collected. So as shown, an empty QuerySet

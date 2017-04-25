@@ -4,6 +4,7 @@
 <head>
     <title>Public polls</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap.min.css' %}"/>
     <link rel='stylesheet' type='text/css' href="{% static 'onepoll/css/public.css' %}"/>
     <link rel='stylesheet' type='text/css' href="{% static 'onepoll/css/navigation.css' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -11,57 +12,93 @@
 </head>
 
 <body onload="updatePolls({% url 'public' %})">
-    <div id="navigation">
-        <h1>onepoll</h1>
-        <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'new' %}">New poll</a></li>
-            <li><a href="{% url 'random' %}">Random poll</a></li>
-            <li><a href="{% url 'public' %}" class='active'>Public polls</a></li>
-        </ul>
+    <div class="container">
+        <div class="row">
+            <div id="navigation">
+                <div class="h1 text-center">onepoll <small>a community polling service</small></div>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'new' %}">New poll</a></li>
+                    <li><a href="{% url 'random' %}">Random poll</a></li>
+                    <li><a href="{% url 'public' %}" class="active">Public polls</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <div id='filters'>
-        <fieldset>
-            <legend>Filter by keywords</legend>
-            <input type="text" name='keywords' placeholder="Separate with commas">
-            <input type="radio" name='search' value='any' checked> Find polls matching any keyword
-            <input type="radio" name='search' value='match'> Find polls matching all keywords
-        </fieldset>
+    <div class="container" style="margin-top: 15px;">
+        <div class="row">
+            <div class="col-sm-4">
+                <fieldset>
+                    <legend class="text-center">Filter by Keywords</legend>
+                    <div class="input-group col-sm-12">
+                        <span class="input-group-addon">
+                            <input type="checkbox" name="keyword-match"> Match all
+                        </span>
+                        <input type="text" name='keywords' class="form-control" placeholder="Separate with commas">
+                    </div>
+                </fieldset>
+            </div>
 
-        <fieldset>
-            <legend>Filter by category</legend>
-            Search in
-            <select>
-                <option value="All">All categories</option>
-                <option value="Science">Science</option>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Business">Business</option>
-                <option value="History">History</option>
-                <option value="General Knowledge">General Knowledge</option>
-                <option value="Other">Other</option>
-            </select>
-        </fieldset>
+            <div class="col-sm-4">
+                <fieldset>
+                    <legend class="text-center">Filter by Category</legend>
+                    <div class="input-group col-sm-12">
+                        <span class="input-group-addon">Search in</span>
+                        <select name="category" class="form-control">
+                            <option value="All">All categories</option>
+                            <option value="Science">Science</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Business">Business</option>
+                            <option value="History">History</option>
+                            <option value="General Knowledge">General Knowledge</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </div>
 
-        <fieldset>
-            <legend>Polls to retrieve</legend>
-            <input type="radio" name='amount' value=10 checked> 10 polls
-            <input type="radio" name='amount' value=20> 20 polls
-            <input type="radio" name='amount' value=50> 50 polls
-        </fieldset>
+            <div class="col-sm-4">
+                <fieldset>
+                    <legend class="text-center">Polls to Retrieve</legend>
+                    <div class="form-group">
+                        <div class="input-group col-sm-12">
+                            <select name="amount" class="form-control">
+                                <option value="10">10 polls</option>
+                                <option value="20">20 polls</option>
+                                <option value="50">50 polls</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
 
-        <input type="button" value="Refine" onclick="updatePolls({% url 'public' %})">
-    </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div class="input-group col-sm-12">
+                        <button type="button" class="btn btn-success col-sm-2 col-sm-push-10" onclick="updatePolls({% url 'public' %})">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            Refine
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div id='polls'>
-        <table>
-            <tr>
-                <th>Poll id</th>
-                <th>Category</th>
-                <th>Question</th>
-                <th>Date Published</th>
-            </tr>
-        </table>
+        <div class="row">
+            <div id='polls'>
+                <table class="table table-responsive table-hover">
+                    <tr>
+                        <th>Poll id</th>
+                        <th>Category</th>
+                        <th>Question</th>
+                        <th>Date Published</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
