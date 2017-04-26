@@ -5,17 +5,17 @@
     <title>Public polls</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap.min.css' %}"/>
-    <link rel='stylesheet' type='text/css' href="{% static 'onepoll/css/public.css' %}"/>
-    <link rel='stylesheet' type='text/css' href="{% static 'onepoll/css/navigation.css' %}"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="{% static 'onepoll/js/onepoll.js' %}"></script>
+    <link rel='stylesheet' type='text/css' href="{% static './onepoll/css/public.css' %}"/>
+    <link rel='stylesheet' type='text/css' href="{% static './onepoll/css/navigation.css' %}"/>
+    <script type="text/javascript" src="{% static './onepoll/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static './onepoll/js/onepoll.js' %}"></script>
 </head>
 
 <body onload="updatePolls({% url 'public' %})">
     <div class="container">
         <div class="row">
             <div id="navigation">
-                <div class="h1 text-center">onepoll <small>a community polling service</small></div>
+                <div class="h1 text-center">onepoll <small>community polling</small></div>
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'new' %}">New poll</a></li>
@@ -43,8 +43,8 @@
             <div class="col-sm-4">
                 <fieldset>
                     <legend class="text-center">Filter by Category</legend>
-                    <div class="input-group col-sm-12">
-                        <span class="input-group-addon">Search in</span>
+                    <div class="input-group col-sm-12 col-xs-12">
+                        <span class="input-group-addon hidden-xs">Search in</span>
                         <select name="category" class="form-control">
                             <option value="All">All categories</option>
                             <option value="Science">Science</option>
@@ -62,7 +62,7 @@
                 <fieldset>
                     <legend class="text-center">Polls to Retrieve</legend>
                     <div class="form-group">
-                        <div class="input-group col-sm-12">
+                        <div class="input-group col-sm-12 col-xs-12">
                             <select name="amount" class="form-control">
                                 <option value="10">10 polls</option>
                                 <option value="20">20 polls</option>
@@ -77,8 +77,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <div class="input-group col-sm-12">
-                        <button type="button" class="btn btn-success col-sm-2 col-sm-push-10" onclick="updatePolls({% url 'public' %})">
+                    <div class="input-group col-sm-12 col-xs-12">
+                        <button type="button" class="btn btn-success col-sm-2 col-sm-push-10 col-xs-4" onclick="updatePolls({% url 'public' %})">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                             Refine
                         </button>
