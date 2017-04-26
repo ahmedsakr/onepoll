@@ -17,9 +17,14 @@
     display: inline;
 }
 
+#poll-info  {
+    margin-top: 20px;
+    padding: 5px;
+    background-color: #7596c8;
+}
+
 form {
     margin-top: 20px;
-    padding: 10px;
     background-color: gray;
     text-align: center;
 }
@@ -58,20 +63,4 @@ img {
     margin-top: 10px;
     width: 30%;
     height: 30%;
-}
-
-@media screen and (max-width: 600px) {
-
-    form div:last-child input[type="text"] {
-        width: 50%;
-    }
-
-    form div:last-child input[type="submit"] {
-        width: 30%;
-    }
-
-    img {
-        width: 70%;
-        height: 50%;
-    }
 }

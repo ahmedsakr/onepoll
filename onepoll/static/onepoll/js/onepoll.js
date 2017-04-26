@@ -227,21 +227,8 @@ function hash(input) {
               },
 
               success: function(data, status) {
-                  if (data != "") {
-                      json = JSON.parse(data);
-                      var pdata = [];
 
-                      for (var i = 0; i < json.length; i++) {
-                          pdata.push(json[i].fields.pid);
-                          pdata.push(json[i].fields.category);
-                          pdata.push(json[i].fields.question_text);
-                          pdata.push(json[i].fields.pub_date);
-                          addRow(pdata);
-
-                          pdata.length = 0; // empty the array
-                      }
-                  }
-
+                  JSON.parse(data).forEach((poll) => addRow(Object.values(poll.fields)));
                   $('#polls').fadeIn('slow', function() {
                       $("button").removeAttr('disabled');
                   });
@@ -265,8 +252,6 @@ function hash(input) {
       var txt = "<tr>\n";
       txt += "\t<td><a href='/p/" + data[0] + "/'>" + data[0] + "</a></td>\n";
 
-      // index starts at 1 because data[0] has already been
-      // manually added as shown above.
       for (var j = 1; j < data.length; j++) {
           txt += '\t<td>' + data[j] + '</td>\n'
       }

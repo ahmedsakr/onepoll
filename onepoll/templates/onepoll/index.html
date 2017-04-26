@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/navigation.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/index.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/poll-info.css' %}"/>
     <script type="text/javascript" src="{% static './onepoll/js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static './onepoll/js/jquery.slides.min.js' %}"></script>
     <script type="text/javascript" src="{% static './onepoll/js/tooltipsy.min.js' %}"></script>
@@ -20,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div id="navigation">
-                <div class="h1 text-center">onepoll <small>a community polling service</small></div>
+                <div class="h1 text-center">onepoll <small>community polling</small></div>
                 <ul>
                     <li><a href="{% url 'index' %}" class='active'>Home</a></li>
                     <li><a href="{% url 'new' %}">New poll</a></li>
@@ -63,7 +62,7 @@
 
         <div class="row" style="margin-top: 15px;">
             <p class="bg-info text-center">
-                OnePoll has been upgraded to version 0.3.0.
+                OnePoll has been upgraded to version 0.3.5.
                 <button type="button" class="close" aria-label="Close" onclick="$(this).parent().remove();">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -80,7 +79,7 @@
                 <div class='centre-block-title col-sm-12'>Latest poll</div>
                 <div class="col-sm-12 col-xs-12">
                     {% if poll %}
-                    <div class='poll-info col-sm-12 col-xs-12' style="margin-bottom: 10px;" name='{{ poll.category }}'>{{ poll.category }}</div>
+                    <div class='col-sm-12 col-xs-12' style="margin-bottom: 10px;" name='{{ poll.category }}'>{{ poll.category }}</div>
                     <p class="col-sm-5 col-xs-12">{{ poll.question_text }}</p>
                     <div class="col-sm-6">
                         <button type="button" class="btn btn-primary col-sm-12 col-xs-12" onclick="location.href = '{% url 'detail' poll.pid %}'">Go to poll</button>

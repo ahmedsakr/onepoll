@@ -28,7 +28,7 @@ def view_index(request, username='', authenticated=''):
     polls = Poll.objects.all().filter(public_poll=1)
     latest_poll = None
     if len(polls) != 0:
-        latest_poll = list(Poll.objects.all().filter(public_poll=1).order_by('-pub_date'))[0]
+        latest_poll = list(Poll.objects.all().filter(public_poll=1).order_by('-id'))[0]
 
     return render(request, template_name, {
         'poll': latest_poll,
@@ -130,7 +130,7 @@ def view_new(request):
 
 def view_public(request):
     template = 'onepoll/public.html'
-    
+
     if request.POST.get('request') == 'update':
         return HttpResponse(public.get_filtered_polls(request))
     else:
