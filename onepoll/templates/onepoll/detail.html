@@ -32,16 +32,6 @@
             </div>
         </div>
 
-        {% if private == True %}
-        <div class="row">
-            <div id="private">
-                <img src="{% static 'onepoll/images/Lock-icon.png' %}"/>
-                <h1 id="private">This is an unlisted, private poll. Saving the URL is critical.</h1>
-                <img src="{% static 'onepoll/images/Lock-icon.png' %}"/>
-            </div>
-        </div>
-        {% endif %}
-
         <div class="row">
             <div id="poll-info" class="col-sm-10 col-sm-push-1 col-xs-12">
                 <div class="col-sm-6">
@@ -63,6 +53,7 @@
                                 {% if poll.public_poll == 1 %}
                                 Public
                                 {% else %}
+                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                                 Private
                                 {% endif %}
                             </span>
@@ -70,34 +61,60 @@
                     </div>
                     <div>
                         <div class="col-sm-6 col-xs-6"><b>Submitted by:</b></div>
-                        <div class="col-sm-6 col-xs-6"><span class="bg-success">{{ poll.submitter }}</span></div>
+                        <div class="col-sm-6 col-xs-6">
+                            <span class="bg-success">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                {{ poll.submitter }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div id="question" class="col-sm-12 text-center">
+                <div class="col-sm-12">
+                    <span class="h1">
+                        Question
+                    </span>
+                </div>
+
+                <div class="col-sm-12">
+                    <span class="h3">
+                        <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
+                        {{ poll.question_text }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
         <form class="form row" action="{% url 'vote' poll.pid %}" method="post">
             {% csrf_token %}
-            {% if poll.image_link != "" %}
-            <img src="{{ poll.image_link }}"/>
-            {% endif %}
-            <h1>{{ poll.question_text }}</h1>
+
             {% if error_message %}
             <p><strong>{{ error_message }}</strong></p>
             {% endif %}
-            {% for choice in poll.choice_set.all %}
-            <div class="choice-block">
-                <h6>option {{ forloop.counter }}</h6>
-                <input type="radio" name="choice" value="{{ choice.id }}" />
-                <label>{{ choice.choice_text }}</label>
+            <div id="choices" class="form-group">
+                {% for choice in poll.choice_set.all %}
+                <div class="input-group col-sm-12 col-xs-12">
+                    <div class="choice-block col-sm-12 col-xs-12">
+                        <h6>option {{ forloop.counter }}</h6>
+                        <input type="radio" name="choice" value="{{ choice.id }}" />
+                        <span class="h3">{{ choice.choice_text }}</span>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
 
-            <div>
+            <div class="input-group col-sm-4 col-sm-push-8">
                 {% if participated == True %}
                 <h3>You have already participated in this poll. <a href="{% url 'results' poll.pid %}">Click for results.</a></h3>
                 {% else %}
-                <input type="text" placeholder="Name (optional)" name="name">
-                <input type="submit" value="Vote"/>
+                <input type="text" placeholder="Name (optional)" name="name" class="form-control">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary"/>Vote</button>
+                </span>
                 {% endif %}
             </div>
         </form>

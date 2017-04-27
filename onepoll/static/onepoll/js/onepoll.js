@@ -126,11 +126,10 @@ function hash(input) {
  function registerBlockSelectors(parent, blocks, func) {
      var arglen = arguments.length;
      $(document).ready(function() {
-         $(parent).children().filter(blocks).click(function() {
+         $(parent).children().find(blocks).click(function() {
              $(this).children().filter('input').prop('checked', true);
-
              if (arglen == 3) {
-                 func($(this), $(parent).children().filter(blocks));
+                 func($(this), $(parent).children().find(blocks));
              }
          });
      });

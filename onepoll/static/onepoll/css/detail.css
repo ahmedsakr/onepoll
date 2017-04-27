@@ -1,60 +1,30 @@
-#private {
-    margin-top: 20px;
-    text-align: center;
-}
-
-#private h1{
-    color: #FF6600;
-    text-align: center;
-}
-
-#private img {
-    width: 40px;
-    height: auto;
-}
-
-#private h1, img {
-    display: inline;
-}
-
 #poll-info  {
     margin-top: 20px;
     padding: 5px;
     background-color: #7596c8;
 }
 
-form {
+#question {
+    background-color: #be4b49;
     margin-top: 20px;
-    background-color: gray;
+}
+
+form {
     text-align: center;
 }
 
 .choice-block {
     background-color: #86C67C;
     opacity: 0.7;
+    padding: 5px;
 }
 
-form div:last-child {
-    text-align: right;
-}
-
-form h6 {
-    font-family: sans-serif;
-}
-
-form div label {
-    font-size: 1.5em;
+#choices {
+    background-color: gray;
 }
 
 form input[type='radio'] {
     display: none;
-}
-
-form input[type='submit'], form input[type="text"] {
-    display: inline;
-    font-size: 1em;
-    margin-top: 20px;
-    width: 10%;
 }
 
 img {
