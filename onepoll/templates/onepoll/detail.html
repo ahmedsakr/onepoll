@@ -11,7 +11,7 @@
     <script type="text/javascript" src="{% static './onepoll/js/onepoll.js' %}"></script>
     <script>
         registerBlockSelectors("form", ".choice-block", function(current, blocks) {
-            blocks.css('opacity', '0.7');
+            blocks.css('opacity', '0.8');
             current.css('opacity', '1');
         });
     </script>
@@ -33,21 +33,21 @@
         </div>
 
         <div class="row">
-            <div id="poll-info" class="col-sm-10 col-sm-push-1 col-xs-12">
-                <div class="col-sm-6">
+            <div id="poll-info" class="col-sm-12 col-xs-12">
+                <div class="col-sm-12">
                     <span class="h2">
                         <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                         Poll Specifications
                     </span>
                 </div>
 
-                <div class="col-sm-6 col-xs-11 col-xs-push-1">
-                    <div>
-                        <div class="col-sm-6 col-xs-6"><b>Category:</b></div>
+                <div class="col-sm-9 col-sm-push-3 col-xs-11 col-xs-push-1">
+                    <div class="col-sm-12">
+                        <div class="col-sm-3 col-xs-6"><b>Category:</b></div>
                         <div class="col-sm-6 col-xs-6"><span class="bg-success">{{ poll.category }}</span></div>
                     </div>
-                    <div>
-                        <div class="col-sm-6 col-xs-6"><b>Accessibility:</b></div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3 col-xs-6"><b>Accessibility:</b></div>
                         <div class="col-sm-6 col-xs-6">
                             <span class="bg-success">
                                 {% if poll.public_poll == 1 %}
@@ -59,8 +59,8 @@
                             </span>
                         </div>
                     </div>
-                    <div>
-                        <div class="col-sm-6 col-xs-6"><b>Submitted by:</b></div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3 col-xs-6"><b>Submitted by:</b></div>
                         <div class="col-sm-6 col-xs-6">
                             <span class="bg-success">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -73,16 +73,16 @@
         </div>
 
         <div class="row">
-            <div id="question" class="col-sm-12 text-center">
+            <div id="question" class="col-sm-12 col-xs-12">
                 <div class="col-sm-12">
-                    <span class="h1">
+                    <span class="h2">
+                        <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>
                         Question
                     </span>
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-12 text-center">
                     <span class="h3">
-                        <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
                         {{ poll.question_text }}
                     </span>
                 </div>
@@ -95,13 +95,15 @@
             {% if error_message %}
             <p><strong>{{ error_message }}</strong></p>
             {% endif %}
-            <div id="choices" class="form-group">
+            <div id="choices" class="form-group col-sm-12 col-xs-12">
                 {% for choice in poll.choice_set.all %}
-                <div class="input-group col-sm-12 col-xs-12">
-                    <div class="choice-block col-sm-12 col-xs-12">
-                        <h6>option {{ forloop.counter }}</h6>
-                        <input type="radio" name="choice" value="{{ choice.id }}" />
-                        <span class="h3">{{ choice.choice_text }}</span>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="input-group col-sm-12 col-xs-12">
+                        <div class="choice-block col-sm-12 col-xs-12">
+                            <h6>option {{ forloop.counter }}</h6>
+                            <input type="radio" name="choice" value="{{ choice.id }}" />
+                            <span class="h3">{{ choice.choice_text }}</span>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
