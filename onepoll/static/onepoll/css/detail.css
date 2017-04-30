@@ -9,13 +9,23 @@
     padding: 5px;
 }
 
+#poll-image {
+    background-color: #1F1209;
+    padding: 5px;
+    vertical-align: middle;
+}
+
 form {
     text-align: center;
 }
 
+.image-present {
+    float: none;
+    display: table-cell;
+}
+
 .choice-block {
     background-color: white;
-    border: 2px white solid;
     opacity: 0.8;
     padding: 5px;
     margin-bottom: 5px;
@@ -24,16 +34,23 @@ form {
 #choices {
     background-color: #9F6164;
     padding: 10px;
+    vertical-align: top;
 }
 
 form input[type='radio'] {
     display: none;
 }
 
-img {
-    display: block;
-    margin: auto;
-    margin-top: 10px;
-    width: 30%;
-    height: 30%;
+@media (max-width: 767px) {
+    #poll-image {
+        display: block;
+    }
+
+    #choices {
+        display: block;
+    }
+
+    #tablee {
+        display: block;
+    }
 }

@@ -12,7 +12,9 @@
     <script>
         registerBlockSelectors("form", ".choice-block", function(current, blocks) {
             blocks.css('opacity', '0.8');
+            blocks.css('background-color', "white");
             current.css('opacity', '1');
+            current.css('background-color', '#67E898');
         });
     </script>
 </head>
@@ -95,6 +97,26 @@
             {% if error_message %}
             <p><strong>{{ error_message }}</strong></p>
             {% endif %}
+
+            {% if poll.image_link != "" %}
+            <div style="display: table;" id="tablee">
+                <div id="poll-image" class="col-sm-6 col-xs-12">
+                    <img src="{{ poll.image_link }}" class="col-sm-12  img img-responsive">
+                </div>
+
+                <div id="choices" class="form-group col-sm-6 col-xs-12">
+                    {% for choice in poll.choice_set.all %}
+                    <div class="input-group col-sm-12 col-xs-12">
+                        <div class="choice-block col-sm-12 col-xs-12">
+                            <h6>option {{ forloop.counter }}</h6>
+                            <input type="radio" name="choice" value="{{ choice.id }}" />
+                            <span class="h3">{{ choice.choice_text }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
             <div id="choices" class="form-group col-sm-12 col-xs-12">
                 {% for choice in poll.choice_set.all %}
                 <div class="col-sm-6 col-xs-12">
@@ -108,8 +130,8 @@
                 </div>
                 {% endfor %}
             </div>
-
-            <div class="input-group col-sm-4 col-sm-push-8">
+            {% endif %}
+            <div class="input-group col-sm-4 col-sm-push-8" style="margin-top: 20px;">
                 {% if participated == True %}
                 <h3>You have already participated in this poll. <a href="{% url 'results' poll.pid %}">Click for results.</a></h3>
                 {% else %}
@@ -121,5 +143,12 @@
             </div>
         </form>
     </div>
+
+    {% if poll.image_link != "" %}
+    <script>
+        $('form').children().children().addClass("image-present");
+        $('#choices').css("background-color", "#1F1209");
+    </script>
+    {% endif %}
 </body>
 </html>
