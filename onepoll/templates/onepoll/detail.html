@@ -11,10 +11,14 @@
     <script type="text/javascript" src="{% static './onepoll/js/onepoll.js' %}"></script>
     <script>
         registerBlockSelectors("form", ".choice-block", function(current, blocks) {
-            blocks.css('opacity', '0.8');
-            blocks.css('background-color', "white");
-            current.css('opacity', '1');
-            current.css('background-color', '#67E898');
+            blocks.css({
+                'opacity': '0.8',
+                'background-color': 'white'
+            });
+            current.css({
+                'opacity': '1.0',
+                'background-color': '#67E898'
+            });
         });
     </script>
 </head>

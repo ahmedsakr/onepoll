@@ -5,38 +5,43 @@
 <head>
     <title>Results</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/results.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'onepoll/css/navigation.css' %}"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="{% static 'onepoll/js/onepoll.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/results.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './onepoll/css/navigation.css' %}"/>
+    <script type="text/javascript" src="{% static './onepoll/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static './onepoll/js/onepoll.js' %}"></script>
 </head>
 
 <body onload="update('{% url 'results' poll.pid %}')">
-    <div id="navigation">
-        <h1>onepoll</h1>
-        <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'new' %}">New poll</a></li>
-            <li><a href="{% url 'random' %}">Random poll</a></li>
-            <li><a href="{% url 'public' %}">Public polls</a></li>
-            <li style="float: right"><a href="{% url 'results' poll.pid %}" class='active'>Poll results</a></li>
-        </ul>
-    </div>
-
-    <h1>Thank you for participating in <span style='color:#CD5555'>poll #{{poll.pid}}</span></h1>
-
-    <div id="results">
-        <h2>{{ poll.question_text }}</h2>
-        <h3>{{ poll.get_total_votes }} vote{{ poll.get_total_votes|pluralize }}</h3>
-        {% for choice in poll.choice_set.all %}
-            <div class="progress-background">
-                <div class="progress-foreground">
-                    <div class="progress-description"></div>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div id="navigation">
+                <div class="h1 text-center">onepoll <small>community polling</small></div>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'new' %}">New poll</a></li>
+                    <li><a href="{% url 'random' %}">Random poll</a></li>
+                    <li><a href="{% url 'public' %}">Public polls</a></li>
+                    <li style="float: right"><a href="{% url 'results' poll.pid %}" class='active'>Poll results</a></li>
+                </ul>
             </div>
-        {% endfor %}
-    </div>
 
-    <input type='button' value='Update results' onclick="update('{% url 'results' poll.pid %}')"/>
+            <h1>Thank you for participating in <span style='color:#CD5555'>poll #{{poll.pid}}</span></h1>
+
+            <div id="results">
+                <h2>{{ poll.question_text }}</h2>
+                <h3>{{ poll.get_total_votes }} vote{{ poll.get_total_votes|pluralize }}</h3>
+                {% for choice in poll.choice_set.all %}
+                    <div class="progress-background">
+                        <div class="progress-foreground">
+                            <div class="progress-description"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <input type='button' value='Update results' onclick="update('{% url 'results' poll.pid %}')"/>
+        </div>
+    </div>
 </body>
 </html>
